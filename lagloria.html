@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Palapa Campestre "La Gloria" | Eventos en Reforma, Chiapas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0f1a;
+            font-family: 'Poppins', sans-serif;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        /* Hero con video de fondo */
+        .hero-video {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-video video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content h1 {
+            font-size: 64px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .hero-content .btn-hero {
+            background: linear-gradient(135deg, #fc6f03, #e05e00);
+            padding: 14px 40px;
+            border-radius: 60px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .hero-content .btn-hero:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Contenedor principal */
+        .contenedor-gloria {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Secciones con parallax */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 30px;
+            margin: 50px 0;
+        }
+
+        /* Galería tipo lightbox */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .galeria-item {
+            overflow: hidden;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .galeria-item:hover {
+            transform: scale(1.02);
+        }
+
+        .galeria-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 20px;
+        }
+
+        .lightbox .cerrar-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        /* Tarjetas de servicios */
+        .servicios-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 50px 0;
+        }
+
+        .servicio-card {
+            background: linear-gradient(145deg, #0f172a, #0a0f1a);
+            padding: 30px;
+            border-radius: 30px;
+            text-align: center;
+            flex: 1;
+            min-width: 220px;
+            transition: all 0.3s;
+            border-bottom: 3px solid #fc6f03;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(252,111,3,0.2);
+        }
+
+        .servicio-card i {
+            font-size: 48px;
+            color: #fc6f03;
+            margin-bottom: 20px;
+        }
+
+        /* Testimonios */
+        .testimonios-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 50px 0;
+        }
+
+        .testimonio-card {
+            background: #0f172a;
+            padding: 25px;
+            border-radius: 25px;
+            max-width: 300px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .testimonio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(252,111,3,0.15);
+        }
+
+        .testimonio-card i {
+            font-size: 36px;
+            color: #fc6f03;
+            margin-bottom: 15px;
+        }
+
+        /* Botón flotante WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 9999;
+            animation: latido 1.5s ease-in-out infinite;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        .whatsapp-float i {
+            font-size: 36px;
+            color: white;
+        }
+
+        @keyframes latido {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 36px; }
+            .hero-content p { font-size: 18px; }
+            .parallax { background-attachment: scroll; }
+        }
+
+    .boton-flotante-volver {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #0f3460;
+    color: #fc6f03;
+    padding: 10px 18px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: all 0.3s;
+}
+
+.boton-flotante-volver:hover {
+    background: #fc6f03;
+    color: white;
+    transform: translateX(-3px);
+}
+
+    </style>
+</head>
+<body>
+
+<a href="index.html#portafolio" class="boton-flotante-volver">
+    <i class="fas fa-arrow-left"></i> Volver al portafolio...</a>
+
+<div class="hero-video" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('logo.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="hero-content">
+        <h1>🌴 Palapa Campestre "La Gloria"</h1>
+        <p>Eventos inolvidables rodeados de naturaleza en Reforma, Chiapas</p>
+        <a href="#contacto" class="btn-hero">Cotizar evento <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+
+<!-- Contenido principal -->
+<div class="contenedor-gloria">
+
+    <!-- Descripción -->
+    <section style="text-align: center; margin-bottom: 60px;">
+        <h2 style="color: #fc6f03; font-size: 36px; margin-bottom: 20px;">Un lugar Mágico para tu Evento</h2>
+        <p style="font-size: 18px; max-width: 800px; margin: 0 auto;">La Gloria es una Palapa Campestre Ideal para Celebrar Bodas, Cumpleaños, Bautizos, Reuniones Empresariales o cualquier Evento Especial. Rodeada de naturaleza, con amplio espacio verde, estacionamiento y una atmósfera única.</p>
+    </section>
+
+    <!-- Servicios -->
+    <h2 style="text-align: center; color: #fc6f03; font-size: 36px; margin-bottom: 40px;">Nuestros Servicios</h2>
+    <div class="servicios-grid">
+        <div class="servicio-card">
+            <i class="fas fa-calendar-alt"></i>
+            <h3>Renta por Evento</h3>
+            <p>Precio a consultar según tipo y duración del evento</p>
+        </div>
+        <div class="servicio-card">
+            <i class="fas fa-tree"></i>
+            <h3>Jardín Amplio</h3>
+            <p>Perfecto para ceremonias o convivencia al aire libre</p>
+        </div>
+        <div class="servicio-card">
+            <i class="fas fa-car"></i>
+            <h3>Estacionamiento</h3>
+            <p>Gratuito y seguro para tus invitados</p>
+        </div>
+        <div class="servicio-card">
+            <i class="fas fa-chair"></i>
+            <h3>Mobiliario Incluido</h3>
+            <p>Mesas y sillas para tus eventos</p>
+        </div>
+    </div>
+
+    <!-- Galería con lightbox -->
+    <h2 style="text-align: center; color: #fc6f03; font-size: 36px; margin: 60px 0 30px;">Galería</h2>
+    <div class="galeria-grid" id="galeria">
+        <div class="galeria-item"><img src="gloria1.jpg" alt="Acceso Principal" onerror="this.src='https://placehold.co/600x400/0f3460/fc6f03?text=Foto+1'"></div>
+        <div class="galeria-item"><img src="gloria2.jpg" alt="Jardín" onerror="this.src='https://placehold.co/600x400/0f3460/fc6f03?text=Foto+2'"></div>
+        <div class="galeria-item"><img src="gloria3.jpg" alt="Pista" onerror="this.src='https://placehold.co/600x400/0f3460/fc6f03?text=Foto+3'"></div>
+        <div class="galeria-item"><img src="gloria4.jpg" alt="Comedor Rústico" onerror="this.src='https://placehold.co/600x400/0f3460/fc6f03?text=Foto+4'"></div>
+        <div class="galeria-item"><img src="gloria5.jpg" alt="Acceso" onerror="this.src='https://placehold.co/600x400/0f3460/fc6f03?text=Foto+4'"></div>
+        <div class="galeria-item"><img src="gloria6.jpg" alt="Banquete" onerror="this.src='https://placehold.co/600x400/0f3460/fc6f03?text=Foto+4'"></div>
+    </div>
+
+    <!-- Testimonios -->
+    <h2 style="text-align: center; color: #fc6f03; font-size: 36px; margin: 60px 0 30px;">Lo que dicen nuestros clientes</h2>
+    <div class="testimonios-grid">
+        <div class="testimonio-card">
+            <i class="fas fa-quote-left"></i>
+            <p>"El mejor lugar para celebrar. Todo perfecto, atención increíble."</p>
+            <h4>— María G.</h4>
+        </div>
+        <div class="testimonio-card">
+            <i class="fas fa-quote-left"></i>
+            <p>"Mi boda fue un sueño gracias a La Gloria. Súper recomendado."</p>
+            <h4>— Carlos R.</h4>
+        </div>
+        <div class="testimonio-card">
+            <i class="fas fa-quote-left"></i>
+            <p>"Excelente espacio, naturaleza y tranquilidad. Volveré."</p>
+            <h4>— Laura F.</h4>
+        </div>
+    </div>
+
+    <!-- Ubicación y mapa -->
+    <h2 style="text-align: center; color: #fc6f03; font-size: 36px; margin: 60px 0 20px;">📍 Ubicación</h2>
+    <p style="text-align: center; margin-bottom: 20px;">
+        <i class="fas fa-map-marker-alt" style="color: #fc6f03;"></i> 
+        Camino de Reforma a Francisco I Madero, Reforma, Chiapas, México
+    </p>
+    <div style="border-radius: 30px; overflow: hidden; margin: 30px 0;">
+        <iframe 
+            src="https://www.google.com/maps?q=Reforma+Chiapas+Mexico&output=embed"
+            width="100%" 
+            height="350" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
+    </div>
+
+    <!-- Contacto -->
+    <div id="contacto" style="text-align: center; margin: 80px 0;">
+        <h2 style="color: #fc6f03; font-size: 36px; margin-bottom: 20px;">¿Quieres cotizar tu Evento?</h2>
+        <a href="https://wa.me/5219932858108?text=Hola,%20me%20interesa%20cotizar%20un%20evento%20en%20Palapa%20Campestre%20%22La%20Gloria%22.%20¿Podrían%20darme%20más%20información?" 
+           class="btn-hero" style="background: linear-gradient(135deg, #25D366, #128C7E); padding: 15px 40px; display: inline-flex; align-items: center; gap: 10px;">
+            <i class="fab fa-whatsapp" style="font-size: 24px;"></i> Cotizar por WhatsApp
+        </a>
+        <p style="margin-top: 25px;">📞 También puedes llamar al <strong>993 285 8108</strong></p>
+    </div>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 40px 0; border-top: 1px solid #1a5276; margin-top: 40px;">
+        <p>© 2026 Palapa Campestre "La Gloria" | Diseño y desarrollo por Alex VIDLA</p>
+        <p style="font-size: 12px; margin-top: 10px;">📍 Reforma, Chiapas, México</p>
+    </footer>
+</div>
+
+<!-- Botón flotante WhatsApp -->
+<a href="https://wa.me/5219932858108?text=Hola,%20me%20interesa%20cotizar%20un%20evento%20en%20Palapa%20Campestre%20%22La%20Gloria%22.%20¿Podrían%20darme%20más%20información?" 
+   class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <span class="cerrar-lightbox">&times;</span>
+    <img id="lightbox-img" src="">
+</div>
+
+<script>
+    // Lightbox para galería
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const cerrar = document.querySelector('.cerrar-lightbox');
+
+    document.querySelectorAll('.galeria-item img').forEach(img => {
+        img.addEventListener('click', () => {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = img.src;
+        });
+    });
+
+    cerrar.addEventListener('click', () => {
+        lightbox.style.display = 'none';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) lightbox.style.display = 'none';
+    });
+</script>
+
+</body>
+</html>

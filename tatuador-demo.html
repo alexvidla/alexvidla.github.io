@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>La Pera Tatoo’s | Estudio de tatuaje profesional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            font-family: 'Poppins', sans-serif;
+            color: #e0e0e0;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.5s;
+        }
+
+        .preloader.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .preloader .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #222;
+            border-top: 4px solid #d4af37;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Cursor personalizado */
+        .cursor {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transition: 0.1s;
+            transform: translate(-50%, -50%);
+            backdrop-filter: blur(4px);
+        }
+
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background: #d4af37;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+        }
+
+        @media (max-width: 768px) {
+            .cursor, .cursor-dot { display: none; }
+            * { cursor: auto; }
+        }
+
+        /* Scroll margin */
+        #servicios, #galeria, #contacto {
+            scroll-margin-top: 100px;
+        }
+
+        @media (max-width: 768px) {
+            #servicios, #galeria, #contacto {
+                scroll-margin-top: 120px;
+            }
+        }
+
+        /* Header vidrio */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #d4af37;
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+        }
+
+        .nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin-left: 25px;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .nav a:hover {
+            color: #d4af37;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('tatuador.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 64px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hero-content h1 span {
+            color: #d4af37;
+            text-shadow: 0 0 15px #d4af37;
+        }
+
+        .typed-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .typed-text {
+            font-size: 28px;
+            font-weight: 600;
+            color: #d4af37;
+            text-align: center;
+            border-right: 2px solid #d4af37;
+            padding-right: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: blink 0.7s step-end infinite;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 36px; }
+            .typed-text { font-size: 18px; white-space: normal; border-right: none; display: block; text-align: center; }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #d4af37; }
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #d4af37, #b8920f);
+            color: #0a0a0a;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: #fc6f03;
+            color: white;
+            box-shadow: 0 6px 20px rgba(252, 111, 3, 0.4);
+        }
+
+        .flecha-abajo {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            color: #d4af37;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(15px); }
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .servicios-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .servicio-card {
+            background: rgba(17, 17, 17, 0.7);
+            backdrop-filter: blur(8px);
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            flex: 1;
+            min-width: 240px;
+            transition: all 0.4s;
+            border-bottom: 3px solid #d4af37;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 30px rgba(212, 175, 55, 0.2);
+            background: rgba(17, 17, 17, 0.9);
+        }
+
+        .servicio-card i {
+            font-size: 48px;
+            color: #d4af37;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+
+        .servicio-card:hover i {
+            transform: scale(1.1);
+        }
+
+        .precio {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #d4af37;
+        }
+
+        .separador-grande {
+            margin-top: 140px;
+            text-align: center;
+        }
+
+        .linea-dorada {
+            width: 80px;
+            height: 3px;
+            background: #d4af37;
+            border: none;
+            margin: 0 auto 50px auto;
+        }
+
+        @media (max-width: 768px) {
+            .separador-grande {
+                margin-top: 180px;
+            }
+        }
+
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .galeria img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.5s;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .galeria img:hover {
+            transform: scale(1.02) translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .lightbox img {
+            max-width: 85%;
+            max-height: 80%;
+            border-radius: 15px;
+        }
+
+        .lightbox .cerrar {
+            position: absolute;
+            top: 25px;
+            right: 40px;
+            color: white;
+            font-size: 45px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .lightbox .cerrar:hover {
+            color: #d4af37;
+        }
+
+        .lightbox .nav-flecha {
+            position: absolute;
+            top: 50%;
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .lightbox .prev { left: 20px; }
+        .lightbox .next { right: 20px; }
+        .lightbox .nav-flecha:hover { background: #d4af37; color: black; }
+
+        .testimonios {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 60px 0;
+        }
+
+        .testimonio {
+            background: rgba(17, 17, 17, 0.7);
+            backdrop-filter: blur(8px);
+            padding: 25px;
+            border-radius: 25px;
+            max-width: 300px;
+            text-align: center;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        .testimonio img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 2px solid #d4af37;
+        }
+
+        .formulario {
+            background: rgba(17, 17, 17, 0.7);
+            backdrop-filter: blur(8px);
+            padding: 45px;
+            border-radius: 35px;
+            margin: 60px 0;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .campo {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            border: none;
+            background: #1a1a1a;
+            color: white;
+            font-size: 16px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #050505, #111);
+            border-top: 1px solid #d4af37;
+        }
+
+        .contador {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 48px;
+            font-weight: 800;
+            color: #d4af37;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 36px; }
+            .header { flex-direction: column; gap: 12px; text-align: center; }
+            .nav a { margin: 0 12px; }
+            .lightbox .nav-flecha { font-size: 30px; padding: 5px 12px; }
+            .lightbox .prev { left: 5px; }
+            .lightbox .next { right: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="preloader" id="preloader">
+    <div class="spinner"></div>
+</div>
+
+<div class="cursor"></div>
+<div class="cursor-dot"></div>
+
+<div class="header">
+    <div class="logo">La Pera <span>Tatoo’s</span></div>
+    <div class="nav">
+        <a href="#">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#galeria">Galería</a>
+        <a href="#contacto">Contacto</a>
+    </div>
+</div>
+
+<div class="hero" id="inicio">
+    <div class="hero-content">
+        <h1>Arte que <span>Habla</span> en Tu Piel...</h1>
+        <div class="typed-wrapper">
+            <div class="typed-text" id="typed"></div>
+        </div>
+        <a href="#contacto" class="btn">🔥🔥🔥Cotiza tu Idea Ahora</a>
+    </div>
+    <div class="flecha-abajo" onclick="document.getElementById('servicios').scrollIntoView({behavior: 'smooth'});">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</div>
+
+<div class="contenedor">
+    <h2 style="text-align: center; color: #d4af37; font-size: 36px;" id="servicios">🔥 Nuestros Servicios</h2>
+    <div class="servicios-grid">
+        <div class="servicio-card"><i class="fas fa-pen-fancy"></i><h3>Diseño Personalizado</h3><p>Desde tu Idea, Creamos un Diseño Único.</p><div class="precio">Desde $800 MXN</div></div>
+        <div class="servicio-card"><i class="fas fa-tint"></i><h3>Tatuaje Tradicional</h3><p>Blackwork, Realismo o Lettering.</p><div class="precio">Desde $1,500 MXN</div></div>
+        <div class="servicio-card"><i class="fas fa-hand-sparkles"></i><h3>Retoque o Cobertura</h3><p>Renovamos Tatuajes Antiguos.</p><div class="precio">Cotizar</div></div>
+    </div>
+
+    <div class="contador">
+        <span id="clientesContador">128</span> Clientes Felices 🧡
+    </div>
+
+    <div class="separador-grande">
+        <hr class="linea-dorada">
+    </div>
+
+    <h2 style="text-align: center; color: #d4af37; font-size: 36px;" id="galeria">🎨 Nuestros Trabajos</h2>
+    <div class="galeria" id="galeriaContainer">
+        <img src="tatoo1.jpg" alt="Tatuaje brazo">
+        <img src="tatoo2.jpg" alt="Tatuaje espalda">
+        <img src="tatoo3.jpg" alt="Arte realismo">
+        <img src="tatoo4.jpg" alt="Diseño floral">
+        <img src="tatoo5.jpg" alt="Tatuaje manga">
+        <img src="tatoo6.jpg" alt="Tatuaje pecho">
+    </div>
+
+    <h2 style="text-align: center; color: #d4af37; font-size: 36px;">⭐ Lo que dicen nuestros clientes</h2>
+    <div class="testimonios">
+        <div class="testimonio"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Cliente"><h4>Andrea María G.</h4><p>"Diseño único, atención increíble."</p><div>⭐️⭐️⭐️⭐️⭐️</div></div>
+        <div class="testimonio"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente"><h4>Carlos R.</h4><p>"Profesional y limpio."</p><div>⭐️⭐️⭐️⭐️⭐️</div></div>
+        <div class="testimonio"><img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Cliente"><h4>Laura F.</h4><p>"Experiencia única."</p><div>⭐️⭐️⭐️⭐️⭐️</div></div>
+    </div>
+
+    <div id="contacto" class="formulario">
+        <h2 style="text-align: center;">💡 ¿Tienes una Idea en Mente?</h2>
+        <p style="text-align: center; margin-bottom: 25px;">Cuéntanos y te daremos precio sin compromiso.</p>
+        <input type="text" id="nombreTatuador" class="campo" placeholder="Tu nombre">
+        <input type="text" id="ideaTatuaje" class="campo" placeholder="Describe tu idea o estilo deseado">
+        <button id="btnCotizarTatuaje" class="btn" style="width: 100%; cursor: pointer;">📩 Cotizar por WhatsApp</button>
+    </div>
+</div>
+
+<div class="footer">
+    <p>© 2026 La Pera Tatoo’s | Arte Sobre Piel ❤️</p>
+    <p>📍 Reforma, Chiapas | 📲 +52 917 10 46397 | Diseño y Desarrollo por Alex VIDLA</p>
+</div>
+
+<div id="lightbox" class="lightbox">
+    <span class="cerrar">&times;</span>
+    <span class="nav-flecha prev" id="prevBtn">&#10094;</span>
+    <img id="lightboxImg" src="">
+    <span class="nav-flecha next" id="nextBtn">&#10095;</span>
+</div>
+
+<a href="https://wa.me/5219171046397?text=Hola%20quiero%20Cotizar%20un%20Tatuaje..." target="_blank" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #25D366, #128C7E); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999; transition: 0.3s; animation: latido 1.5s infinite;">
+    <i class="fab fa-whatsapp" style="font-size: 32px; color: white;"></i>
+</a>
+
+<script>
+    // Preloader
+    window.addEventListener('load', () => {
+        setTimeout(() => document.getElementById('preloader').classList.add('hide'), 800);
+    });
+
+    // Cursor personalizado
+    const cursor = document.querySelector('.cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        cursorDot.style.left = e.clientX + 'px';
+        cursorDot.style.top = e.clientY + 'px';
+    });
+
+    // Texto animado
+    const palabras = ["Blackwork", "Realismo", "Lettering", "Acuarela", "Old School"];
+    let i = 0, j = 0, escribiendo = true;
+    const typedEl = document.getElementById("typed");
+    function animarTexto() {
+        if (escribiendo) {
+            if (j <= palabras[i].length) {
+                typedEl.textContent = palabras[i].substring(0, j);
+                j++;
+                setTimeout(animarTexto, 100);
+            } else {
+                escribiendo = false;
+                setTimeout(animarTexto, 2000);
+            }
+        } else {
+            if (j >= 0) {
+                typedEl.textContent = palabras[i].substring(0, j);
+                j--;
+                setTimeout(animarTexto, 50);
+            } else {
+                escribiendo = true;
+                i = (i + 1) % palabras.length;
+                j = 0;
+                setTimeout(animarTexto, 500);
+            }
+        }
+    }
+    animarTexto();
+
+    // Galería lightbox
+    let imagenes = Array.from(document.querySelectorAll("#galeriaContainer img")).map(img => img.src);
+    let indice = 0;
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+
+    document.querySelectorAll("#galeriaContainer img").forEach((img, idx) => {
+        img.onclick = () => { indice = idx; lightbox.style.display = "flex"; lightboxImg.src = imagenes[indice]; };
+    });
+
+    document.querySelector(".cerrar").onclick = () => lightbox.style.display = "none";
+    document.getElementById("prevBtn").onclick = () => { indice = (indice - 1 + imagenes.length) % imagenes.length; lightboxImg.src = imagenes[indice]; };
+    document.getElementById("nextBtn").onclick = () => { indice = (indice + 1) % imagenes.length; lightboxImg.src = imagenes[indice]; };
+    lightbox.onclick = (e) => { if (e.target === lightbox) lightbox.style.display = "none"; };
+
+    // Formulario
+    document.getElementById("btnCotizarTatuaje").onclick = () => {
+        let nombre = document.getElementById("nombreTatuador").value.trim();
+        let idea = document.getElementById("ideaTatuaje").value.trim();
+        if (!nombre || !idea) { alert("Escribe tu Nombre y tu Idea..."); return; }
+        let url = `https://wa.me/5219171046397?text=Hola, me llamo ${nombre}. Quiero cotizar un Tatuaje: "${idea}"Me puedes Ayudar...?`;
+        window.open(url, "_blank");
+        document.getElementById("nombreTatuador").value = "";
+        document.getElementById("ideaTatuaje").value = "";
+    };
+</script>
+<style>
+    @keyframes latido { 0%,100%{transform:scale(1);} 50%{transform:scale(1.08);} }
+</style>
+
+ <button id="btnVolverPortafolio" style="position: fixed; bottom: 20px; left: 20px; background: #0f3460; color: #fc6f03; padding: 12px 20px; border-radius: 40px; border: none; font-weight: bold; z-index: 9999; font-size: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: 0.3s; display: flex; align-items: center; gap: 8px; cursor: pointer;" 
+    onmouseover="this.style.backgroundColor='#fc6f03'; this.style.color='#0a0a0a';" 
+    onmouseout="this.style.backgroundColor='#0f3460'; this.style.color='#fc6f03';">
+    ← Volver al portafolio
+</button>
+
+<script>
+    document.getElementById('btnVolverPortafolio').addEventListener('click', function() {
+        window.location.href = 'index.html#portafolio';
+    });
+</script>
+
+</body>
+</html>

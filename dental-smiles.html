@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Clínica Dental Smiles | Tu sonrisa, nuestra prioridad</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Poppins', sans-serif;
+            color: #1e2a3e;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Scroll margin */
+        #servicios, #doctor, #cita {
+            scroll-margin-top: 100px;
+        }
+
+        @media (max-width: 768px) {
+            #servicios, #doctor, #cita {
+                scroll-margin-top: 120px;
+            }
+        }
+
+        /* Header con efecto vidrio */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 40px;
+            border-bottom: 1px solid rgba(44,125,160,0.2);
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #0f2b3d;
+        }
+
+        .logo span {
+            color: #2c7da0;
+        }
+
+        .nav a {
+            color: #1e2a3e;
+            text-decoration: none;
+            margin-left: 25px;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .nav a:hover {
+            color: #2c7da0;
+        }
+
+        /* Hero con imagen de fondo real */
+        .hero {
+            
+            
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/3845625/pexels-photo-3845625.jpeg?w=1600');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 span {
+            color: #fc6f03;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            color: white;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #2c7da0, #1f5e7e);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: #fc6f03;
+            box-shadow: 0 6px 15px rgba(252,111,3,0.4);
+        }
+
+        .icono-flotante {
+            font-size: 60px;
+            color: white;
+            margin-bottom: 20px;
+            animation: flotar 2.5s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .servicios-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .servicio-card {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            transition: all 0.4s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-bottom: 3px solid #2c7da0;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(44,125,160,0.15);
+        }
+
+        .servicio-card i {
+            font-size: 48px;
+            color: #2c7da0;
+            margin-bottom: 15px;
+        }
+
+        .doctor-card {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .doctor-img {
+            flex: 1;
+            min-width: 250px;
+            background: #e0f2fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .doctor-img i {
+            font-size: 120px;
+            color: #2c7da0;
+        }
+
+        .doctor-info {
+            flex: 2;
+            padding: 40px;
+        }
+
+        .doctor-info h3 {
+            font-size: 28px;
+            color: #0f2b3d;
+        }
+
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .galeria img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 20px;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .galeria img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .testimonios {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .testimonio {
+            
+            background: #2c7da0;
+            padding: 25px;
+            border-radius: 25px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .testimonio h4 {
+
+            color:#fc6f03 ;
+        }
+
+
+        .testimonios p {
+            /*color: #fc6f03;*/
+            color: #cbd5e1;
+        }
+
+        .testimonio img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .formulario-cita {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            margin: 40px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .campo {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            border: 1px solid #cbd5e1;
+            background: #f8fafc;
+            font-size: 16px;
+        }
+
+        .horario {
+            background: #e0f2fe;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .mapa  {
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .footer {
+            background: #0f2b3d;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .header { flex-direction: column; gap: 15px; text-align: center; }
+            .nav a { margin: 0 12px; }
+            .doctor-card { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <img src="logosmiles.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+        <div class="logo">Clínica Dental <span>Smiles</span></div>
+    </div>
+    <div class="nav">
+        <a href="#">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#doctor">Especialista</a>
+        <a href="#cita">Contacto</a>
+    </div>
+</div>
+
+<div class="hero">
+    <div class="hero-content">
+        <div class="icono-flotante">🦷</div>
+        <h1>Tu Sonrisa, <span>Nuestra Prioridad</span></h1>
+        <p>Tecnología Avanzada, Atención Cálida y Resultados que Transforman Vidas.</p>
+        <a href="#cita" class="btn">📅 Agendar Cita...</a>
+    </div>
+</div>
+
+<div class="contenedor">
+    <h2 style="text-align: center; color: #0f2b3d;" id="servicios">🦷 Nuestros Servicios</h2>
+    <div class="servicios-grid">
+        <div class="servicio-card"><i class="fas fa-tooth"></i><h3>Limpieza</h3><p>Eliminación de Placa y Sarro.</p></div>
+        <div class="servicio-card"><i class="fas fa-smile"></i><h3>Blanqueamiento</h3><p>Sonrisa Radiante en pocas Sesiones.</p></div>
+        <div class="servicio-card"><i class="fas fa-tooth"></i><h3>Ortodoncia</h3><p>Brackets y Alineadores Invisibles.</p></div>
+        <div class="servicio-card"><i class="fa-regular fa-face-grimace"></i></i><h3>Implantes</h3><p>Reemplazo Dental Avanzado.</p></div>
+        <div class="servicio-card"><i class="fas fa-tools"></i><h3>Endodoncia</h3><p>Tratamiento de Conducto Sin Dolor.</p></div>
+        <div class="servicio-card"><i class="fas fa-teeth-open"></i><h3>Extracciones</h3><p>Procedimientos Sin Molestias.</p></div>
+    </div>
+
+    <div id="doctor" class="doctor-card">
+        <div class="doctor-img">
+            <i class="fas fa-user-md"></i>
+        </div>
+        <div class="doctor-info">
+            <h3>C.D. Isaias López Ramírez</h3>
+            <p>UJAT - Universidad Juárez Autónoma de Tabasco</p>
+            <p>Más de 20 años de Experiencia Devolviendo Sonrisas con Calidad Humana y Excelencia Profesional.</p>
+        </div>
+    </div>
+
+    <h2 style="text-align: center; color: #0f2b3d;">🌟 Antes y Después</h2>
+    <div class="galeria">
+        <img src="https://images.pexels.com/photos/3768876/pexels-photo-3768876.jpeg?w=600" alt="Sonrisa perfecta">
+        <img src="https://images.pexels.com/photos/3779706/pexels-photo-3779706.jpeg?w=600" alt="Blanqueamiento">
+        <img src="https://images.pexels.com/photos/3992934/pexels-photo-3992934.jpeg?w=600" alt="Ortodoncia">
+        <img src="https://images.pexels.com/photos/3957990/pexels-photo-3957990.jpeg?w=600" alt="Implante dental">
+    </div>
+
+    <h2 style="text-align: center; color: #0f2b3d;">📖 Lo que Dicen Mis Pacientes</h2>
+    <div class="testimonios">
+        <div class="testimonio"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Paciente"><h4>María G.</h4><p>"Atención increíble, me siento con más Confianza para Sonreír..."</p><div>⭐️⭐️⭐️⭐️⭐️</div></div>
+        <div class="testimonio"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Paciente"><h4>Carlos R.</h4><p>"El doctor López es muy Profesional, Volveré..."</p><div>⭐️⭐️⭐️⭐️⭐️</div></div>
+        <div class="testimonio"><img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Paciente"><h4>Laura F.</h4><p>"Limpieza Profunda, Rápida y sin Dolor..."</p><div>⭐️⭐️⭐️⭐️⭐️</div></div>
+    </div>
+
+    <div class="horario">
+        <i class="fas fa-clock" style="color:#2c7da0; font-size: 24px;"></i>
+        <p><strong>Horarios:</strong> Lunes a Sábado 9am - 2pm | 4pm - 8pm | Domingo: Cerrado</p>
+    </div>
+
+    <div class="mapa">
+        <iframe src="https://www.google.com/maps?q=Reforma+Chiapas+Mexico&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <p style="text-align: center;color:#2c7da0"><i class="fas fa-map-marker-alt"></i> Pasillo Interior puerta 1, C. Benito Juárez 92, Centro, 29500 Reforma, Chis.</p>
+
+    <div id="cita" class="formulario-cita">
+        <h2 style="text-align: center;">📅 Agenda Tu Cita Hoy</h2>
+        <p style="text-align: center;">Déjanos Tus Datos y te Confirmaremos por WhatsApp</p>
+        <input type="text" id="nombreCita" class="campo" placeholder="Tu Nombre Completo">
+        <input type="tel" id="telefonoCita" class="campo" placeholder="Tu Número de WhatsApp">
+        <input type="date" id="fechaCita" class="campo">
+        <select id="servicioCita" class="campo">
+            <option value="Limpieza">Limpieza Dental</option>
+            <option value="Blanqueamiento">Blanqueamiento</option>
+            <option value="Ortodoncia">Ortodoncia</option>
+            <option value="Implante">Implante Dental</option>
+            <option value="Endodoncia">Endodoncia</option>
+            <option value="Extracción">Extracción Sin Dolor</option>
+        </select>
+        <button id="btnAgendarCita" class="btn" style="width: 100%; cursor: pointer;">📩 Agendar por WhatsApp</button>
+    </div>
+
+    <div style="text-align: center; margin: 40px 0;">
+        <a href="https://wa.me/5219171021518?text=Hola%2C%20Vi%20su%20P%C3%A1gina%20y%20me%20Interesa%20Agendar%20una%20Cita..." class="btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+        </a>
+        <p style="margin-top: 15px;">📞 Llamar al: <strong>917 102 1518</strong></p>
+    </div>
+</div>
+
+<div class="footer">
+    <p>© 2026 Clínica Dental Smiles | Tu Sonrisa, Nuestra Prioridad</p>
+    <p>📍 Reforma, Chiapas | 🦷 C.D. Isaias López Ramírez| Diseño y Desarrollo por Alex VIDLA</p>
+</div>
+
+<a href="https://wa.me/5219171021518?text=Hola%2C%20Vi%20su%20P%C3%A1gina%20y%20me%20Interesa%20Agendar%20una%20Cita..." target="_blank" style="position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; transition: 0.3s; animation: latido 1.5s infinite;">
+    <i class="fab fa-whatsapp" style="font-size: 32px; color: white;"></i>
+</a>
+
+<script>
+    document.getElementById("btnAgendarCita").addEventListener("click", function() {
+        let nombre = document.getElementById("nombreCita").value.trim();
+        let telefono = document.getElementById("telefonoCita").value.trim();
+        let fecha = document.getElementById("fechaCita").value;
+        let servicio = document.getElementById("servicioCita").value;
+
+        if (!nombre || !telefono || !fecha) {
+            alert("Por Favor, Llena Todos los Campos para Agendar tu Cita...");
+            return;
+        }
+
+        let mensaje = `Hola, me Llamo ${nombre}. Mi WhatsApp es ${telefono}. Deseo Agendar una Cita para "${servicio}" el Día ${fecha}.`;
+        let url = `https://wa.me/5219171021518?text=${encodeURIComponent(mensaje)}`;
+        window.open(url, "_blank");
+    });
+
+    const style = document.createElement('style');
+    style.textContent = `@keyframes latido { 0%,100%{transform:scale(1);} 50%{transform:scale(1.08);} }`;
+    document.head.appendChild(style);
+</script>
+
+ <button id="btnVolverPortafolio" style="position: fixed; bottom: 20px; left: 20px; background: #0f3460; color: #fc6f03; padding: 12px 20px; border-radius: 40px; border: none; font-weight: bold; z-index: 9999; font-size: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: 0.3s; display: flex; align-items: center; gap: 8px; cursor: pointer;" 
+    onmouseover="this.style.backgroundColor='#fc6f03'; this.style.color='#0a0a0a';" 
+    onmouseout="this.style.backgroundColor='#0f3460'; this.style.color='#fc6f03';">
+    ← Volver al portafolio
+</button>
+
+<script>
+    document.getElementById('btnVolverPortafolio').addEventListener('click', function() {
+        window.location.href = 'index.html#portafolio';
+    });
+</script>
+
+</body>
+</html>

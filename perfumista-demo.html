@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfumes Exclusive | Esencia de élite</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+            color: #f5f5f5;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 15px 40px;
+            border-bottom: 1px solid #d4af37;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #d4af37;
+        }
+
+        .nav a {
+            color: #f5f5f5;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #d4af37;
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?w=1600');
+            background-size: cover;
+            background-position: center;
+            border-radius: 30px;
+            margin: 40px 0;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #d4af37;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            background: #d4af37;
+            color: #0a0a0a;
+            padding: 12px 30px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #fc6f03;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .carrusel {
+            background: linear-gradient(135deg, #111, #1a1a1a);
+            border-radius: 30px;
+            padding: 50px 20px;
+            margin: 60px 0;
+            text-align: center;
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .carrusel i {
+            font-size: 48px;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .carrusel h2 {
+            font-size: 28px;
+            margin: 20px 0;
+        }
+
+        .carrusel p {
+            font-size: 18px;
+            max-width: 90%;
+            margin: 10px auto;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 60px 0 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: #111;
+            padding: 10px 30px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #333;
+        }
+
+        .tab.activo {
+            background: #d4af37;
+            color: #0a0a0a;
+            border-color: #d4af37;
+            font-weight: bold;
+        }
+
+        .tab:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+        }
+
+        .productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .producto {
+            background: #111;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #222;
+        }
+
+        .producto:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.5);
+            border-color: #d4af37;
+        }
+
+        .producto img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .producto-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .producto-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #d4af37;
+        }
+
+        .precio {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .btn-wsp {
+            background: #25D366;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .btn-wsp:hover {
+            background: #128C7E;
+            transform: scale(1.02);
+        }
+
+        .formulario {
+            background: #111;
+            padding: 40px;
+            border-radius: 30px;
+            margin: 60px 0;
+        }
+
+        .campo {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            border: none;
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #222;
+            margin-top: 60px;
+            font-size: 14px;
+        }
+
+        /* Títulos 100% visibles */
+        h2, .formulario h2, #catalogo {
+            color: #d4af37 !important;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #catalogo {
+            font-size: 36px;
+            margin-top: 40px;
+        }
+
+        .formulario h2 {
+            font-size: 28px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .nav a { margin-left: 15px; }
+            .header { padding: 15px 20px; }
+            .carrusel h2 { font-size: 22px; }
+            .carrusel p { font-size: 16px; }
+            #catalogo { font-size: 28px; }
+            .formulario h2 { font-size: 24px; }
+        }
+
+        /* Evita que el menú fijo tape los títulos */
+            #catalogo, #ofertas, #contacto, .formulario h2, .carrusel h2 {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+        <div class="header">
+        <div class="logo">Perfumes <span>Exclusive</span></div>
+        <div class="nav">
+            <a href="#inicio">Inicio</a>
+            <a href="#catalogo">Catálogo</a>
+            <a href="#ofertas">Ofertas</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </div>
+
+    <div class="contenedor">
+        <div id="inicio" class="hero">
+            <h1>No vendemos fragancias.<br>Vendemos <span>emociones</span>.</h1>
+            <p>Deja de publicar en redes como si fueras un catálogo más. Ten tu propia vitrina digital, elegante y profesional.</p>
+            <a href="#catalogo" class="btn">Ver colección</a>
+        </div>
+
+        <div id="ofertas" class="carrusel">
+            <i class="fas fa-gift"></i>
+            <h2>🎁 OFERTA ESPECIAL 🎁</h2>
+            <p>Lleva 2 perfumes y obtén un 15% de descuento + envío gratis.</p>
+            <p>⏰ Solo por tiempo limitado.</p>
+            <a href="#" class="btn" style="margin-top: 20px;" onclick="alert('✅ Esta oferta es parte de la demo. Cuando tu página esté activa, aquí se abrirá WhatsApp automáticamente.'); return false;">
+                Aprovechar oferta</a>
+            <!--<a href="https://wa.me/5219932858108?text=Hola,%20me%20interesa%20la%20oferta%20de%202%20perfumes%20con%2015%%20de%20descuento" class="btn" style="margin-top: 20px;" target="_blank">Aprovechar oferta</a>-->
+        </div>
+
+        <h2 id="catalogo">Nuestras fragancias</h2>
+
+        <div class="tabs">
+            <div class="tab activo" data-genero="todos">Todos</div>
+            <div class="tab" data-genero="hombre">Hombre</div>
+            <div class="tab" data-genero="mujer">Mujer</div>
+            <div class="tab" data-genero="unisex">Unisex</div>
+        </div>
+
+        <div id="productos-container" class="productos"></div>
+
+        <div class="testimonio" style="background: #111; padding: 40px; border-radius: 30px; text-align: center; margin: 60px 0; border-left: 5px solid #d4af37;">
+            <i class="fas fa-quote-right" style="font-size: 40px; color: #d4af37;"></i>
+            <p style="font-size: 18px; margin-bottom: 10px;">"Desde que tengo mi página web, mis clientes me encuentran en Google, no yo a ellos. Vendo más sin estar pegando anuncios en Facebook."</p>
+            <h4>— Cliente real (próximamente)</h4>
+        </div>
+
+        <div id="contacto" class="formulario">
+            <h2>🧴 ¿No encontraste tu fragancia ideal?</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Cuéntanos qué buscas y nosotros te ayudamos a conseguirla.</p>
+            <input type="text" id="nombreCliente" class="campo" placeholder="Tu nombre">
+            <textarea id="fraganciaDeseada" rows="4" class="campo" placeholder="Describe la fragancia que buscas..."></textarea>
+            <button class="btn" style="width: 100%; cursor: pointer;" onclick="mostrarAlertaYLimpiar(); return false;">
+                Cotizar por WhatsApp</button>
+            
+            
+            <!--<button class="btn" style="width: 100%; cursor: pointer;" onclick="alert('✅ Esta demo es solo un ejemplo. Cuando tu página sea real, aquí podrás cotizar fragancias directamente por WhatsApp.'); return false;">
+                Cotizar por WhatsApp</button>-->
+            
+            <!--<button id="btnCotizarWhatsApp" class="btn" style="width: 100%; cursor: pointer;" onclick="alert('✅ Esta demo es solo un ejemplo. Cuando tu página sea real, aquí se abrirá WhatsApp para cotizar contigo.'); return false;">
+                Cotizar por WhatsApp</button>-->
+
+            <!--<button id="btnCotizarWhatsApp" class="btn" style="width: 100%; cursor: pointer;">Cotizar por WhatsApp</button>-->
+        </div>
+
+        <div style="text-align: center;">
+            <a href="https://wa.me/5219174025447?text=Hola,%20me%20interesa%20tener%20una%20página%20como%20esta%20para%20mis%20perfumes" class="btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> ¿Quieres una Página así para tu Negocio?
+            </a>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 Perfumes Exclusive | Hecho con pasión por Alex VIDLA</p>
+            <p style="font-size: 12px; margin-top: 10px;">🚀 ¿Inspirado? <a href="#contacto" style="color: #d4af37;">Contáctame y Creamos la Tuya</a></p>
+        </div>
+    </div>
+
+    <script>
+        const productos = [
+            { nombre: "Essence Noir", genero: "hombre", precio: 1290, img: "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?w=400" },
+            { nombre: "Lumina Floral", genero: "mujer", precio: 1150, img: "lumina.jpg" },
+            { nombre: "Dual Essence", genero: "unisex", precio: 1350, img: "dual.webp" },
+            { nombre: "Gold Edition", genero: "hombre", precio: 2490, img: "https://images.pexels.com/photos/7017570/pexels-photo-7017570.jpeg?w=400" },
+            { nombre: "Rose Nocturna", genero: "mujer", precio: 1450, img: "https://images.pexels.com/photos/8322454/pexels-photo-8322454.jpeg?w=400" },
+            { nombre: "Ámbar & Cedro", genero: "hombre", precio: 1590, img: "https://images.pexels.com/photos/8365710/pexels-photo-8365710.jpeg?w=400" }
+        ];
+
+        function renderProductos(genero) {
+            const container = document.getElementById("productos-container");
+            const filtrados = genero === "todos" ? productos : productos.filter(p => p.genero === genero);
+            container.innerHTML = filtrados.map(p => `
+                <div class="producto">
+                    <img src="${p.img}" alt="${p.nombre}">
+                    <div class="producto-info">
+                        <h3>${p.nombre}</h3>
+                        <p>Aroma exclusivo para ${p.genero}.</p>
+                        <div class="precio">$${p.precio} MXN</div>
+                        <a href="#" class="btn-wsp" onclick="alert('✅ Esta demo es solo un ejemplo. Cuando tengamos tu página real, aquí irá tu número de WhatsApp.'); return false;">
+                            <i class="fab fa-whatsapp"></i> Comprar por WhatsApp</a>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        document.querySelectorAll(".tab").forEach(tab => {
+            tab.addEventListener("click", () => {
+                document.querySelectorAll(".tab").forEach(t => t.classList.remove("activo"));
+                tab.classList.add("activo");
+                renderProductos(tab.getAttribute("data-genero"));
+            });
+        });
+
+        renderProductos("todos");
+
+        document.getElementById("btnCotizarWhatsApp").addEventListener("click", function() {
+            const nombre = document.getElementById("nombreCliente").value.trim();
+            const fragancia = document.getElementById("fraganciaDeseada").value.trim();
+            if (nombre === "" || fragancia === "") {
+                alert("Por favor, escribe tu nombre y la fragancia que buscas.");
+                return;
+            }
+            const mensaje = `Hola, me llamo ${nombre}. Busco una fragancia que no encontré en tu catálogo: "${fragancia}". ¿Podrían ayudarme?`;
+            const url = `https://wa.me/5219932858108?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, "_blank");
+            document.getElementById("nombreCliente").value = "";
+            document.getElementById("fraganciaDeseada").value = "";
+        });
+    </script>
+
+    <button id="btnVolverPortafolio" style="position: fixed; bottom: 20px; left: 20px; background: #0f3460; color: #fc6f03; padding: 12px 20px; border-radius: 40px; border: none; font-weight: bold; z-index: 9999; font-size: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: 0.3s; display: flex; align-items: center; gap: 8px; cursor: pointer;" 
+    onmouseover="this.style.backgroundColor='#fc6f03'; this.style.color='#0a0a0a';" 
+    onmouseout="this.style.backgroundColor='#0f3460'; this.style.color='#fc6f03';">
+    ← Volver al portafolio
+    </button>
+
+    <script>
+    document.getElementById('btnVolverPortafolio').addEventListener('click', function() {
+        window.location.href = 'index.html#portafolio';
+    });
+    </script>
+
+    <script>
+    function mostrarAlertaYLimpiar() {
+        alert('✅ Esta demo es solo un ejemplo. Cuando tu página sea real, aquí podrás cotizar fragancias directamente por WhatsApp.');
+        document.getElementById("nombreCliente").value = "";
+        document.getElementById("fraganciaDeseada").value = "";
+    }
+    </script>
+
+</body>
+</html>
