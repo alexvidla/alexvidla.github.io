@@ -337,16 +337,73 @@
             .nav a { margin: 0 12px; }
             .doctor-card { flex-direction: column; text-align: center; }
         }
+
+
+        /* Menú hamburguesa - solo en celular */
+.menu-hamburguesa {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #1e2a3e; /* Ajusta el color según tu diseño */
+}
+
+@media (max-width: 768px) {
+    .menu-hamburguesa {
+        display: block;
+    }
+
+    .nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        background: white;
+        padding: 20px 0;
+        margin-top: 15px;
+        border-radius: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .nav.activo {
+        display: flex;
+    }
+
+    .nav a {
+        margin: 10px 0;
+    }
+}
+
+/* Para que los encabezados no queden tapados por el menú fijo */
+#servicios, #doctor, #cita, #inicio, #contacto, #galeria {
+    scroll-margin-top: 90px;
+}
+
+@media (max-width: 768px) {
+    #servicios, #doctor, #cita, #inicio, #contacto, #galeria {
+        scroll-margin-top: 120px;
+    }
+}
+
     </style>
 </head>
 <body>
 
 <div class="header">
+
     <div style="display: flex; align-items: center; gap: 15px;">
+        <img src="logosmiles.png" class="logo-img">
+            <div class="logo">Clínica Dental <span>Smiles</span></div>
+            <button class="menu-hamburguesa" id="menuHamburguesa">☰</button>
+    </div>
+
+    <!--<div style="display: flex; align-items: center; gap: 15px;">
         <img src="logosmiles.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
         <div class="logo">Clínica Dental <span>Smiles</span></div>
-    </div>
-    <div class="nav">
+    </div>-->
+    <div class="nav" id="nav">
+    <!--<div class="nav">-->
         <a href="#">Inicio</a>
         <a href="#servicios">Servicios</a>
         <a href="#doctor">Especialista</a>
@@ -477,6 +534,127 @@
         window.location.href = 'index.html#portafolio';
     });
 </script>
+
+<!--<script>
+    const menuBtn = document.getElementById('menuHamburguesa');
+    const nav = document.querySelector('.nav'); // usa la clase, no el id
+    if (menuBtn && nav) {
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('activo');
+        });
+    }
+</script>-->
+
+<!--<script>
+    const menuBtn = document.getElementById('menuHamburguesa');
+    const nav = document.getElementById('nav');
+    if (menuBtn && nav) {
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('activo');
+        });
+    }
+</script>-->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Buscar el botón hamburguesa (puede tener clase o id)
+        const menuBtn = document.querySelector('.menu-hamburguesa');
+        const nav = document.querySelector('.nav');
+        
+        // Si no encuentra el botón con clase, busca por id
+        if (!menuBtn) {
+            menuBtn = document.getElementById('menuHamburguesa');
+        }
+        
+        if (menuBtn && nav) {
+            // Abrir/cerrar menú
+            menuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                nav.classList.toggle('activo');
+            });
+            
+            // Cerrar menú al hacer clic en cualquier enlace
+            const enlaces = nav.querySelectorAll('a');
+            enlaces.forEach(function(enlace) {
+                enlace.addEventListener('click', function(e) {
+                    nav.classList.remove('activo');
+                    
+                    // Scroll suave al destino
+                    const destino = this.getAttribute('href');
+                    if (destino && destino !== '#') {
+                        const seccion = document.querySelector(destino);
+                        if (seccion) {
+                            e.preventDefault();
+                            seccion.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+        }
+    });
+</script>
+
+
+<!--<script>
+    // Esperar a que la página cargue
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.getElementById('menuHamburguesa');
+        const nav = document.getElementById('nav');
+        
+        // Abrir/cerrar menú al clic en el botón
+        if (menuBtn && nav) {
+            menuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                nav.classList.toggle('activo');
+            });
+        }
+        
+        // Cerrar menú y hacer scroll al hacer clic en cualquier enlace
+        const enlaces = document.querySelectorAll('.nav a');
+        enlaces.forEach(function(enlace) {
+            enlace.addEventListener('click', function(e) {
+                // Cerrar menú
+                if (nav) {
+                    nav.classList.remove('activo');
+                }
+                
+                // Obtener el destino del enlace (ej: #servicios)
+                const destino = this.getAttribute('href');
+                if (destino && destino !== '#') {
+                    const seccion = document.querySelector(destino);
+                    if (seccion) {
+                        e.preventDefault();
+                        seccion.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    });
+</script>-->
+
+<!--<script>
+    // Seleccionar el botón hamburguesa y el menú
+    const menuBtn = document.getElementById('menuHamburguesa');
+    const nav = document.getElementById('nav'); // Asegúrate de que tu menú tenga este id
+
+    // Abrir/cerrar menú al hacer clic en el botón
+    if (menuBtn && nav) {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nav.classList.toggle('activo');
+        });
+    }
+
+    // CERRAR EL MENÚ al hacer clic en cualquier enlace
+    const enlaces = document.querySelectorAll('.nav a');
+    enlaces.forEach(enlace => {
+        enlace.addEventListener('click', () => {
+            if (nav && nav.classList.contains('activo')) {
+                nav.classList.remove('activo');
+            }
+        });
+    });
+</script>-->
 
 </body>
 </html>
