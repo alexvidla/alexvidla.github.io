@@ -2095,7 +2095,8 @@ button.blog-boton-nuevo:hover {
 .btn-flotante-arriba {
     position: fixed;
     bottom: 100px;
-    right: 20px;
+    left: 20px; 
+    /*right: 20px;*/
     background: #fc6f03;
     color: white;
     border: none;
