@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ==========================================
 // 6. CONTADOR ANIMADO
 // ==========================================
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
   const contenedor = document.querySelector('.contenedor');
   const existeContador = document.getElementById('contador-proyectos');
   
@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   window.addEventListener('scroll', verificarContador);
   setTimeout(verificarContador, 500);
-});
+});*/
 
 // ==========================================
 // 7. REVELADO DE ELEMENTOS AL SCROLL
@@ -427,3 +427,68 @@ document.addEventListener('DOMContentLoaded', function() {
         iniciarBlog();
     }
 })();
+
+// Contador animado
+function iniciarContador() {
+    const proyectos = document.getElementById('proyectosCont');
+    const clientes = document.getElementById('clientesCont');
+    const experiencia = document.getElementById('experienciaCont');
+    if (!proyectos) return;
+
+    let contadorActivado = false;
+
+    function animarContador(elemento, objetivo) {
+        let actual = 0;
+        const incremento = Math.ceil(objetivo / 50);
+        const intervalo = setInterval(() => {
+            actual += incremento;
+            if (actual >= objetivo) {
+                elemento.textContent = objetivo;
+                clearInterval(intervalo);
+            } else {
+                elemento.textContent = actual;
+            }
+        }, 30);
+    }
+
+    window.addEventListener('scroll', () => {
+        const seccionContador = document.querySelector('.contador-seccion');
+        if (!seccionContador) return;
+        const rect = seccionContador.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100 && !contadorActivado) {
+            contadorActivado = true;
+            animarContador(proyectos, 12);
+            animarContador(clientes, 10);
+            animarContador(experiencia, 3);
+        }
+    });
+}
+document.addEventListener('DOMContentLoaded', iniciarContador);
+
+// ==========================================
+// BOTÓN FLOTANTE "VOLVER ARRIBA"
+// ==========================================
+document.addEventListener('DOMContentLoaded', function() {
+    const btnArriba = document.getElementById('btnVolverArriba');
+    if (!btnArriba) return;
+
+    // Mostrar/ocultar según el scroll
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+
+            btnArriba.style.display = 'flex';
+            btnArriba.style.alignItems = 'center';
+            btnArriba.style.justifyContent = 'center';
+        } else {
+            btnArriba.style.display = 'none';
+        }
+    });
+
+    // Acción al hacer clic
+    btnArriba.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
