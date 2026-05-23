@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Perfumes Exclusive | Esencia de élite (Demo)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+            color: #f5f5f5;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* Scroll margin */
+        #inicio, #catalogo, #ofertas, #contacto {
+            scroll-margin-top: 90px;
+        }
+
+        @media (max-width: 768px) {
+            #inicio, #catalogo, #ofertas, #contacto {
+                scroll-margin-top: 120px;
+            }
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            border-bottom: 1px solid #d4af37;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #d4af37;
+        }
+
+        .menu-hamburguesa {
+            display: none;
+            background: none;
+            border: none;
+            color: #d4af37;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav a {
+            color: #f5f5f5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #d4af37;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+            .menu-hamburguesa {
+                display: block;
+            }
+            .nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+                background: #0a0a0a;
+                padding: 20px 0;
+                margin-top: 15px;
+                border-radius: 20px;
+                gap: 15px;
+            }
+            .nav.activo {
+                display: flex;
+            }
+        }
+
+        /* Botón volver al portafolio */
+        .btn-volver-portafolio {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #0f3460;
+            color: #fc6f03;
+            padding: 10px 18px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 9999;
+            font-size: 13px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-volver-portafolio:hover {
+            background: #fc6f03;
+            color: #0a0a0a;
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?w=1600');
+            background-size: cover;
+            background-position: center;
+            border-radius: 30px;
+            margin: 40px 0;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #d4af37;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            background: #d4af37;
+            color: #0a0a0a;
+            padding: 12px 30px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #fc6f03;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 60px 0 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: #111;
+            padding: 10px 30px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #333;
+        }
+
+        .tab.activo {
+            background: #d4af37;
+            color: #0a0a0a;
+            border-color: #d4af37;
+            font-weight: bold;
+        }
+
+        .tab:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+        }
+
+        .carrusel-oferta {
+            background: linear-gradient(135deg, #111, #1a1a1a);
+            border-radius: 30px;
+            padding: 50px 20px;
+            margin: 60px 0;
+            text-align: center;
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .carrusel-oferta i {
+            font-size: 48px;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .carrusel-oferta h2 {
+            font-size: 28px;
+            margin: 20px 0;
+        }
+
+        .carrusel-oferta p {
+            font-size: 18px;
+            max-width: 90%;
+            margin: 10px auto;
+        }
+
+        .productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .producto {
+            background: #111;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #222;
+        }
+
+        .producto:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.5);
+            border-color: #d4af37;
+        }
+
+        .producto img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .producto-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .producto-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #d4af37;
+        }
+
+        .precio {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .btn-wsp {
+            background: #25D366;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .btn-wsp:hover {
+            background: #128C7E;
+            transform: scale(1.02);
+        }
+
+        .formulario {
+            background: #111;
+            padding: 40px;
+            border-radius: 30px;
+            margin: 60px 0;
+        }
+
+        .campo {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            border: none;
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #222;
+            margin-top: 60px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Botón fijo para volver al portafolio -->
+<a href="index.html#portafolio" class="btn-volver-portafolio" target="_self">
+    ← Volver al portafolio
+</a>
+
+<div class="header">
+    <div class="logo">Perfumes <span>Exclusive</span></div>
+    <button class="menu-hamburguesa" id="menuHamburguesa">☰</button>
+    <div class="nav" id="nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#contacto">Contacto</a>
+    </div>
+</div>
+
+<div class="contenedor">
+    <div id="inicio" class="hero">
+        <h1>No vendemos fragancias.<br>Vendemos <span>emociones</span>.</h1>
+        <p>Deja de publicar en redes como si fueras un catálogo más. Ten tu propia vitrina digital, elegante y profesional.</p>
+        <a href="#catalogo" class="btn">Ver colección</a>
+    </div>
+
+    <div id="ofertas" class="carrusel-oferta">
+        <i class="fas fa-gift"></i>
+        <h2>🎁 OFERTA ESPECIAL 🎁</h2>
+        <p>Lleva 2 perfumes y obtén un 15% de descuento + envío gratis.</p>
+        <p>⏰ Solo por tiempo limitado.</p>
+        <button class="btn" style="margin-top: 20px; cursor: pointer;" onclick="alert('✅ Esta oferta es parte de la demo. Cuando tu página sea real, aquí se abrirá WhatsApp automáticamente.')">Aprovechar oferta</button>
+    </div>
+
+    <h2 style="text-align: center; font-size: 36px; margin-bottom: 20px;" id="catalogo">Nuestras fragancias</h2>
+    <div class="tabs">
+        <div class="tab activo" data-genero="todos">Todos</div>
+        <div class="tab" data-genero="hombre">Hombre</div>
+        <div class="tab" data-genero="mujer">Mujer</div>
+        <div class="tab" data-genero="unisex">Unisex</div>
+    </div>
+    <div id="productos-container" class="productos"></div>
+
+    <div class="testimonio" style="background: #111; padding: 40px; border-radius: 30px; text-align: center; margin: 60px 0; border-left: 5px solid #d4af37;">
+        <i class="fas fa-quote-right" style="font-size: 40px; color: #d4af37;"></i>
+        <p style="font-size: 18px; margin-bottom: 10px;">"Desde que tengo mi página web, mis clientes me encuentran en Google, no yo a ellos. Vendo más sin estar pegando anuncios en Facebook."</p>
+        <h4>— Cliente real (próximamente)</h4>
+    </div>
+
+    <div id="contacto" class="formulario">
+        <h2 style="text-align: center; margin-bottom: 30px;">🧴 ¿No encontraste tu fragancia ideal?</h2>
+        <p style="text-align: center; margin-bottom: 20px;">Cuéntanos qué buscas y nosotros te ayudamos a conseguirla.</p>
+        <input type="text" id="nombreCliente" class="campo" placeholder="Tu nombre">
+        <textarea id="fraganciaDeseada" rows="4" class="campo" placeholder="Describe la fragancia que buscas..."></textarea>
+        <button id="btnCotizarWhatsApp" class="btn" style="width: 100%; cursor: pointer;">Cotizar por WhatsApp</button>
+    </div>
+
+    <div style="text-align: center;">
+        <button class="btn" onclick="alert('✅ Esta demo es solo un ejemplo. Cuando tu página sea real, aquí irá tu número de WhatsApp. ¿Te animas a tener la tuya? Contáctame.')">
+            <i class="fab fa-whatsapp"></i> ¿Quieres una página así para tu negocio?
+        </button>
+    </div>
+</div>
+
+<div class="footer">
+    <p>© 2026 Perfumes Exclusive | Hecho con pasión por Alex VIDLA</p>
+    <p style="font-size: 12px; margin-top: 10px;">🚀 ¿Inspirado? <a href="#contacto" style="color: #d4af37;">Contáctame y creamos la tuya</a></p>
+</div>
+
+<script>
+    // Productos
+    const productos = [
+        { nombre: "Essence Noir", genero: "hombre", precio: 1290, img: "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?w=400" },
+        { nombre: "Lumina Floral", genero: "mujer", precio: 1150, img: "lumina.jpg" },
+        { nombre: "Dual Essence", genero: "unisex", precio: 1350, img: "dual.webp" },
+        { nombre: "Gold Edition", genero: "hombre", precio: 2490, img: "https://images.pexels.com/photos/7017570/pexels-photo-7017570.jpeg?w=400" },
+        { nombre: "Rose Nocturna", genero: "mujer", precio: 1450, img: "https://images.pexels.com/photos/8322454/pexels-photo-8322454.jpeg?w=400" },
+        { nombre: "Ámbar & Cedro", genero: "hombre", precio: 1590, img: "https://images.pexels.com/photos/8365710/pexels-photo-8365710.jpeg?w=400" }
+    ];
+
+    function renderProductos(genero) {
+        const container = document.getElementById("productos-container");
+        const filtrados = genero === "todos" ? productos : productos.filter(p => p.genero === genero);
+        container.innerHTML = filtrados.map(p => `
+            <div class="producto">
+                <img src="${p.img}" alt="${p.nombre}">
+                <div class="producto-info">
+                    <h3>${p.nombre}</h3>
+                    <p>Aroma exclusivo para ${p.genero}.</p>
+                    <div class="precio">$${p.precio} MXN</div>
+                    <button class="btn-wsp" onclick="alert('✅ Esta demo es solo un ejemplo. Cuando tu página sea real, aquí se abrirá WhatsApp con el número que tú elijas. ¿Te animas? Contáctame.')">
+                        <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
+                    </button>
+                </div>
+            </div>
+        `).join("");
+    }
+
+    document.querySelectorAll(".tab").forEach(tab => {
+        tab.addEventListener("click", () => {
+            document.querySelectorAll(".tab").forEach(t => t.classList.remove("activo"));
+            tab.classList.add("activo");
+            renderProductos(tab.getAttribute("data-genero"));
+        });
+    });
+
+    renderProductos("todos");
+
+    document.getElementById("btnCotizarWhatsApp").addEventListener("click", function() {
+        alert("✅ Esta cotización es parte de la demo. Cuando tu página sea real, aquí se abrirá WhatsApp con tus datos. ¿Te interesa tener la tuya? Contáctame.");
+        document.getElementById("nombreCliente").value = "";
+        document.getElementById("fraganciaDeseada").value = "";
+    });
+
+    // Menú hamburguesa
+    const menuBtn = document.getElementById('menuHamburguesa');
+    const nav = document.getElementById('nav');
+
+    if (menuBtn && nav) {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nav.classList.toggle('activo');
+        });
+
+        const enlaces = nav.querySelectorAll('a');
+        enlaces.forEach(enlace => {
+            enlace.addEventListener('click', () => {
+                nav.classList.remove('activo');
+            });
+        });
+    }
+</script>
+
+</body>
+</html>
