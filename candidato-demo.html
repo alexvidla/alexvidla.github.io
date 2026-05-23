@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Candidato | Compromiso, Trabajo y Resultados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Poppins', sans-serif;
+            color: #1e2a3e;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Scroll margin */
+        #inicio, #sobremi, #propuestas, #trayectoria, #galeria, #contacto {
+            scroll-margin-top: 90px;
+        }
+
+        @media (max-width: 768px) {
+            #inicio, #sobremi, #propuestas, #trayectoria, #galeria, #contacto {
+                scroll-margin-top: 120px;
+            }
+        }
+
+        /* Botón volver al portafolio */
+        .btn-volver-portafolio {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #0f3460;
+            color: #fc6f03;
+            padding: 10px 18px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 9999;
+            font-size: 13px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-volver-portafolio:hover {
+            background: #fc6f03;
+            color: #0a0a0a;
+        }
+
+        /* Header fijo con menú hamburguesa */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 40px;
+            border-bottom: 1px solid #e2e8f0;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #0f2b3d;
+        }
+
+        .logo span {
+            color: #fc6f03;
+        }
+
+        .menu-hamburguesa {
+            display: none;
+            background: none;
+            border: none;
+            color: #0f2b3d;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav a {
+            color: #1e2a3e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav a:hover {
+            color: #fc6f03;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 20px;
+            }
+            .menu-hamburguesa {
+                display: block;
+            }
+            .nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+                background: white;
+                padding: 20px 0;
+                margin-top: 15px;
+                border-radius: 20px;
+                gap: 15px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            .nav.activo {
+                display: flex;
+            }
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?w=1600');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 span {
+            color: #fc6f03;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            color: white;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #fc6f03, #e05e00);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: #d4af37;
+            color: #0a0a0a;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .propuestas-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .propuesta-card {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            flex: 1;
+            min-width: 220px;
+            transition: all 0.4s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-bottom: 3px solid #fc6f03;
+        }
+
+        .propuesta-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(252,111,3,0.15);
+        }
+
+        .propuesta-card i {
+            font-size: 48px;
+            color: #fc6f03;
+            margin-bottom: 15px;
+        }
+
+        .timeline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid #fc6f03;
+        }
+
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .galeria img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .galeria img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .testimonios {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .testimonio {
+            background: white;
+            padding: 25px;
+            border-radius: 25px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .testimonio img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .contacto {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .footer {
+            background: #0f2b3d;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+        }
+
+/* Sección Sobre mí */
+.sobre-mi-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+    background: white;
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    margin-bottom: 60px;
+}
+
+.sobre-mi-imagen {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+}
+
+.sobre-mi-imagen img {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 50%;
+    border: 4px solid #fc6f03;
+    margin-bottom: 20px;
+}
+
+.datos-clave p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #475569;
+}
+
+.sobre-mi-texto {
+    flex: 2;
+}
+
+.sobre-mi-texto h2 {
+    color: #0f2b3d;
+    margin-bottom: 20px;
+}
+
+.sobre-mi-texto p {
+    margin-bottom: 15px;
+    color: #334155;
+}
+
+.sobre-mi-texto span {
+    color: #fc6f03;
+}
+
+.sobre-mi-fotos {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.sobre-mi-fotos img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.sobre-mi-fotos img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+    .sobre-mi-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+    .sobre-mi-fotos {
+        justify-content: center;
+    }
+}
+
+
+
+    </style>
+</head>
+<body>
+
+<!-- Botón volver al portafolio -->
+<a href="index.html#portafolio" class="btn-volver-portafolio">
+    ← Volver al portafolio</a>
+
+<div class="header">
+    <div class="logo"><span>🚀</span> Candidato <span>Ejemplo</span></div>
+    <button class="menu-hamburguesa" id="menuHamburguesa">☰</button>
+        <div class="nav" id="nav">
+            <a href="#inicio">Inicio</a>
+            <a href="#sobremi">Sobre mí</a>
+            <a href="#propuestas">Propuestas</a>
+            <a href="#trayectoria">Trayectoria</a>
+            <a href="#galeria">Galería</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </div>
+</div>
+
+<div class="hero" id="inicio">
+    <div class="hero-content">
+        <h1>Compromiso, <span>Trabajo y Resultados</span></h1>
+        <p>Por un futuro con oportunidades, cercanía y transparencia. Tu voz es mi Compromiso.</p>
+        <a href="#propuestas" class="btn">Conoce mis propuestas</a>
+    </div>
+</div>
+
+
+<!-- Sección Sobre mí -->
+<div id="sobremi" class="contenedor" style="padding-top: 40px;">
+    <div class="sobre-mi-grid">
+        <div class="sobre-mi-imagen">
+            <img src="" alt="Foto del Candidato" id="fotoCandidato">
+            <div class="datos-clave">
+                <p><i class="fas fa-map-marker-alt"></i> Reforma, Chiapas</p>
+                <p><i class="fas fa-graduation-cap"></i> Lic. Contaduria Pública</p>
+                <p><i class="fas fa-heart"></i> Familia, Trabajo, Honestidad</p>
+            </div>
+        </div>
+        <div class="sobre-mi-texto">
+            <h2>Sobre mí</h2>
+            <p>Soy <span>C.P. Jose Marcos Hernandez Cervantes,</span> originario de Reforma, Chiapas. Desde joven he estado involucrado en actividades comunitarias, apoyando a mi gente y buscando soluciones reales a los problemas de nuestro municipio.</p>
+            <p>Mi compromiso es con la gente, no con colores ni intereses. Creo en el trabajo en equipo, en la transparencia y en construir un futuro donde nadie se quede atrás.</p>
+            <div class="sobre-mi-fotos">
+                <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?w=150" alt="Actividad 1">
+                <img src="https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?w=150" alt="Actividad 2">
+                <img src="https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?w=150" alt="Actividad 3">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contenedor">
+    <h2 style="text-align: center; color: #0f2b3d;" id="propuestas">📌 Propuestas que Transforman</h2>
+    <div class="propuestas-grid">
+        <div class="propuesta-card"><i class="fas fa-school"></i><h3>Educación</h3><p>Apoyo escolar, becas y mejoras en infraestructura educativa.</p></div>
+        <div class="propuesta-card"><i class="fas fa-clinic-medical"></i><h3>Salud</h3><p>Consultas accesibles, farmacia cercana y campañas de prevención.</p></div>
+        <div class="propuesta-card"><i class="fas fa-hard-hat"></i><h3>Empleo</h3><p>Vinculación laboral y apoyo a emprendedores locales.</p></div>
+        <div class="propuesta-card"><i class="fas fa-road"></i><h3>Infraestructura</h3><p>Calles dignas, espacios públicos y servicios básicos de calidad.</p></div>
+    </div>
+
+    <h2 style="text-align: center; color: #0f2b3d; margin-top: 60px;" id="trayectoria">📜 Trayectoria</h2>
+    <div class="timeline">
+        <div class="timeline-item"><h3>🌱 2015 - 2018</h3><p>Liderazgo vecinal y gestión comunitaria</p></div>
+        <div class="timeline-item"><h3>📚 2019 - 2021</h3><p>Formación en políticas públicas</p></div>
+        <div class="timeline-item"><h3>🗳️ 2022 - 2024</h3><p>Participación ciudadana y asesoría social</p></div>
+    </div>
+
+    <h2 style="text-align: center; color: #0f2b3d;" id="galeria">📸 Galería de actividades</h2>
+    <div class="galeria">
+        <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?w=600" alt="Evento comunitario">
+        <img src="https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?w=600" alt="Reunión con ciudadanos">
+        <img src="https://images.pexels.com/photos/3184424/pexels-photo-3184424.jpeg?w=600" alt="Entrega de apoyos">
+        <img src="https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?w=600" alt="Recorrido en colonia">
+    </div>
+
+    <h2 style="text-align: center; color: #0f2b3d;">⭐ Lo que dicen de mí</h2>
+    <div class="testimonios">
+        <div class="testimonio"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ciudadano"><h4>María G.</h4><p>"Siempre cerca de la gente, cumple lo que promete."</p><div>⭐️⭐️⭐️⭐️⭐️</div></div>
+        <div class="testimonio"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ciudadano"><h4>Carlos R.</h4><p>"Un líder honesto y trabajador."</p><div>⭐️⭐️⭐️⭐️⭐️</div></div>
+        <div class="testimonio"><img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Ciudadano"><h4>Laura F.</h4><p>"Apoya a los jóvenes y escucha a la comunidad."</p><div>⭐️⭐️⭐️⭐️⭐️</div></div>
+    </div>
+
+    <div id="contacto" class="contacto">
+        <h2>📢 ¿Quieres sumarte o conocer más?</h2>
+        <p style="margin-bottom: 20px;">Escríbeme, juntos podemos construir un mejor futuro.</p>
+        <a href="https://wa.me/529174025447?text=Hola%2C%20vi%20tu%20P%C3%A1gina%20y%20me%20Interesa%20Apoyar%20tu%20Proyecto..." class="btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a>
+        <p style="margin-top: 15px;">📞 Llamar al: <strong>917 40 25447</strong></p>
+    </div>
+</div>
+
+<div class="footer">
+    <p>© 2026 Candidato Ejemplo | Compromiso, Trabajo y Resultados</p>
+    <p>📍 Reforma, Chiapas | 🗳️ Un proyecto ciudadano | Diseño y Desarrollo por Alex VIDLA</p>
+</div>
+
+<script>
+    const menuBtn = document.getElementById('menuHamburguesa');
+    const nav = document.getElementById('nav');
+
+    if (menuBtn && nav) {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nav.classList.toggle('activo');
+        });
+
+        const enlaces = nav.querySelectorAll('a');
+        enlaces.forEach(enlace => {
+            enlace.addEventListener('click', () => {
+                nav.classList.remove('activo');
+            });
+        });
+    }
+</script>
+
+</body>
+</html>
