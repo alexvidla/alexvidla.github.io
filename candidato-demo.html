@@ -22,12 +22,12 @@
         }
 
         /* Scroll margin */
-        #inicio, #sobremi, #propuestas, #trayectoria, #galeria, #contacto {
+        #inicio, #sobremi, #propuestas, #trayectoria, #galeria, #noticias, #contacto {
             scroll-margin-top: 90px;
         }
 
         @media (max-width: 768px) {
-            #inicio, #sobremi, #propuestas, #trayectoria, #galeria, #contacto {
+            #inicio, #sobremi, #propuestas, #trayectoria, #galeria, #noticias, #contacto {
                 scroll-margin-top: 120px;
             }
         }
@@ -57,7 +57,7 @@
             color: #0a0a0a;
         }
 
-        /* Header fijo con menú hamburguesa */
+        /* Header */
         .header {
             position: sticky;
             top: 0;
@@ -70,12 +70,6 @@
             border-bottom: 1px solid #e2e8f0;
             z-index: 1000;
             flex-wrap: wrap;
-        }
-
-        .logo-img {
-            height: 50px;
-            width: auto;
-            display: block;
         }
 
         .logo {
@@ -173,6 +167,7 @@
             color: white;
             margin-bottom: 20px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            min-height: 160px;
         }
 
         .hero h1 span {
@@ -209,6 +204,20 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 60px 20px;
+        }
+
+        /* Estilos base para animación (rebote) */
+        .propuesta-card, .timeline-item {
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .propuesta-card {
+            transform: translateX(-50px);
+        }
+
+        .timeline-item {
+            transform: translateX(50px);
         }
 
         .propuestas-grid {
@@ -261,6 +270,100 @@
             border-left: 4px solid #fc6f03;
         }
 
+        .sobre-mi-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin-bottom: 60px;
+        }
+
+        .sobre-mi-imagen {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+        }
+
+        .sobre-mi-imagen img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 50%;
+            border: 4px solid #fc6f03;
+            margin-bottom: 20px;
+        }
+
+        .datos-clave p {
+            margin: 8px 0;
+            font-size: 14px;
+            color: #475569;
+        }
+
+        .sobre-mi-texto {
+            flex: 2;
+        }
+
+        .sobre-mi-texto h2 {
+            color: #0f2b3d;
+            margin-bottom: 20px;
+        }
+
+        .sobre-mi-texto p {
+            margin-bottom: 15px;
+            color: #334155;
+            text-align: justify;
+        }
+
+        .sobre-mi-texto span {
+            color: #fc6f03;
+        }
+
+
+        .sobre-mi-fotos {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .sobre-mi-fotos img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .sobre-mi-fotos img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+        }
+
+        .contador-acciones {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            background: #0f2b3d;
+            padding: 40px;
+            border-radius: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .contador-item {
+            color: white;
+        }
+
+        .contador-numero {
+            font-size: 48px;
+            font-weight: 800;
+            color: #fc6f03;
+        }
+
         .galeria {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -276,9 +379,10 @@
             transition: 0.3s;
         }
 
-        .galeria img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        .galeria iframe {
+            width: 100%;
+            height: 220px;
+            border-radius: 20px;
         }
 
         .testimonios {
@@ -306,6 +410,30 @@
             margin-bottom: 15px;
         }
 
+        .noticias {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            margin: 40px auto;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .noticia-item {
+            border-left: 4px solid #fc6f03;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            background: #f9fafb;
+            border-radius: 15px;
+            text-align:justify;
+        }
+
+        .mapa {
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 40px 0;
+        }
+
         .contacto {
             text-align: center;
             margin: 40px 0;
@@ -319,138 +447,103 @@
             margin-top: 40px;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 32px; }
-        }
-
-/* Sección Sobre mí */
-.sobre-mi-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    align-items: center;
-    background: white;
-    border-radius: 30px;
-    padding: 40px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    margin-bottom: 60px;
-}
-
-.sobre-mi-imagen {
-    flex: 1;
-    min-width: 250px;
-    text-align: center;
-}
-
-.sobre-mi-imagen img {
-    width: 100%;
-    max-width: 250px;
+/* Flotantes */
+.btn-flotante-wsp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    border: 4px solid #fc6f03;
-    margin-bottom: 20px;
-}
-
-.datos-clave p {
-    margin: 8px 0;
-    font-size: 14px;
-    color: #475569;
-}
-
-.sobre-mi-texto {
-    flex: 2;
-}
-
-.sobre-mi-texto h2 {
-    color: #0f2b3d;
-    margin-bottom: 20px;
-}
-
-.sobre-mi-texto p {
-    margin-bottom: 15px;
-    color: #334155;
-}
-
-.sobre-mi-texto span {
-    color: #fc6f03;
-}
-
-.sobre-mi-fotos {
     display: flex;
-    gap: 15px;
-    margin-top: 20px;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: 0.3s;
+    animation: latido 1.5s infinite;
 }
 
-.sobre-mi-fotos img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 15px;
+.btn-flotante-cta {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    background: #fc6f03;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 9999;
+    font-size: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     transition: 0.3s;
 }
 
-.sobre-mi-fotos img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 12px rgba(0,0,0,0.2);
-}
-
 @media (max-width: 768px) {
-    .sobre-mi-grid {
-        flex-direction: column;
-        text-align: center;
+    .btn-flotante-wsp {
+        width: 50px;
+        height: 50px;
     }
-    .sobre-mi-fotos {
-        justify-content: center;
+    .btn-flotante-cta {
+        bottom: 80px;
+        padding: 6px 12px;
+        font-size: 11px;
     }
 }
 
-</style>
-    
+ @keyframes latido {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+    </style>
+
 </head>
+
 <body>
 
-<!-- Botón volver al portafolio -->
-<a href="index.html#portafolio" class="btn-volver-portafolio">
-    ← Volver al portafolio</a>
+<!-- Botones flotantes -->
+<a href="index.html#portafolio" class="btn-volver-portafolio">← Volver al Portafolio</a>
+<a href="https://wa.me/529174025447?text=Hola%2C%20vi%20tu%20P%C3%A1gina%20y%20me%20Interesa%20Apoyar%20Tu%20Proyecto..." class="btn-flotante-wsp" target="_blank"><i class="fab fa-whatsapp" style="font-size: 32px; color: white;"></i></a>
+<a href="#contacto" class="btn-flotante-cta">🙌 Súmate al Cambio</a>
 
 <div class="header">
     <div class="logo"><span>🚀</span> Candidato <span>Ejemplo</span></div>
     <button class="menu-hamburguesa" id="menuHamburguesa">☰</button>
-        <div class="nav" id="nav">
-            <a href="#inicio">Inicio</a>
-            <a href="#sobremi">Sobre mí</a>
-            <a href="#propuestas">Propuestas</a>
-            <a href="#trayectoria">Trayectoria</a>
-            <a href="#galeria">Galería</a>
-            <a href="#contacto">Contacto</a>
-        </div>
+    <div class="nav" id="nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#sobremi">Sobre mí</a>
+        <a href="#propuestas">Propuestas</a>
+        <a href="#trayectoria">Trayectoria</a>
+        <a href="#galeria">Galería</a>
+        <a href="#noticias">Noticias</a>
+        <a href="#contacto">Contacto</a>
     </div>
 </div>
 
 <div class="hero" id="inicio">
     <div class="hero-content">
-        <h1>Compromiso, <span>Trabajo y Resultados</span></h1>
-        <p>Por un Futuro con Oportunidades, Cercanía y Transparencia. Tu Voz es Mi Compromiso.</p>
-        <a href="#propuestas" class="btn">Conoce Mis Propuestas</a>
+        <h1 id="fraseRotativa"></h1>
+        <p>Por un Futuro con Oportunidades, Cercanía y Transparencia. Tu Voz es mi Compromiso.</p>
+        <a href="#propuestas" class="btn">Conoce mis propuestas</a>
     </div>
 </div>
 
-
-<!-- Sección Sobre Mí -->
-<div id="sobremi" class="contenedor" style="padding-top: 40px;">
+<div id="sobremi" class="contenedor">
     <div class="sobre-mi-grid">
         <div class="sobre-mi-imagen">
-            <img src="" alt="Foto del Candidato" id="fotoCandidato">
+            <img src="fotodes.png" alt="Foto del candidato">
             <div class="datos-clave">
                 <p><i class="fas fa-map-marker-alt"></i> Reforma, Chiapas</p>
-                <p><i class="fas fa-graduation-cap"></i> Lic. Contaduria Pública</p>
+                <p><i class="fas fa-graduation-cap"></i> Lic. </p>
                 <p><i class="fas fa-heart"></i> Familia, Trabajo, Honestidad</p>
             </div>
         </div>
         <div class="sobre-mi-texto">
-            <h2>Sobre mí</h2>
-            <p>Soy <span>C.P. ***********************,</span> originario de Reforma, Chiapas. Desde joven he estado involucrado en actividades comunitarias, apoyando a mi gente y buscando soluciones reales a los problemas de nuestro municipio.</p>
-            <p>Mi compromiso es con la gente, no con colores ni intereses. Creo en el trabajo en equipo, en la transparencia y en construir un futuro donde nadie se quede atrás.</p>
+            <h2>Sobre Mí</h2>
+            <p>Soy C.P.<span>***************</span>, Originario de Reforma, Chiapas. Desde Joven he estado Involucrado en Actividades Comunitarias, Apoyando a mi Gente y buscando Soluciones Reales a los Problemas de Nuestro Municipio.</p>
+            <p>Mi Compromiso es con la Gente, no con Colores ni Intereses. Creo en el Trabajo en Equipo, en la Transparencia y en Construir un Futuro donde Nadie se quede Atrás.</p>
             <div class="sobre-mi-fotos">
                 <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?w=150" alt="Actividad 1">
                 <img src="https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?w=150" alt="Actividad 2">
@@ -463,66 +556,208 @@
 <div class="contenedor">
     <h2 style="text-align: center; color: #0f2b3d;" id="propuestas">📌 Propuestas que Transforman</h2>
     <div class="propuestas-grid">
-        <div class="propuesta-card"><i class="fas fa-school"></i><h3>Educación</h3><p>Apoyo escolar, becas y mejoras en infraestructura educativa.</p></div>
-        <div class="propuesta-card"><i class="fas fa-clinic-medical"></i><h3>Salud</h3><p>Consultas accesibles, farmacia cercana y campañas de prevención.</p></div>
-        <div class="propuesta-card"><i class="fas fa-hard-hat"></i><h3>Empleo</h3><p>Vinculación laboral y apoyo a emprendedores locales.</p></div>
-        <div class="propuesta-card"><i class="fas fa-road"></i><h3>Infraestructura</h3><p>Calles dignas, espacios públicos y servicios básicos de calidad.</p></div>
+        <div class="propuesta-card"><i class="fas fa-school"></i><h3>Educación</h3><p>Apoyo escolar, Becas y Mejoras en Infraestructura Educativa.</p></div>
+        <div class="propuesta-card"><i class="fas fa-clinic-medical"></i><h3>Salud</h3><p>Consultas Accesibles, Farmacia Cercana y Campañas de Prevención.</p></div>
+        <div class="propuesta-card"><i class="fas fa-hard-hat"></i><h3>Empleo</h3><p>Vinculación Laboral y Apoyo a Emprendedores Locales.</p></div>
+        <div class="propuesta-card"><i class="fas fa-road"></i><h3>Infraestructura</h3><p>Calles Dignas, Espacios Públicos y Servicios Básicos de Calidad.</p></div>
     </div>
 
     <h2 style="text-align: center; color: #0f2b3d; margin-top: 60px;" id="trayectoria">📜 Trayectoria</h2>
     <div class="timeline">
-        <div class="timeline-item"><h3>🌱 2015 - 2018</h3><p>Liderazgo vecinal y gestión comunitaria</p></div>
-        <div class="timeline-item"><h3>📚 2019 - 2021</h3><p>Formación en políticas públicas</p></div>
-        <div class="timeline-item"><h3>🗳️ 2022 - 2024</h3><p>Participación ciudadana y asesoría social</p></div>
+        <div class="timeline-item"><h3>🌱 2015 - 2018</h3><p>Liderazgo Vecinal y Gestión Comunitaria</p></div>
+        <div class="timeline-item"><h3>📚 2019 - 2021</h3><p>Formación en Políticas Públicas</p></div>
+        <div class="timeline-item"><h3>🗳️ 2022 - 2024</h3><p>Participación Ciudadana y Asesoría Social</p></div>
     </div>
 
-    <h2 style="text-align: center; color: #0f2b3d;" id="galeria">📸 Galería de actividades</h2>
+    <div class="contador-acciones">
+        <div class="contador-item"><div class="contador-numero" data-target="120">0</div><div>Reuniones Ciudadanas</div></div>
+        <div class="contador-item"><div class="contador-numero" data-target="35">0</div><div>Propuestas Presentadas</div></div>
+        <div class="contador-item"><div class="contador-numero" data-target="15">0</div><div>Comunidades Visitadas</div></div>
+    </div>
+
+    <h2 style="text-align: center; color: #0f2b3d;" id="galeria">📸 Galería de Actividades</h2>
     <div class="galeria">
         <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?w=600" alt="Evento comunitario">
         <img src="https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?w=600" alt="Reunión con ciudadanos">
-        <img src="https://images.pexels.com/photos/3184424/pexels-photo-3184424.jpeg?w=600" alt="Entrega de apoyos">
         <img src="https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?w=600" alt="Recorrido en colonia">
+        <iframe src="https://www.youtube.com/embed/4vAwfIAN0Lg" title="Video de campaña" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/4vAwfIAN0Lg" title="Video de campaña" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/jfKfPfyJRdk" title="Video de campaña" frameborder="0" allowfullscreen></iframe>
     </div>
 
-    <h2 style="text-align: center; color: #0f2b3d;">⭐ Lo que dicen de mí</h2>
+    <h2 style="text-align: center; color: #0f2b3d;">⭐ Lo que dicen de Mí</h2>
     <div class="testimonios">
-        <div class="testimonio"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ciudadano"><h4>María G.</h4><p>"Siempre cerca de la gente, cumple lo que promete."</p><div>⭐️⭐️⭐️⭐️⭐️</div></div>
-        <div class="testimonio"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ciudadano"><h4>Carlos R.</h4><p>"Un líder honesto y trabajador."</p><div>⭐️⭐️⭐️⭐️⭐️</div></div>
-        <div class="testimonio"><img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Ciudadano"><h4>Laura F.</h4><p>"Apoya a los jóvenes y escucha a la comunidad."</p><div>⭐️⭐️⭐️⭐️⭐️</div></div>
+        <div class="testimonio"><img src="https://randomuser.me/api/portraits/women/68.jpg"><h4>María G.</h4><p>Maestra</p><p>"Siempre cerca de la gente, cumple lo que promete."</p><div>⭐️⭐️⭐️⭐️⭐️</div></div>
+        <div class="testimonio"><img src="https://randomuser.me/api/portraits/men/32.jpg"><h4>Carlos R.</h4><p>Comerciante</p><p>"Un líder honesto y trabajador."</p><div>⭐️⭐️⭐️⭐️⭐️</div></div>
+        <div class="testimonio"><img src="https://randomuser.me/api/portraits/women/45.jpg"><h4>Laura F.</h4><p>Estudiante</p><p>"Apoya a los jóvenes y escucha a la comunidad."</p><div>⭐️⭐️⭐️⭐️⭐️</div></div>
+    </div>
+
+    <div id="noticias" class="noticias">
+        <h3 style="color: #0f2b3d;">📰 Comunicados Recientes</h3>
+        <div class="noticia-item"><strong>📢 Mesa de Trabajo con Comerciantes</strong><br>Se acordaron mejoras en el mercado municipal.Compromiso con la infraestructura educativa.Compromiso con la infraestructura educativa.Compromiso con la infraestructura educativa.Compromiso con la infraestructura educativa.Compromiso con la infraestructura educativa.</div>
+        <div class="noticia-item"><strong>🏫 Visita a la Escuela Primaria</strong><br>Compromiso con la infraestructura educativa.</div>
+        <div class="noticia-item"><strong>🌳 Jornada de Reforestación</strong><br>Más de 200 árboles plantados en la comunidad.</div>
+        <div class="noticia-item"><strong>📢 Mesa de trabajo Con Comerciantes</strong><br>Se acordaron mejoras en el mercado municipal.</div>
+        <div class="noticia-item"><strong>🏫 Visita a la Escuela Primaria</strong><br>Compromiso con la infraestructura educativa.</div>
+        <div class="noticia-item"><strong>🌳 Jornada de Reforestación</strong><br>Más de 200 árboles plantados en la comunidad.</div>
+    </div>
+
+    <div class="mapa">
+        <iframe src="https://www.google.com/maps?q=Reforma+Chiapas+Mexico&output=embed" width="100%" height="300" style="border:0;" allowfullscreen loading="lazy"></iframe>
     </div>
 
     <div id="contacto" class="contacto">
-        <h2>📢 ¿Quieres sumarte o conocer más?</h2>
-        <p style="margin-bottom: 20px;">Escríbeme, juntos podemos construir un mejor futuro.</p>
-        <a href="https://wa.me/529174025447?text=Hola%2C%20vi%20tu%20P%C3%A1gina%20y%20me%20Interesa%20Apoyar%20tu%20Proyecto..." class="btn" target="_blank">
-            <i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a>
+        <h2>📢 ¿Quieres Sumarte o Conocer Más?</h2>
+        <p style="margin-bottom: 20px;">Escríbeme, Juntos Podemos Construir un Mejor Futuro.</p>
+        <a href="https://wa.me/529174025447?text=Hola%2C%20vi%20tu%20P%C3%A1gina%20y%20me%20Interesa%20Apoyar%20Tu%20Proyecto..." class="btn" target="_blank"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a>
         <p style="margin-top: 15px;">📞 Llamar al: <strong>917 40 25447</strong></p>
     </div>
 </div>
 
 <div class="footer">
     <p>© 2026 Candidato Ejemplo | Compromiso, Trabajo y Resultados</p>
-    <p>📍 Reforma, Chiapas | 🗳️ Un Proyecto Ciudadano | 💡✍️🎨 Diseño y Desarrollo por Alex VIDLA</p>
+    <p>📍 Reforma, Chiapas | 🗳️ Un proyecto Ciudadano | 💡✍️🎨 Diseño y Desarrollo por Alex VIDLA</p>
 </div>
 
 <script>
+    // Frases rotatorias
+    const frases = [
+        "Compromiso, Trabajo y Resultados",
+        "Cerca de la Gente",
+        "Gestión con Resultados",
+        "Mi Compromiso es Contigo"
+    ];
+    let indiceFrase = 0;
+    const elementoFrase = document.getElementById("fraseRotativa");
+    function cambiarFrase() {
+        elementoFrase.innerHTML = frases[indiceFrase];
+        indiceFrase = (indiceFrase + 1) % frases.length;
+    }
+    cambiarFrase();
+    setInterval(cambiarFrase, 3000);
+
+    // Contador animado (se activa UNA SOLA VEZ al entrar a la sección)
+    const contadores = document.querySelectorAll('.contador-numero');
+    let contadoresActivados = false;
+
+    const contadorObserver = new IntersectionObserver((entradas) => {
+        entradas.forEach(entrada => {
+            if (entrada.isIntersecting && !contadoresActivados) {
+                contadoresActivados = true;
+                contadores.forEach(contador => {
+                    const target = parseInt(contador.getAttribute('data-target'));
+                    let current = 0;
+                    const incremento = Math.ceil(target / 50);
+                    const intervalo = setInterval(() => {
+                        current += incremento;
+                        if (current >= target) {
+                            contador.innerText = target;
+                            clearInterval(intervalo);
+                        } else {
+                            contador.innerText = current;
+                        }
+                    }, 30);
+                });
+            }
+        });
+    }, { threshold: 0.3 });
+
+    const contadorSection = document.querySelector('.contador-acciones');
+    if (contadorSection) contadorObserver.observe(contadorSection);
+
+    // ========================
+    // ANIMACIÓN ORIGINAL (REBOTE) - MANUAL
+    // ========================
+    const elementosPropuestas = document.querySelectorAll('.propuesta-card');
+    const elementosTrayectoria = document.querySelectorAll('.timeline-item');
+
+    function animarElementos(elementos, direccion) {
+        elementos.forEach((el, index) => {
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateX(0)';
+            }, index * 100);
+        });
+    }
+
+    function resetearElementos(elementos, direccion) {
+        elementos.forEach(el => {
+            el.style.opacity = '0';
+            if (direccion === 'left') {
+                el.style.transform = 'translateX(-50px)';
+            } else if (direccion === 'right') {
+                el.style.transform = 'translateX(50px)';
+            }
+        });
+    }
+
+    function animarSegunSeccion() {
+        const seccionPropuestas = document.getElementById('propuestas');
+        const seccionTrayectoria = document.getElementById('trayectoria');
+        
+        if (seccionPropuestas && seccionPropuestas.getBoundingClientRect().top < window.innerHeight - 100) {
+            resetearElementos(elementosPropuestas, 'left');
+            animarElementos(elementosPropuestas, 'left');
+        }
+        
+        if (seccionTrayectoria && seccionTrayectoria.getBoundingClientRect().top < window.innerHeight - 100) {
+            resetearElementos(elementosTrayectoria, 'right');
+            animarElementos(elementosTrayectoria, 'right');
+        }
+    }
+
+    // Inicializar animaciones
+    resetearElementos(elementosPropuestas, 'left');
+    resetearElementos(elementosTrayectoria, 'right');
+    setTimeout(() => {
+        animarSegunSeccion();
+    }, 300);
+
+    // Al hacer clic en el menú, forzar la animación de la sección destino
+    const enlacesMenu = document.querySelectorAll('.nav a');
+    enlacesMenu.forEach(enlace => {
+        enlace.addEventListener('click', function(e) {
+            const destino = this.getAttribute('href');
+            if (destino === '#propuestas') {
+                resetearElementos(elementosPropuestas, 'left');
+                animarElementos(elementosPropuestas, 'left');
+            } else if (destino === '#trayectoria') {
+                resetearElementos(elementosTrayectoria, 'right');
+                animarElementos(elementosTrayectoria, 'right');
+            }
+        });
+    });
+
+    // Menú hamburguesa mejorado (abre, cierra al hacer clic, siempre visible)
     const menuBtn = document.getElementById('menuHamburguesa');
     const nav = document.getElementById('nav');
-
     if (menuBtn && nav) {
         menuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             nav.classList.toggle('activo');
         });
 
-        const enlaces = nav.querySelectorAll('a');
-        enlaces.forEach(enlace => {
+        const enlacesNav = nav.querySelectorAll('a');
+        enlacesNav.forEach(enlace => {
             enlace.addEventListener('click', () => {
                 nav.classList.remove('activo');
             });
         });
     }
 </script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a14db1701991d1c31188e43/1jpgnflga';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 
 </body>
 </html>

@@ -66,6 +66,7 @@
 
         .nav a {
             color: #fc6f03;
+            /*color: #1e2a3e;*/
             text-decoration: none;
             margin-left: 25px;
             transition: 0.3s;
@@ -535,26 +536,6 @@
     });
 </script>
 
-<!--<script>
-    const menuBtn = document.getElementById('menuHamburguesa');
-    const nav = document.querySelector('.nav'); // usa la clase, no el id
-    if (menuBtn && nav) {
-        menuBtn.addEventListener('click', () => {
-            nav.classList.toggle('activo');
-        });
-    }
-</script>-->
-
-<!--<script>
-    const menuBtn = document.getElementById('menuHamburguesa');
-    const nav = document.getElementById('nav');
-    if (menuBtn && nav) {
-        menuBtn.addEventListener('click', () => {
-            nav.classList.toggle('activo');
-        });
-    }
-</script>-->
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Buscar el botón hamburguesa (puede tener clase o id)
@@ -593,68 +574,6 @@
         }
     });
 </script>
-
-
-<!--<script>
-    // Esperar a que la página cargue
-    document.addEventListener('DOMContentLoaded', function() {
-        const menuBtn = document.getElementById('menuHamburguesa');
-        const nav = document.getElementById('nav');
-        
-        // Abrir/cerrar menú al clic en el botón
-        if (menuBtn && nav) {
-            menuBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                nav.classList.toggle('activo');
-            });
-        }
-        
-        // Cerrar menú y hacer scroll al hacer clic en cualquier enlace
-        const enlaces = document.querySelectorAll('.nav a');
-        enlaces.forEach(function(enlace) {
-            enlace.addEventListener('click', function(e) {
-                // Cerrar menú
-                if (nav) {
-                    nav.classList.remove('activo');
-                }
-                
-                // Obtener el destino del enlace (ej: #servicios)
-                const destino = this.getAttribute('href');
-                if (destino && destino !== '#') {
-                    const seccion = document.querySelector(destino);
-                    if (seccion) {
-                        e.preventDefault();
-                        seccion.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-            });
-        });
-    });
-</script>-->
-
-<!--<script>
-    // Seleccionar el botón hamburguesa y el menú
-    const menuBtn = document.getElementById('menuHamburguesa');
-    const nav = document.getElementById('nav'); // Asegúrate de que tu menú tenga este id
-
-    // Abrir/cerrar menú al hacer clic en el botón
-    if (menuBtn && nav) {
-        menuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            nav.classList.toggle('activo');
-        });
-    }
-
-    // CERRAR EL MENÚ al hacer clic en cualquier enlace
-    const enlaces = document.querySelectorAll('.nav a');
-    enlaces.forEach(enlace => {
-        enlace.addEventListener('click', () => {
-            if (nav && nav.classList.contains('activo')) {
-                nav.classList.remove('activo');
-            }
-        });
-    });
-</script>-->
 
 </body>
 </html>
