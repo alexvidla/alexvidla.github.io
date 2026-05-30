@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>Restaurante Majú | Sabor huasteco en Reforma</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #fef8e7;
+        font-family: "Poppins", sans-serif;
+        color: #2c1a0c;
+        line-height: 1.5;
+        overflow-x: hidden;
+      }
+
+      /*.btn-volver-portafolio {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: #0f3460;
+        color: #fc6f03;
+        padding: 10px 18px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: bold;
+        z-index: 9999;
+        font-size: 13px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-volver-portafolio:hover {
+        background: #fc6f03;
+        color: #0a0a0a;
+      }*/
+
+      #inicio,
+      #menu,
+      #ofertas,
+      #ubicacion,
+      #contacto {
+        scroll-margin-top: 90px;
+      }
+
+      @media (max-width: 768px) {
+        #inicio,
+        #menu,
+        #ofertas,
+        #ubicacion,
+        #contacto {
+          scroll-margin-top: 120px;
+        }
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        background: rgba(255, 248, 235, 0.96);
+        backdrop-filter: blur(8px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 40px;
+        border-bottom: 1px solid #e2e8f0;
+        z-index: 1000;
+        flex-wrap: wrap;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: 800;
+        color: #b85c1a;
+      }
+
+      .logo span {
+        color: #e67e22;
+      }
+
+      .menu-hamburguesa {
+        display: none;
+        background: none;
+        border: none;
+        color: #b85c1a;
+        font-size: 28px;
+        cursor: pointer;
+      }
+
+      .nav {
+        display: flex;
+        gap: 25px;
+      }
+
+      .nav a {
+        color: #2c1a0c;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      .nav a:hover {
+        color: #e67e22;
+      }
+
+      @media (max-width: 768px) {
+        .header {
+          padding: 12px 20px;
+        }
+        .menu-hamburguesa {
+          display: block;
+        }
+        .nav {
+          display: none;
+          width: 100%;
+          flex-direction: column;
+          text-align: center;
+          background: white;
+          padding: 20px 0;
+          margin-top: 15px;
+          border-radius: 20px;
+          gap: 15px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .nav.activo {
+          display: flex;
+        }
+      }
+
+      .hero {
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=1600");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        animation: fadeInUp 1s ease;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero h1 {
+        font-size: 52px;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 20px;
+      }
+
+      .hero h1 span {
+        color: #e67e22;
+      }
+
+      .typed-text {
+        font-size: 24px;
+        font-weight: 500;
+        color: #e67e22;
+        margin-bottom: 20px;
+        border-right: 2px solid #e67e22;
+        display: inline-block;
+        padding-right: 5px;
+        animation: blink 0.7s step-end infinite;
+      }
+
+      @keyframes blink {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #e67e22;
+        }
+      }
+
+      .hero p {
+        font-size: 18px;
+        margin-bottom: 30px;
+        color: white;
+      }
+
+      .btn {
+        background: linear-gradient(135deg, #e67e22, #b85c1a);
+        color: white;
+        padding: 14px 35px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+        display: inline-block;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        animation: latido 1.5s infinite;
+      }
+
+      .btn:hover {
+        transform: scale(1.05);
+        background: #d35400;
+        animation: none;
+      }
+
+      @keyframes latido {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.03);
+        }
+      }
+
+      .contenedor {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
+      }
+
+      .reseñas {
+        background: white;
+        padding: 30px;
+        border-radius: 30px;
+        text-align: center;
+        margin: 40px 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .estrellas {
+        color: #f1c40f;
+        font-size: 28px;
+      }
+
+      .contador {
+        background: #e67e22;
+        color: white;
+        text-align: center;
+        padding: 30px;
+        border-radius: 30px;
+        margin: 40px 0;
+      }
+
+      .productos-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        margin: 40px 0;
+      }
+
+      .producto-card {
+        background: white;
+        padding: 25px;
+        border-radius: 25px;
+        text-align: center;
+        flex: 1;
+        min-width: 250px;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        border-bottom: 3px solid #e67e22;
+        opacity: 0;
+        transform: translateY(60px);
+        transition:
+          opacity 0.9s ease,
+          transform 0.9s ease;
+      }
+
+      .producto-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+        animation: reboteSuave 0.6s ease;
+      }
+
+      @keyframes reboteSuave {
+        0% {
+          transform: translateY(60px);
+        }
+        70% {
+          transform: translateY(-8px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      .producto-card:hover {
+        transform: translateY(-12px) scale(1.02);
+        box-shadow: 0 20px 30px rgba(230, 126, 34, 0.2);
+      }
+
+      .producto-card img {
+        width: 100%;
+        border-radius: 20px;
+        height: 160px;
+        object-fit: cover;
+      }
+
+      .precio {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 15px 0;
+        color: #e67e22;
+      }
+
+      .btn-wsp {
+        background: #25d366;
+        color: white;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 16px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-size: 13px;
+        transition: 0.3s;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* Sección Ofertas del Día */
+      .ofertas-dia {
+        background: linear-gradient(135deg, #fff0e0, #ffe6d5);
+        border-radius: 40px;
+        padding: 40px 20px;
+        margin: 60px 0;
+        text-align: center;
+        border: 2px solid #e67e22;
+      }
+
+      .ofertas-header h2 {
+        font-size: 36px;
+        color: #b85c1a;
+        margin: 15px 0;
+      }
+
+      .ofertas-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        margin-top: 40px;
+      }
+
+/* Ofertas activas (por defecto) */
+.oferta-card {
+    background: white;
+    border-radius: 30px;
+    padding: 20px;
+    max-width: 300px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    border: 2px solid #e67e22;
+    background: #fffef7;
+}
+
+.oferta-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.oferta-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 30px rgba(230, 126, 34, 0.3);
+}
+
+/* Ofertas vencidas (cuando el script les agrega la clase 'vencida') */
+.oferta-card.vencida {
+    opacity: 0.5;
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+}
+
+.oferta-card.vencida .btn-oferta {
+    background: #aaa;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.oferta-card.vencida .btn-oferta:hover {
+    transform: none;
+    background: #aaa;
+}
+
+
+
+
+
+
+      /*
+.oferta-card {
+    background: white;
+    border-radius: 30px;
+    padding: 20px;
+    max-width: 300px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    border: 1px solid #e67e22;
+}
+
+.oferta-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.oferta-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 30px rgba(230, 126, 34, 0.4);
+    background: #fff8f0;
+}
+
+
+
+
+
+      /*.oferta-card {
+        background: white;
+        border-radius: 30px;
+        padding: 20px;
+        max-width: 300px;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+
+      .oferta-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .oferta-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 30px rgba(230, 126, 34, 0.2);
+      }*/
+
+      .oferta-card img {
+        width: 100%;
+        border-radius: 20px;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .oferta-card h3 {
+        margin: 15px 0 10px;
+        color: #b85c1a;
+      }
+
+      .precio-original {
+        text-decoration: line-through;
+        color: #999;
+        font-size: 14px;
+      }
+
+      .precio-oferta {
+        font-size: 24px;
+        font-weight: bold;
+        color: #e67e22;
+        margin: 10px 0;
+      }
+
+      .timer {
+        background: #2c1a0c;
+        color: white;
+        padding: 8px;
+        border-radius: 50px;
+        font-size: 14px;
+        margin: 15px 0;
+      }
+
+      .btn-oferta {
+        background: #e67e22;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 40px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .btn-oferta:hover {
+        background: #d35400;
+        transform: scale(1.02);
+      }
+
+      .promo {
+        background: #fff0e0;
+        padding: 30px;
+        border-radius: 30px;
+        text-align: center;
+        margin: 40px 0;
+        border-left: 6px solid #e67e22;
+      }
+
+      .horario,
+      .galeria {
+        background: #fff0e0;
+        padding: 30px;
+        border-radius: 30px;
+        text-align: center;
+        margin: 40px 0;
+      }
+
+      .galeria-imagenes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .galeria-imagenes img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 20px;
+        transition: 0.3s;
+      }
+
+      .galeria-imagenes img:hover {
+        transform: scale(1.05);
+      }
+
+      .qr-section {
+        background: #fff0e0;
+        padding: 40px;
+        border-radius: 30px;
+        text-align: center;
+        margin: 40px 0;
+        border: 2px solid #e67e22;
+      }
+
+      .qr-code {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+      }
+
+      .qr-code svg {
+        width: 180px;
+        height: 180px;
+        background: white;
+        padding: 10px;
+        border-radius: 20px;
+      }
+
+      .mapa {
+        border-radius: 20px;
+        overflow: hidden;
+        margin: 40px 0;
+      }
+
+      .contacto {
+        text-align: center;
+        margin: 40px 0;
+      }
+
+      .footer {
+        background: #2c1a0c;
+        color: #fff0e0;
+        text-align: center;
+        padding: 40px;
+        margin-top: 40px;
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 32px;
+        }
+        .typed-text {
+          font-size: 18px;
+          white-space: normal;
+          border-right: none;
+          display: block;
+          text-align: center;
+        }
+        .galeria-imagenes img {
+          width: 100px;
+          height: 100px;
+        }
+        .qr-code svg {
+          width: 140px;
+          height: 140px;
+        }
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  </head>
+  <body>
+    <!--<a href="index.html#portafolio" class="btn-volver-portafolio"
+      >← Volver al Portafolio</a >-->
+
+    <div class="header">
+      <div class="logo"><span>🍽️</span> Restaurante <span>Majú</span></div>
+      <button class="menu-hamburguesa" id="menuHamburguesa">☰</button>
+      <div class="nav" id="nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#menu">Menú</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#ubicacion">Ubicación</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+
+    <div class="hero" id="inicio">
+      <div class="hero-content">
+        <h1>Sazón Huasteco <span>que Enamora</span></h1>
+        <div class="typed-text" id="typed"></div>
+        <p>Comida Casera, Ingredientes Frescos y un Trato como en Familia.</p>
+        <a href="#menu" class="btn">Ver Menú →</a>
+      </div>
+    </div>
+
+    <div class="contenedor">
+      <div class="reseñas">
+        <div class="estrellas">★★★★★</div>
+        <p style="font-size: 28px; font-weight: bold">4.6 ⭐ (44 opiniones)</p>
+        <p>"La Estujada de Pollo Milanesa está deliciosa" - Cliente Feliz</p>
+        <p>"Excelente atención y Buen Sazón" - Otro Cliente</p>
+      </div>
+
+      <div class="contador">
+        <i class="fas fa-utensils" style="font-size: 48px"></i>
+        <p style="font-size: 32px; font-weight: bold">1,200+</p>
+        <p>Comensales Felices en el último Año</p>
+      </div>
+
+      <h2 style="text-align: center; color: #b85c1a" id="menu">
+        🔥 Nuestros Platillos
+      </h2>
+      <div class="productos-grid" id="productos-container"></div>
+
+      <!-- Sección Ofertas del Día -->
+      <div id="ofertas" class="ofertas-dia">
+        <div class="ofertas-header">
+          <i class="fas fa-fire" style="font-size: 48px; color: #e67e22"></i>
+          <h2>🔥 Ofertas del Día 🔥</h2>
+          <p>¡Aprovecha antes de que se acaben! 🔥</p>
+        </div>
+        <div class="ofertas-grid" id="ofertas-container"></div>
+      </div>
+
+      <div class="promo">
+        <i class="fas fa-tag" style="font-size: 32px; color: #e67e22"></i>
+        <h3>🎉 Lleva 2 Estujadas y la tercera va por nuestra cuenta</h3>
+        <p>Válido de Lunes a Miércoles. Aplica para comer en el Lugar.</p>
+      </div>
+
+      <div class="horario">
+        <i class="fas fa-clock" style="color: #e67e22; font-size: 32px"></i>
+        <p><strong>Horario:</strong> Abierto hoy · Cierra a las 9 p.m.</p>
+        <p>📍 Consumo en el Lugar · Pedidos desde el Automóvil</p>
+      </div>
+
+      <div class="galeria">
+        <h3>📸 Un vistazo a Nuestro Lugar</h3>
+        <div class="galeria-imagenes">
+          <img
+            src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?w=200"
+            alt="Ambiente 1"
+          />
+          <img
+            src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?w=200"
+            alt="Ambiente 2"
+          />
+          <img
+            src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?w=200"
+            alt="Ambiente 3"
+          />
+        </div>
+      </div>
+
+      <!-- SECCIÓN QR - MENÚ DIGITAL -->
+      <div class="qr-section">
+        <div class="qr-contenido">
+          <i class="fas fa-qrcode" style="font-size: 48px; color: #e67e22"></i>
+          <h3>📱 Menú Digital + Código QR</h3>
+          <p>
+            Escanea este código con tu celular y accede a nuestro menú al
+            instante.<br />
+            Pide directo por WhatsApp sin esperar.
+          </p>
+          <div id="qr-code" class="qr-code"></div>
+          <p style="font-size: 14px; margin-top: 15px">
+            📲 Disponible para consumo en el lugar y pedidos para llevar.
+          </p>
+        </div>
+      </div>
+
+      <div id="ubicacion" class="mapa">
+        <iframe
+          src="https://www.google.com/maps?q=18+de+Marzo+13+Reforma+Chiapas&output=embed"
+          width="100%"
+          height="300"
+          style="border: 0"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+      <p style="text-align: center">
+        <i class="fas fa-map-marker-alt"></i> Calle 16 de Septiembre esquina, 18
+        de Marzo #13, Reforma, Chis.
+      </p>
+
+      <div id="contacto" class="contacto">
+        <h2>📞 ¿Quieres Ordenar?</h2>
+        <p>Pide por WhatsApp o llámanos. Respuesta rápida.</p>
+        <a
+          href="https://wa.me/529931373460?text=Hola,%20vi%20su%20página%20y%20quiero%20ordenar%20algo%20delicioso"
+          class="btn"
+          style="margin-top: 20px; display: inline-block"
+          target="_blank"
+        >
+          <i class="fab fa-whatsapp"></i> Ordenar por WhatsApp
+        </a>
+        <p style="margin-top: 15px">📞 Llamar: <strong>993 137 3460</strong></p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>🍽️ Restaurante Majú | Sabor Huasteco en Reforma</p>
+      <p>
+        📍 Calle 16 de Septiembre esquina, 18 de Marzo #13, Reforma, Chis. |
+        💡✍️🎨 Diseño y Desarrollo por Alex VIDLA
+      </p>
+    </div>
+
+    <script>
+      // Generar QR al cargar la página
+      window.addEventListener("DOMContentLoaded", function () {
+        const urlActual = window.location.href;
+        new QRCode(document.getElementById("qr-code"), {
+          text: urlActual,
+          width: 180,
+          height: 180,
+          colorDark: "#e67e22",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+      });
+
+      const palabras = [
+        "Sazón Huasteco...",
+        "Comida Casera...",
+        "Ingredientes Frescos...",
+        "Tradición Familiar...",
+      ];
+      let i = 0,
+        j = 0,
+        escribiendo = true;
+      const typedEl = document.getElementById("typed");
+      function animarTexto() {
+        if (escribiendo) {
+          if (j <= palabras[i].length) {
+            typedEl.textContent = palabras[i].substring(0, j);
+            j++;
+            setTimeout(animarTexto, 100);
+          } else {
+            escribiendo = false;
+            setTimeout(animarTexto, 2000);
+          }
+        } else {
+          if (j >= 0) {
+            typedEl.textContent = palabras[i].substring(0, j);
+            j--;
+            setTimeout(animarTexto, 50);
+          } else {
+            escribiendo = true;
+            i = (i + 1) % palabras.length;
+            j = 0;
+            setTimeout(animarTexto, 500);
+          }
+        }
+      }
+      animarTexto();
+
+      const productos = [
+        {
+          nombre: "Estujada de Pollo Milanesa",
+          precio: 139,
+          img: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400",
+        },
+        {
+          nombre: "Chilaquiles",
+          precio: 89,
+          img: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400",
+        },
+        {
+          nombre: "Plato Huasteco",
+          precio: 179,
+          img: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400",
+        },
+        {
+          nombre: "Cecina Enchilada",
+          precio: 159,
+          img: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400",
+        },
+        {
+          nombre: "Tacos de Canasta (3 pzas)",
+          precio: 55,
+          img: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400",
+        },
+        {
+          nombre: "Enchiladas Huastecas",
+          precio: 99,
+          img: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400",
+        },
+        {
+          nombre: "Pozole",
+          precio: 129,
+          img: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400",
+        },
+        {
+          nombre: "Flan Napolitano",
+          precio: 45,
+          img: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400",
+        },
+      ];
+
+      const container = document.getElementById("productos-container");
+      productos.forEach((p, index) => {
+        const card = document.createElement("div");
+        card.className = "producto-card";
+        card.innerHTML = `
+            <img src="${p.img}" alt="${p.nombre}">
+            <h3>${p.nombre}</h3>
+            <div class="precio">$${p.precio} MXN</div>
+            <button class="btn-wsp" onclick="alert('✅ Esta es una página de demostración. Cuando tu página sea real, aquí se abrirá WhatsApp para pedir directamente. ¿Te animas a tener la tuya? Contáctame.')">
+                <i class="fab fa-whatsapp"></i> Ordenar por WhatsApp
+            </button>
+        `;
+        container.appendChild(card);
+      });
+
+      const cards = document.querySelectorAll(".producto-card");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, idx) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.classList.add("visible");
+              }, idx * 100);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 },
+      );
+      cards.forEach((card) => observer.observe(card));
+
+      // Ofertas del día (con temporizador individual por oferta)
+            // ==========================================
+      // OFERTAS DEL DÍA CON TEMPORIZADOR REAL
+      // ==========================================
+      const ofertas = [
+        {
+          nombre: "Estujada de Pollo Milanesa + Refresco",
+          precioOriginal: 189,
+          precioOferta: 139,
+          img: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400",
+          desc: "La más pedida. Incluye refresco de vidrio.",
+          horaFin: 23,
+          minutoFin: 10,
+        },
+        {
+          nombre: "2x1 en Chilaquiles",
+          precioOriginal: 178,
+          precioOferta: 89,
+          img: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400",
+          desc: "Válido solo en desayunos.",
+          horaFin: 12,
+          minutoFin: 0,
+        },
+        {
+          nombre: "Pozole Familiar (4 porciones)",
+          precioOriginal: 299,
+          precioOferta: 229,
+          img: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400",
+          desc: "Para llevar. Surtido completo.",
+          horaFin: 23,
+          minutoFin: 10,
+        },
+      ];
+
+      const ofertasContainer = document.getElementById("ofertas-container");
+
+      function actualizarTemporizadores() {
+        const ahora = new Date();
+        const horaActual = ahora.getHours();
+        const minutosActuales = ahora.getMinutes();
+
+        document.querySelectorAll(".oferta-card").forEach((card, idx) => {
+          const oferta = ofertas[idx];
+          if (!oferta) return;
+
+          let horaFin = oferta.horaFin;
+          let minutosFin = oferta.minutoFin;
+
+          let horasRestantes = horaFin - horaActual;
+          let minutosRestantes = minutosFin - minutosActuales;
+
+          if (minutosRestantes < 0) {
+            horasRestantes--;
+            minutosRestantes += 60;
+          }
+
+          if (horasRestantes < 0 || (horasRestantes === 0 && minutosRestantes < 0)) {
+            // Oferta terminada
+            card.style.opacity = "0.5";
+            const btn = card.querySelector(".btn-oferta");
+            if (btn) {
+              btn.disabled = true;
+              btn.textContent = "Oferta terminada";
+            }
+            const timerSpan = card.querySelector(".timer span");
+            if (timerSpan) timerSpan.textContent = "Terminada";
+          } else {
+            // Oferta activa
+            card.style.opacity = "1";
+            const btn = card.querySelector(".btn-oferta");
+            if (btn) {
+              btn.disabled = false;
+              btn.textContent = "Ordenar ahora";
+            }
+            let texto = "";
+            if (horasRestantes > 0) texto += `${horasRestantes} h `;
+            texto += `${minutosRestantes} min`;
+            const timerSpan = card.querySelector(".timer span");
+            if (timerSpan) timerSpan.textContent = texto;
+          }
+        });
+      }
+
+      // Crear tarjetas de ofertas
+      ofertas.forEach((of, index) => {
+        const card = document.createElement("div");
+        card.className = "oferta-card";
+        card.innerHTML = `
+          <img src="${of.img}" alt="${of.nombre}">
+          <h3>${of.nombre}</h3>
+          <p>${of.desc}</p>
+          <div class="precio-original">$${of.precioOriginal} MXN</div>
+          <div class="precio-oferta">$${of.precioOferta} MXN</div>
+          <div class="timer">⏰ Quedan: <span></span></div>
+          <button class="btn-oferta" onclick="alert('✅ Esta oferta es parte de la demostración. Cuando tu página sea real, aquí se abrirá WhatsApp para pedir directo. Contáctame para activar tu sitio.')">
+            Ordenar ahora
+          </button>
+        `;
+        ofertasContainer.appendChild(card);
+        setTimeout(() => card.classList.add("visible"), index * 150);
+      });
+
+      // Ejecutar temporizador cada minuto
+      actualizarTemporizadores();
+      setInterval(actualizarTemporizadores, 60000);
+
+      // Menu HAMBURGUESA
+      const menuBtn = document.getElementById("menuHamburguesa");
+      const nav = document.getElementById("nav");
+      if (menuBtn && nav) {
+        menuBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          nav.classList.toggle("activo");
+        });
+        const enlaces = nav.querySelectorAll("a");
+        enlaces.forEach((enlace) => {
+          enlace.addEventListener("click", () =>
+            nav.classList.remove("activo"),
+          );
+        });
+      }
+    </script>
+
+ <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/6a14db1701991d1c31188e43/1jpgnflga";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+  </body>
+</html>
