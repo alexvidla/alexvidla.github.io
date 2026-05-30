@@ -774,13 +774,13 @@
       window.addEventListener("DOMContentLoaded", function () {
         const urlActual = window.location.href;
         new QRCode(document.getElementById("qr-code"), {
-          text: urlActual,
-          width: 180,
-          height: 180,
-          colorDark: "#e67e22",
-          colorLight: "#ffffff",
-          correctLevel: QRCode.CorrectLevel.H,
-        });
+    text: urlActual + "#menu",
+    width: 180,
+    height: 180,
+    colorDark: "#e67e22",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H,
+});
       });
 
       const palabras = [
