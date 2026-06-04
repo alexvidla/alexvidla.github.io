@@ -81,7 +81,7 @@ function actualizarUI() {
     if (!contenedor) return;
     
     if (carrito.length === 0) {
-        contenedor.innerHTML = '<p class="empty-msg">El carrito está vacío</p>';
+        contenedor.innerHTML = '<p class="empty-msg">El Carrito está Vacío</p>';
         if (badge) badge.innerText = "0";
         if (totalLabel) totalLabel.innerText = "$0.00";
         return;
@@ -122,19 +122,6 @@ function actualizarUI() {
     if (totalLabel) totalLabel.innerText = `$${total.toFixed(2)}`;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // --- Modificar cantidad desde el carrito ---
 function modificarCantidad(index, delta) {
     if (!carrito[index]) return;
@@ -170,7 +157,7 @@ function enviarWhatsApp() {
     });
     
     mensaje += `\n💵 *TOTAL A PAGAR: $${total.toFixed(2)} MXN*`;
-    mensaje += `\n\n📞 *Para confirmar el pedido, te contactaremos pronto.*`;
+    mensaje += `\n\n📞 *Para Confirmar el Pedido, Te Contactaremos Pronto...*`;
     
     const telefono = '529612351137';
     const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
