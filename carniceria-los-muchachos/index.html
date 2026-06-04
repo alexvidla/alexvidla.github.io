@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Carnicería Los Muchachos</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  </head>
+
+  <body>
+        <div id="popup-oferta" class="popup-overlay">
+                <div class="popup-contenido">
+                    <button class="popup-cerrar" onclick="cerrarPopup()">✕</button>
+                    <div class="popup-header">
+                        <img src="logo.jpg" alt="Logo" class="popup-logo">
+                        <h2>🔥🔥🔥 ¡Oferta del Día!</h2>
+                    </div>
+                <div class="popup-body">
+                    <p class="popup-texto">Hoy en <strong>Carnicería Los Muchachos</strong></p>
+                    <div class="popup-oferta-item">
+                        <span class="popup-producto">Con Hueso Suazada a las Brasas >$180 el kilo</span>
+                        <span class="popup-precio">¡¡¡Precio Especial!!!</span>
+                    </div>
+                    <div class="popup-oferta-item">
+                        <span class="popup-producto">Barbacoa Sáb y Dom >$180 el kilo</span>
+                        <span class="popup-precio">¡¡¡No te la Puedes Perder!!!</span>
+                    </div>
+                    <a href="https://wa.me/529171389487?text=Hola,%20vi%20la%20oferta%20del%20día%20y%20me%20interesa hacer un Pedido..." class="boton boton-whatsapp popup-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Pedir Ahora...</a>
+                    </div>
+                </div>
+        </div>
+
+    <nav class="menu">
+      <div class="menu-logo">
+        <img src="logo.jpg" alt="Logo Los Muchachos" class="logo">
+      </div>
+      <div class="menu-links">
+        <a href="#inicio" class="menu-link">Inicio</a>
+        <a href="#productos" class="menu-link">Productos</a>
+        <a href="#nosotros" class="menu-link">Nosotros</a>
+        <a href="#contacto" class="menu-link">Contacto</a>
+      </div>
+    </nav>
+
+    <div id="inicio" class="hero">
+      <div class="hero-overlay">
+        <img src="logo.jpg" alt="Logo" class="hero-logo">
+        <h1 class="hero-titulo">Carnicería <span class="hero-nombre">Los Muchachos</span></h1>
+        <p class="hero-subtitulo">Res • Cerdo • Pollo • Barbacoa</p>
+        <p class="hero-slogan">"La mejor carne de Reforma, Chiapas"</p>
+        <div class="hero-botones">
+          <a href="https://wa.me/529612351137?text=Hola,%20me%20Interesa%20hacer%20un%20Pedido..." class="boton boton-whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i> Pedir por WhatsApp</a>
+          <a href="tel:+529612351137" class="boton boton-llamar">
+            <i class="fas fa-phone"></i> Llamar Ahora</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="banner-info">
+      <div class="banner-item">
+        <i class="fas fa-truck"></i>
+        <p>Servicio a Domicilio</p>
+      </div>
+      <div class="banner-item">
+        <i class="fas fa-star"></i>
+        <p>Calidad Garantizada</p>
+      </div>
+      <div class="banner-item">
+        <i class="fas fa-fire"></i>
+        <p>Barbacoa Sáb y Dom</p>
+      </div>
+      <div class="banner-item">
+        <i class="fas fa-clock"></i>
+        <p>Abierto Todos los Días</p>
+      </div>
+    </section>
+
+    <div class="contenedor">
+    <section id="productos">
+  <h2 class="seccion-titulo">Nuestros Productos</h2>
+  <div class="productos-grid">
+    <!-- Cortes de Res -->
+    <div class="producto-card">
+      <img src="chuleta.jpg" alt="Chuleta" class="producto-img">
+      <div class="producto-info">
+        <h3>Cortes de Res</h3>
+        <p>Vísceras, Cecina, Costilla y más.</p>
+        <span class="precio">$190.00 / kg</span>
+        <div class="selector-cantidad">
+          <button class="btn-qty" onclick="cambiarQty(this, -0.5)">-</button>
+          <input type="number" class="input-qty" value="1.0" step="0.5" min="0.5" readonly>
+          <button class="btn-qty" onclick="cambiarQty(this, 0.5)">+</button>
+          <span class="unidad">kg</span>
+        </div>
+        <button class="boton add-to-cart" data-name="Cortes de Res" data-price="190" onclick="agregarAlCarrito(this)">Añadir al carrito</button>
+      </div>
+    </div>
+
+    <!-- Cerdo Fresco -->
+    <div class="producto-card">
+      <img src="canal.jpg" alt="Canal" class="producto-img">
+      <div class="producto-info">
+        <h3>Cerdo Fresco</h3>
+        <p>Pulpa, Costilla, Chinameca y Chicharrón.</p>
+        <span class="precio">$160.00 / kg</span>
+        <div class="selector-cantidad">
+          <button class="btn-qty" onclick="cambiarQty(this, -0.5)">-</button>
+          <input type="number" class="input-qty" value="1.0" step="0.5" min="0.5" readonly>
+          <button class="btn-qty" onclick="cambiarQty(this, 0.5)">+</button>
+          <span class="unidad">kg</span>
+        </div>
+        <button class="boton add-to-cart" data-name="Cerdo Fresco" data-price="160" onclick="agregarAlCarrito(this)">Añadir al carrito</button>
+      </div>
+    </div>
+
+    <!-- Barbacoa -->
+    <div class="producto-card">
+      <img src="barbacoa.jpg" alt="Barbacoa" class="producto-img">
+      <div class="producto-info">
+        <h3>Barbacoa (Sáb y Dom)</h3>
+        <p>Tradicional y Deliciosa.</p>
+        <span class="precio">$180.00 / kg</span>
+        <div class="selector-cantidad">
+          <button class="btn-qty" onclick="cambiarQty(this, -0.5)">-</button>
+          <input type="number" class="input-qty" value="1.0" step="0.5" min="0.5" readonly>
+          <button class="btn-qty" onclick="cambiarQty(this, 0.5)">+</button>
+          <span class="unidad">kg</span>
+        </div>
+        <button class="boton add-to-cart" data-name="Barbacoa" data-price="180" onclick="agregarAlCarrito(this)">Añadir al carrito</button>
+      </div>
+    </div>
+
+
+    <div class="producto-card">
+      <img src="suazadaderes.jpg" alt="Suadero y Costillas" class="producto-img">
+      <div class="producto-info">
+            <h3>Suazada de Res</h3>
+            <p>Deliciosa Carne con Hueso suazada a las brasas, jugosa y perfectamente suazada para tu antojo.</p>
+            <span class="precio">$180.00 / kg</span>
+            <div class="selector-cantidad">
+            <button class="btn-qty" onclick="cambiarQty(this, -0.5)">-</button>
+              <input type="number" class="input-qty" value="1.0" step="0.5" min="0.5" readonly>
+            <button class="btn-qty" onclick="cambiarQty(this, 0.5)">+</button>
+            <span class="unidad">kg</span>
+      </div>
+            <button class="boton add-to-cart" data-name="Suazada de Res" data-price="180" onclick="agregarAlCarrito(this)">Añadir al carrito</button>
+    </div>
+    </div>
+  </div>
+</section>
+
+      <hr class="separador">
+
+      <section id="nosotros">
+        <h2 class="seccion-titulo">¿Quiénes Somos?</h2>
+        <div class="nosotros-contenido">
+          <div class="nosotros-texto">
+            <p>Somos <strong>Carnicería Los Muchachos</strong>, un negocio familiar ubicado en Reforma, Chiapas, con años de experiencia ofreciendo carne fresca y de la más alta calidad a nuestros clientes.</p>
+            <p>Nos distinguimos por nuestra atención personalizada, productos frescos diariamente y servicio a domicilio completamente gratis.</p>
+            <p>Cada corte que ofrecemos es seleccionado cuidadosamente para garantizar la satisfacción de nuestros clientes y sus familias.</p>
+            <ul class="nosotros-lista">
+              <li><i class="fas fa-check-circle"></i> Carne fresca todos los días</li>
+              <li><i class="fas fa-check-circle"></i> Servicio a domicilio gratis</li>
+              <li><i class="fas fa-check-circle"></i> Barbacoa sábados y domingos</li>
+              <li><i class="fas fa-check-circle"></i> Atención personalizada</li>
+              <li><i class="fas fa-check-circle"></i> Los mejores precios de la región</li>
+            </ul>
+          </div>
+          <div class="nosotros-foto">
+            <img src="local.jpg" alt="Local" class="foto-local">
+          </div>
+        </div>
+      </section>
+
+      <hr class="separador">
+
+      <section id="contacto">
+        <h2 class="seccion-titulo">Contáctanos</h2>
+        <div class="contacto-contenido">
+          <div class="contacto-info">
+            <div class="contacto-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Ubicación</h4>
+                <p>Calle las Gardenias, Col. Juan Sabines Gutierrez(Las Cactaceas) Reforma, Chiapas. México</p>
+              </div>
+            </div>
+            <div class="contacto-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <h4>Teléfonos</h4>
+                <p>917 138 9487</p>
+                <p>961 235 1137</p>
+              </div>
+            </div>
+            <div class="contacto-item">
+              <i class="fab fa-whatsapp"></i>
+              <div>
+                <h4>WhatsApp</h4>
+                <p>9612351137</p>
+              </div>
+            </div>
+            <div class="contacto-item">
+              <i class="fas fa-clock"></i>
+              <div>
+                <h4>Horario</h4>
+                <p>Lunes a Domingo</p>
+                <p>7:00 AM - 8:00 PM</p>
+              </div>
+            </div>
+          </div>
+          <div class="contacto-botones">
+            <a href="https://wa.me/+529612351137?text=Hola,%20me%20Interesa%20Hacer%20un%20Pedido." class="boton boton-whatsapp" target="_blank">
+              <i class="fab fa-whatsapp"></i> Escribir por WhatsApp</a>
+            <a href="tel:+529171389487" class="boton boton-llamar">
+              <i class="fas fa-phone"></i> Llamar Ahora</a>
+          </div>
+        </div>
+        <div class="mapa-contenedor">
+            <h3 class="mapa-titulo"><i class="fas fa-map-marker-alt"></i> ¿Cómo Llegarnos?</h3>
+            <img src="ubicacion.jpeg" alt="Ubicación Carnicería Los Muchachos" class="mapa-img">
+            <a href="https://maps.google.com/?q=Carniceria+Los+Muchachos+Reforma+Chiapas" target="_blank" class="boton boton-llamar mapa-btn">
+            <i class="fas fa-map-marker-alt"></i> Abrir en Google Maps</a>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="footer">
+      <div class="footer-contenido">
+        <div class="footer-columna">
+          <img src="logo.jpg" alt="Logo" class="footer-logo">
+          <p>Carnicería Los Muchachos, tu mejor opción en carne fresca en Reforma, Chiapas.</p>
+        </div>
+        <div class="footer-columna">
+          <h3>Enlaces</h3>
+          <ul class="footer-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#productos">Productos</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-columna">
+          <h3>Contacto</h3>
+          <p><i class="fas fa-phone"></i> 917 4025447</p>
+          <p><i class="fas fa-phone"></i> 961 4025447</p>
+          <p><i class="fas fa-map-marker-alt"></i> Reforma, Chiapas. México</p>
+        </div>
+      </div>
+      <div class="footer-bottom" style="text-align: center;">
+        <p>© 2026 | Carnicería Los Muchachos | Todos los Derechos Reservados | 💡✍️🎨 Diseño y Desarrollo por Alex VIDLA</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+
+<!-- Icono Flotante del Carrito -->
+<div class="cart-icon-wrapper" onclick="toggleCart()">
+  <i class="fas fa-shopping-cart"></i>
+  <span id="cart-count-badge" class="badge">0</span>
+</div>
+
+<!-- Panel Lateral del Carrito (Slide-over) -->
+<div id="side-cart" class="cart-drawer">
+  <div class="cart-header">
+    <h3>Tu Pedido</h3>
+    <button class="close-btn" onclick="toggleCart()">✕</button>
+  </div>
+  
+  <div id="cart-items-container" class="cart-body">
+    <!-- Se llena dinámicamente vía JS -->
+    <p class="empty-msg">El Carrito está Vacío</p>
+  </div>
+  
+  <div class="cart-footer">
+    <div class="total-section">
+      <span>Total Estimado:</span>
+      <span id="cart-final-total">$0.00</span>
+    </div>
+    <button class="checkout-btn" onclick="enviarWhatsApp()">
+      <i class="fab fa-whatsapp"></i> Confirmar por WhatsApp
+    </button>
+  </div>
+</div>
+
+
+</body>
+</html>
