@@ -2,609 +2,104 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Lácteos Santa Martha | Tradición que Sabe a Campo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En construcción</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #fff9ef; font-family: 'Poppins', sans-serif; color: #2c1a0c; line-height: 1.5; overflow-x: hidden; }
-
-        #inicio, #nosotros, #productos, #ofertas, #contacto { scroll-margin-top: 90px; }
-        @media (max-width: 768px) { #inicio, #nosotros, #productos, #ofertas, #contacto { scroll-margin-top: 120px; } }
-
-        /*.btn-volver-portafolio {
-            position: fixed; bottom: 20px; left: 20px; background: #0f3460; color: #fc6f03; padding: 10px 18px; border-radius: 40px;
-            text-decoration: none; font-weight: bold; z-index: 9999; font-size: 13px; box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            transition: 0.3s; display: flex; align-items: center; gap: 8px;
-        }
-        .btn-volver-portafolio:hover { background: #fc6f03; color: #0a0a0a; }*/
-
-        .header {
-            position: sticky; top: 0; background: rgba(255,249,239,0.92); backdrop-filter: blur(12px);
-            display: flex; justify-content: space-between; align-items: center; padding: 12px 40px;
-            border-bottom: 1px solid rgba(230,126,34,0.2); z-index: 1000; flex-wrap: wrap;
-        }
-        .logo { font-size: 24px; font-weight: 800; background: linear-gradient(135deg, #b85c1a, #e67e22); background-clip: text; color: transparent; }
-        .menu-hamburguesa { display: none; background: none; border: none; color: #b85c1a; font-size: 28px; cursor: pointer; }
-        .nav { display: flex; gap: 25px; }
-        .nav a { color: #128C7E; text-decoration: none; font-weight: 500; transition: 0.3s; position: relative; }
-        .nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #e67e22; transition: width 0.3s; }
-        .nav a:hover::after { width: 100%; }
-        @media (max-width: 768px) {
-            .header { padding: 12px 20px; }
-            .menu-hamburguesa { display: block; }
-            .nav { display: none; width: 100%; flex-direction: column; text-align: center; background: white; padding: 20px 0; margin-top: 15px; border-radius: 20px; gap: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-            .nav.activo { display: flex; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .hero {
-            position: relative;
+        body {
+            background: linear-gradient(145deg, #0a0f1a 0%, #0a0a0a 100%);
+            font-family: 'Poppins', sans-serif;
             height: 100vh;
-            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-        }
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-        }
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.55);
-            z-index: 1;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            animation: fadeInUp 1s ease;
+            color: white;
+            overflow: hidden;
         }
 
-        /*.hero {
-            position: relative; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center;
+        .container {
+            animation: fadeIn 1s ease;
+            padding: 20px;
         }
-        .hero-video {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;
-        }
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); z-index: 1;
-        }
-        .hero-content { position: relative; z-index: 2; max-width: 800px; animation: fadeInUp 1s ease; }*/
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-        .hero h1 { font-size: 58px; font-weight: 800; color: white; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .hero h1 span { color: #e67e22; }
-        .hero p { font-size: 20px; margin-bottom: 30px; color: white; }
-        .btn {
-            background: linear-gradient(135deg, #e67e22, #b85c1a); color: white; padding: 14px 35px; border-radius: 50px;
-            text-decoration: none; font-weight: bold; transition: 0.3s; display: inline-block; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            animation: latido 1.5s infinite;
-        }
-        .btn:hover { transform: scale(1.05); background: #d35400; animation: none; }
-        @keyframes latido { 0%,100% { transform: scale(1); } 50% { transform: scale(1.03); } }
 
-        .contenedor { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
-
-        /* SECCIÓN NOSOTROS REORGANIZADA Y EQUILIBRADA */
-        .nosotros-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
-        .nosotros-superior {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 50px;
-            align-items: flex-start;
-        }
-        .nosotros-texto {
-            flex: 1.2;
-        }
-        .nosotros-texto h2 {
-            font-size: 38px;
-            color: #b85c1a;
+        h1 {
+            font-size: 72px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fc6f03, #ffaa44);
+            background-clip: text;
+            color: transparent;
             margin-bottom: 20px;
-            position: relative;
+        }
+
+        .emoji {
+            font-size: 80px;
+            animation: bounce 2s infinite;
             display: inline-block;
         }
-        .nosotros-texto h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60%;
-            height: 3px;
-            background: #e67e22;
+
+        p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+            color: #ccc;
         }
-        .nosotros-texto p {
-            margin-bottom: 15px;
-            color: #444;
-            line-height: 1.8;
-        }
-        .nosotros-img {
-            flex: 0.8;
-            text-align: center;
-            align-self: center;
-        }
-        .nosotros-img img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 30px;
-            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: #fc6f03;
+            color: white;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: bold;
             transition: 0.3s;
+            box-shadow: 0 0 10px #fc6f03;
         }
-        .nosotros-img img:hover {
-            transform: scale(1.02);
+
+        .btn:hover {
+            background: #ff5500;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #fc6f03;
         }
-        .equipo-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            margin-top: 20px;
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .equipo-card {
-            background: white;
-            padding: 20px;
-            border-radius: 20px;
-            text-align: center;
-            flex: 1;
-            min-width: 180px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-        .equipo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
-        }
-        .equipo-card img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 3px solid #e67e22;
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-        }
-        .equipo-card h4 {
-            color: #b85c1a;
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         @media (max-width: 768px) {
-            .nosotros-superior {
-                flex-direction: column;
-            }
-            .nosotros-texto {
-                text-align: center;
-            }
-            .nosotros-texto h2::after {
-                left: 50%;
-                transform: translateX(-50%);
-                width: 40%;
-            }
+            h1 { font-size: 42px; }
+            .emoji { font-size: 60px; }
+            p { font-size: 16px; }
         }
-
-        /* Productos */
-        .productos-grid {
-            display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin: 50px 0;
-        }
-        .producto-card {
-            background: white; padding: 25px; border-radius: 25px; text-align: center; flex: 1; min-width: 230px;
-            transition: all 0.4s; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-bottom: 3px solid #e67e22;
-            opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .producto-card.visible { opacity: 1; transform: translateY(0); }
-        .producto-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 30px rgba(230,126,34,0.2); }
-        .producto-card i { font-size: 48px; color: #e67e22; margin-bottom: 15px; }
-        .precio { font-size: 22px; font-weight: bold; margin: 15px 0; color: #e67e22; }
-        .selector-cantidad {
-            display: flex; align-items: center; justify-content: center; gap: 12px; margin: 15px 0; background: #f9f9f9; padding: 5px; border-radius: 40px;
-        }
-        .btn-qty { background: white; border: 1px solid #ddd; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-weight: bold; transition: 0.2s; }
-        .btn-qty:hover { background: #e67e22; color: white; border-color: #e67e22; }
-        .input-qty { width: 55px; text-align: center; border: none; background: transparent; font-size: 16px; font-weight: 600; color: #333; pointer-events: none; }
-        .unidad { font-weight: 500; color: #555; font-size: 14px; }
-        .btn-agregar { background: #25D366; color: white; border: none; padding: 10px 20px; border-radius: 40px; cursor: pointer; font-weight: bold; margin-top: 5px; width: 100%; transition: 0.3s; }
-        .btn-agregar:hover { transform: scale(1.02); background: #128C7E; }
-
-        .ofertas-dia {
-            background: linear-gradient(135deg, #fff0e0, #ffe6d5); border-radius: 40px; padding: 50px 30px; margin: 60px 0;
-            text-align: center; border: 2px solid #e67e22; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-        .ofertas-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin-top: 30px; }
-        .oferta-card {
-            background: white; border-radius: 25px; padding: 20px; max-width: 260px; text-align: center; transition: 0.3s;
-            border: 1px solid #e67e22;
-        }
-        .oferta-card:hover { transform: translateY(-5px); box-shadow: 0 15px 25px rgba(230,126,34,0.15); }
-        .oferta-card img { width: 100%; border-radius: 20px; height: 150px; object-fit: cover; }
-        .precio-original { text-decoration: line-through; color: #999; font-size: 14px; }
-        .precio-oferta { font-size: 24px; font-weight: bold; color: #e67e22; margin: 10px 0; }
-
-        .testimonios { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin: 60px 0; }
-        .testimonio {
-            background: white; padding: 25px; border-radius: 25px; max-width: 320px; text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s;
-        }
-        .testimonio:hover { transform: translateY(-5px); }
-        .testimonio img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #e67e22; margin-left: auto; margin-right: auto; display: block; }
-        .testimonio-texto { font-size: 13px; line-height: 1.5; color: #334155; font-style: italic; }
-
-        .horario, .mapa { background: #fff0e0; padding: 30px; border-radius: 30px; text-align: center; margin: 40px 0; }
-        .contacto { text-align: center; margin: 40px 0; }
-        .footer { background: #2c1a0c; color: #fff0e0; text-align: center; padding: 40px; margin-top: 40px; }
-
-        /* ----- CARRITO ESTABLE (definitivo) ----- */
-        .cart-icon {
-            position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 55px; height: 55px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: 0.3s;
-        }
-        .cart-icon:hover { transform: scale(1.08); background: #d35400; }
-        .badge {
-            position: absolute; top: -5px; right: -5px; background: #fc6f03; color: white; border-radius: 50%;
-            width: 20px; height: 20px; font-size: 11px; display: flex; align-items: center; justify-content: center;
-        }
-        .cart-drawer {
-            position: fixed; top: 0; right: -400px; width: 360px; height: 100%; background: white;
-            box-shadow: -5px 0 20px rgba(0,0,0,0.2); z-index: 10000; transition: right 0.3s; display: flex; flex-direction: column;
-        }
-        .cart-drawer.open { right: 0; }
-        .cart-header { background: #e67e22; color: white; padding: 18px; display: flex; justify-content: space-between; align-items: center; }
-        .cart-header h3 { margin: 0; }
-        .close-cart { background: none; border: none; color: white; font-size: 28px; cursor: pointer; }
-        .cart-body { flex: 1; padding: 20px; overflow-y: auto; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; }
-        .cart-item-info { flex: 1; }
-        .cart-item-name { font-weight: bold; }
-        .cart-item-controls { display: flex; gap: 8px; align-items: center; }
-        .cart-qty-btn { background: #f0f0f0; border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 14px; }
-        .cart-remove { background: #e74c3c; color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer; font-weight: bold; }
-        .cart-footer { padding: 20px; border-top: 1px solid #eee; }
-        .cart-total { display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; margin-bottom: 15px; }
-        .checkout-btn { background: #25D366; color: white; border: none; width: 100%; padding: 12px; border-radius: 40px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .checkout-btn:hover { background: #128C7E; transform: scale(1.01); }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 36px; }
-            .cart-drawer { width: 100%; right: -100%; }
-        }
-
-                /* Botón eliminar más claro */
-                /* Botón Eliminar - Versión chida */
-        .cart-remove {
-            background: #e74c3c !important;
-            color: white !important;
-            border: none !important;
-            border-radius: 30px !important;
-            padding: 6px 16px !important;
-            cursor: pointer !important;
-            font-weight: bold !important;
-            font-size: 12px !important;
-            transition: 0.2s !important;
-            display: inline-block !important;
-            width: auto !important;
-            text-align: center !important;
-            line-height: normal !important;
-        }
-        .cart-remove:hover {
-            background: #c0392b !important;
-            transform: scale(1.02);
-        }
-        .cart-item-detail {
-            font-size: 14px;
-            color: #555;
-            margin-top: 4px;
-        }
-
-
-
-
     </style>
 </head>
 <body>
-
-    <!--<a href="index.html#portafolio" class="btn-volver-portafolio">← Volver al Portafolio</a>-->
-    
-    <div class="header">
-        <div class="logo">Lácteos <span>Santa Martha</span></div>
-        <button class="menu-hamburguesa" id="menuHamburguesa">☰</button>
-        <div class="nav" id="nav">
-            <a href="#inicio">Inicio</a>
-            <a href="#nosotros">Detrás del producto</a>
-            <a href="#productos">Productos</a>
-            <a href="#ofertas">Ofertas</a>
-            <a href="#contacto">Contacto</a>
-        </div>
+    <div class="container">
+        <div class="emoji">🚧</div>
+        <h1>En Construcción</h1>
+        <p>Esta Página Web está en Fase de Desarrollo.<br> Si Llegaste Aquí, es porque el Dueño de este Negocio aún no Decide Crecer Digitalmente.</p>
+        <p style="font-size: 14px; color: #fc6f03;">Mientras él lo Piensa, Nosotros Seguimos Mejorando.</p>
+        <!--<a href="https://alexvidla.github.io" class="btn">Volver al portafolio</a>-->
     </div>
-    
-    <div class="hero" id="inicio">
-
-        <video class="hero-video" autoplay muted loop playsinline>
-                <source src="quesos.mp4" type="video/mp4">
-        </video>
-
-        <!--<video class="hero-video" autoplay muted loop playsinline>
-            <source src="https://cdn.pixabay.com/video/2020/07/06/43597-438351448_large.mp4" type="video/mp4">
-        </video>-->
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Tradición que <span>sabe a Campo</span></h1>
-            <p>Quesos Artesanales y Lácteos de la más Alta Calidad, Hechos con Pasión en Reforma, Chiapas.</p>
-            <a href="#productos" class="btn">Descubrir Productos →</a>
-        </div>
-    </div>
-
-    <div class="contenedor">
-        <!-- SECCIÓN NOSOTROS REORGANIZADA -->
-        <div id="nosotros" class="nosotros-wrapper">
-            <div class="nosotros-superior">
-                <div class="nosotros-texto">
-                    <h2>🧑‍🌾 Detrás del Producto</h2>
-                    <p>Lácteos Santa Martha nació hace más de 15 años en Reforma, Chiapas, con una misión clara: llevar a tu mesa productos lácteos frescos, artesanales y de la más alta calidad.</p>
-                    <p>Elaboramos nuestros quesos, yogurt y crema con leche 100% pura, siguiendo recetas tradicionales que han pasado de generación en generación. Cada proceso es supervisado con esmero, desde el ordeño hasta el empaque.</p>
-                    <p>Detrás de cada producto hay manos chiapanecas, pasión por el campo y un compromiso con la salud de tu familia. Porque lo que comes importa, y nosotros lo sabemos.</p>
-                </div>
-                <div class="nosotros-img">
-                    <img src="https://images.pexels.com/photos/2966630/pexels-photo-2966630.jpeg?w=500" alt="Producción de queso artesanal">
-                </div>
-            </div>
-            <div class="equipo-grid">
-                <div class="equipo-card"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Fundadora"><h4>María López</h4><p>Fundadora</p></div>
-                <div class="equipo-card"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Maestro quesero"><h4>Don Jesús</h4><p>Maestro quesero</p></div>
-                <div class="equipo-card"><img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Atención"><h4>Laura Méndez</h4><p>Atención al cliente</p></div>
-            </div>
-        </div>
-
-        <h2 style="text-align: center; color: #b85c1a; font-size: 38px;" id="productos">🧀 Nuestros Productos</h2>
-        <div class="productos-grid" id="productos-container"></div>
-
-        <div id="ofertas" class="ofertas-dia">
-            <h2 style="color: #b85c1a; font-size: 32px;">🔥 Ofertas Especiales</h2>
-            <div class="ofertas-grid" id="ofertas-container"></div>
-        </div>
-
-        <h2 style="text-align: center; color: #b85c1a; font-size: 38px;">⭐ Lo que dicen Nuestros Clientes</h2>
-        <div class="testimonios">
-            <div class="testimonio"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Jesus"><h4>Jesús Alberto</h4><p class="testimonio-texto">"Están súper los precios, atención y todo fresco. Recomendado."</p><div style="color:#f1c40f;">★★★★★</div></div>
-            <div class="testimonio"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Aranza"><h4>Aranza Itzel</h4><p class="testimonio-texto">"Excelente servicio, calidad de alta calidad."</p><div style="color:#f1c40f;">★★★★★</div></div>
-            <div class="testimonio"><img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Victor"><h4>Víctor Berrones</h4><p class="testimonio-texto">"Los mejores quesos de Reforma Chiapas."</p><div style="color:#f1c40f;">★★★★★</div></div>
-        </div>
-
-        <div class="horario">
-            <i class="fas fa-clock" style="color:#e67e22; font-size: 32px;"></i>
-            <p><strong>Horario:</strong> Lunes a Viernes 7am - 6pm | Sábados 8am - 2pm</p>
-            <p>📍 UNE, Reforma, Chiapas</p>
-        </div>
-
-        <div id="contacto" class="contacto">
-            <h2>📞 ¿Quieres probar Nuestros Productos?</h2>
-            <p>Pide por WhatsApp o Llámanos. Respuesta Rápida.</p>
-            <a href="https://wa.me/529933994307?text=Hola,%20vi%20su%20página%20y%20quiero%20hacer%20un%20pedido" class="btn" style="margin-top: 20px; display: inline-block; background: #25D366;" target="_blank">
-                <i class="fab fa-whatsapp"></i> Ordenar por WhatsApp
-            </a>
-            <p style="margin-top: 15px;">📞 Llamar: <strong>993 399 4307</strong></p>
-        </div>
-
-        <div class="mapa">
-            <iframe src="https://www.google.com/maps?q=UNE+Reforma+Chiapas&output=embed" width="100%" height="250" style="border:0;" allowfullscreen loading="lazy"></iframe>
-        </div>
-    </div>
-
-    <div class="footer">
-        <p>🥛 Lácteos Santa Martha | Frescura y Tradición</p>
-        <p>📍 UNE, Reforma, Chiapas | 💡 Diseño y desarrollo por Alex VIDLA</p>
-    </div>
-
-    <!-- Icono Carrito -->
-    <div class="cart-icon" id="cartIcon">
-        <i class="fas fa-shopping-cart"></i>
-        <span id="cartBadge" class="badge">0</span>
-    </div>
-
-    <!-- Carrito lateral -->
-    <div id="cartDrawer" class="cart-drawer">
-        <div class="cart-header">
-            <h3>🛒 Tu Pedido</h3>
-            <button class="close-cart" id="closeCart">✕</button>
-        </div>
-        <div id="cartItems" class="cart-body">
-            <p style="text-align:center; color:#999;">El Carrito está Vacío</p>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total"><span>Total:</span><span id="cartTotal">$0.00</span></div>
-            <button id="checkoutBtn" class="checkout-btn">📩 Enviar Pedido</button>
-        </div>
-    </div>
-
-    <script>
-        // ----- Productos y ofertas -----
-        // ----- Productos y ofertas con selector de 0.5 kg -----
-        // ----- Productos y ofertas con selector de 0.5 kg -----
-        const productos = [
-            { nombre: "Queso Fresco", precio: 85 },
-            { nombre: "Queso Oaxaca", precio: 110 },
-            { nombre: "Yogurth Natural", precio: 45 },
-            { nombre: "Crema", precio: 70 }
-        ];
-
-        const container = document.getElementById("productos-container");
-        productos.forEach(p => {
-            const card = document.createElement("div");
-            card.className = "producto-card";
-            card.innerHTML = `
-                <i class="fas fa-cheese"></i>
-                <h3>${p.nombre}</h3>
-                <div class="precio">$${p.precio}/kg</div>
-                <div class="selector-cantidad">
-                    <button type="button" class="btn-qty" onclick="cambiarQty(this, -0.5)">-</button>
-                    <input type="text" class="input-qty" value="1.0" readonly>
-                    <button type="button" class="btn-qty" onclick="cambiarQty(this, 0.5)">+</button>
-                    <span class="unidad">kg</span>
-                </div>
-                <button type="button" class="btn-agregar" onclick="agregarAlCarrito(this)">➕ Agregar</button>
-            `;
-            container.appendChild(card);
-        });
-
-        // Oferta con selector de kg también
-        const ofertas = [
-            { nombre: "Queso Fresco 2kg", precioOferta: 150, img: "https://images.pexels.com/photos/2966630/pexels-photo-2966630.jpeg?w=400" }
-        ];
-        const ofertasContainer = document.getElementById("ofertas-container");
-        ofertas.forEach(of => {
-            const card = document.createElement("div");
-            card.className = "oferta-card";
-            card.innerHTML = `
-                <img src="${of.img}" alt="${of.nombre}">
-                <h3>${of.nombre}</h3>
-                <div class="precio-oferta">$${of.precioOferta} MXN</div>
-                <div class="selector-cantidad">
-                    <button type="button" class="btn-qty" onclick="cambiarQty(this, -0.5)">-</button>
-                    <input type="text" class="input-qty" value="1.0" readonly>
-                    <button type="button" class="btn-qty" onclick="cambiarQty(this, 0.5)">+</button>
-                    <span class="unidad">kg</span>
-                </div>
-                <button type="button" class="btn-agregar" onclick="agregarAlCarrito(this)">➕ Agregar</button>
-            `;
-            ofertasContainer.appendChild(card);
-        });
-
-        function cambiarQty(btn, delta) {
-            const input = btn.parentElement.querySelector('.input-qty');
-            let valor = parseFloat(input.value) + delta;
-            if (valor < 0.5) valor = 0.5;
-            input.value = valor.toFixed(1);
-        }
-
-        const cards = document.querySelectorAll('.producto-card');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.2 });
-        cards.forEach(card => observer.observe(card));
-
-        // ----- CARRITO SIMPLE (solo eliminar) -----
-        let carrito = [];
-
-                function actualizarCarritoUI() {
-            const cartItemsDiv = document.getElementById("cartItems");
-            const cartTotalSpan = document.getElementById("cartTotal");
-            const badge = document.getElementById("cartBadge");
-            if (!cartItemsDiv) return;
-
-            if (carrito.length === 0) {
-                cartItemsDiv.innerHTML = '<p style="text-align:center; color:#999;">El carrito está vacío</p>';
-                if (cartTotalSpan) cartTotalSpan.textContent = "$0.00";
-                if (badge) badge.textContent = "0";
-                return;
-            }
-
-            let html = "";
-            let totalGeneral = 0;
-            let totalItems = 0;
-            carrito.forEach((item, idx) => {
-                const subtotal = item.precio * item.cantidad;
-                totalGeneral += subtotal;
-                totalItems += item.cantidad;
-                html += `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <div class="cart-item-name">${item.nombre}</div>
-                            <div class="cart-item-detail">${item.cantidad} kg x $${item.precio} = <strong>$${subtotal.toFixed(2)}</strong></div>
-                        </div>
-                        <div class="cart-item-controls">
-                            <button type="button" class="cart-remove" onclick="eliminarDelCarrito(${idx})">✕ Eliminar</button>
-                        </div>
-                    </div>
-                `;
-            });
-            cartItemsDiv.innerHTML = html;
-            if (cartTotalSpan) cartTotalSpan.textContent = `$${totalGeneral.toFixed(2)}`;
-            if (badge) badge.textContent = totalItems;
-        }
-
-        function agregarAlCarrito(btn) {
-            const card = btn.closest('.producto-card, .oferta-card');
-            if (!card) return;
-            const nombre = card.querySelector('h3').innerText;
-            const precioText = card.querySelector('.precio, .precio-oferta').innerText;
-            let precio = parseFloat(precioText.replace('$', ''));
-            const inputQty = card.querySelector('.input-qty');
-            let cantidad = inputQty ? parseFloat(inputQty.value) : 1.0;
-            if (isNaN(cantidad)) cantidad = 1.0;
-            const existente = carrito.find(item => item.nombre === nombre);
-            if (existente) existente.cantidad += cantidad;
-            else carrito.push({ nombre, precio, cantidad });
-            actualizarCarritoUI();
-            document.getElementById("cartDrawer").classList.add("open");
-        }
-
-        function eliminarDelCarrito(idx) {
-            carrito.splice(idx, 1);
-            actualizarCarritoUI();
-        }
-
-        function enviarPedido() {
-            if (carrito.length === 0) return alert("Agrega productos primero");
-            let mensaje = "🥛***Nuevo Pedido - LÁCTEOS SANTA MARTHA***🥛\n\n";
-            let total = 0;
-            carrito.forEach(item => {
-                mensaje += `• ${item.nombre}: ${item.cantidad} kg x $${item.precio} = $${(item.precio * item.cantidad).toFixed(2)}\n`;
-                total += item.precio * item.cantidad;
-            });
-            mensaje += `\n💵 *TOTAL: $${total.toFixed(2)} MXN*`;
-            window.open(`https://wa.me/529933994307?text=${encodeURIComponent(mensaje)}`, "_blank");
-            carrito = [];
-            actualizarCarritoUI();
-            document.getElementById("cartDrawer").classList.remove("open");
-            alert("✅ ¡Pedido enviado con éxito! En breve te contactaremos.");
-        }
-
-        document.getElementById("cartIcon").addEventListener("click", () => document.getElementById("cartDrawer").classList.add("open"));
-        document.getElementById("closeCart").addEventListener("click", () => document.getElementById("cartDrawer").classList.remove("open"));
-        document.getElementById("checkoutBtn").addEventListener("click", enviarPedido);
-
-        document.addEventListener("click", (e) => {
-            const drawer = document.getElementById("cartDrawer");
-            const icon = document.getElementById("cartIcon");
-            if (drawer && drawer.classList.contains("open")) {
-                if (!drawer.contains(e.target) && !icon.contains(e.target)) drawer.classList.remove("open");
-            }
-        });
-
-        const menuBtn = document.getElementById("menuHamburguesa");
-        const nav = document.getElementById("nav");
-        if (menuBtn && nav) {
-            menuBtn.addEventListener("click", () => nav.classList.toggle("activo"));
-            nav.querySelectorAll("a").forEach(enlace => enlace.addEventListener("click", () => nav.classList.remove("activo")));
-        }
-    </script>
-
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6a14db1701991d1c31188e43/1jpgnflga';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
-
-    
 </body>
 </html>
