@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Pizzería | La Mejor Pizza de tu Ciudad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fef8e7;
+            font-family: 'Poppins', sans-serif;
+            color: #2c1a0c;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Scroll margin */
+        #inicio, #menu, #ubicacion, #contacto {
+            scroll-margin-top: 90px;
+        }
+
+        @media (max-width: 768px) {
+            #inicio, #menu, #ubicacion, #contacto {
+                scroll-margin-top: 120px;
+            }
+        }
+
+        /* Botón volver al portafolio */
+        .btn-volver-portafolio {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #0f3460;
+            color: #fc6f03;
+            padding: 10px 18px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 9999;
+            font-size: 13px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-volver-portafolio:hover {
+            background: #fc6f03;
+            color: #0a0a0a;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 248, 235, 0.96);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 40px;
+            border-bottom: 1px solid #e2e8f0;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: #b85c1a;
+        }
+
+        .logo span {
+            color: #e67e22;
+        }
+
+        .menu-hamburguesa {
+            display: none;
+            background: none;
+            border: none;
+            color: #b85c1a;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav a {
+
+            color: #128C7E;          
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav a:hover {
+            color: #e67e22;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 20px;
+            }
+            .menu-hamburguesa {
+                display: block;
+            }
+            .nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+                background: white;
+                padding: 20px 0;
+                margin-top: 15px;
+                border-radius: 20px;
+                gap: 15px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            .nav.activo {
+                display: flex;
+            }
+        }
+
+        /* Hero con video */
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 span {
+            color: #e67e22;
+        }
+
+        .typed-text {
+            font-size: 24px;
+            font-weight: 500;
+            color: #e67e22;
+            margin-bottom: 30px;
+            border-right: 2px solid #e67e22;
+            display: inline-block;
+            padding-right: 5px;
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #e67e22; }
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #e67e22, #b85c1a);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            animation: latido 1.5s infinite;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: #d35400;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            animation: none;
+        }
+
+        @keyframes latido {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .reseñas {
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeUp 0.8s forwards;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .estrellas {
+            color: #f1c40f;
+            font-size: 28px;
+        }
+
+        .productos-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .producto-card {
+            background: white;
+            padding: 25px;
+            border-radius: 25px;
+            text-align: center;
+            flex: 1;
+            min-width: 250px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-bottom: 3px solid #e67e22;
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+
+        .producto-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: reboteSuave 0.6s ease;
+        }
+
+        @keyframes reboteSuave {
+            0% { transform: translateY(60px); }
+            70% { transform: translateY(-8px); }
+            100% { transform: translateY(0); }
+        }
+
+        .producto-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 30px rgba(230,126,34,0.2);
+        }
+
+        .producto-card img {
+            width: 100%;
+            border-radius: 20px;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .precio {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #e67e22;
+        }
+
+        .btn-wsp {
+            background: #25D366;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-wsp:hover {
+            background: #128C7E;
+            transform: scale(1.02);
+        }
+
+        .horario {
+            background: #fff0e0;
+            padding: 30px;
+            border-radius: 30px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .mapa {
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 40px 0;
+        }
+
+        .contacto {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .footer {
+            background: #2c1a0c;
+            color: #fff0e0;
+            text-align: center;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .typed-text { font-size: 18px; white-space: normal; border-right: none; display: block; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="index.html#portafolio" class="btn-volver-portafolio">← Volver al portafolio</a>
+
+<div class="header">
+    <div class="logo"><span>🍕</span> Tu Pizzería</div>
+    <button class="menu-hamburguesa" id="menuHamburguesa">☰</button>
+    <div class="nav" id="nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#menu">Menú</a>
+        <a href="#ubicacion">Ubicación</a>
+        <a href="#contacto">Contacto</a>
+    </div>
+</div>
+
+<div class="hero" id="inicio">
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="videopizza.mp4" type="video/mp4">
+        Tu navegador no soporta video.
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Pizzas<br>Como en Italia</h1>
+        <div class="typed-text" id="typed"></div>
+        <p>Ingredientes Frescos. Tradición y Sabor en Cada Bocado.</p>
+        <a href="#menu" class="btn">Ver Nuestro Menú →</a>
+    </div>
+</div>
+
+<div class="contenedor">
+    <div class="reseñas">
+        <div class="estrellas">★★★★★</div>
+        <p style="font-size: 28px; font-weight: bold;">4.9 ⭐ (120+ Opiniones)</p>
+        <p>"Las Mejores Pizzas de la Ciudad" - Cliente Feliz</p>
+        <p>"Masa Crujiente, Ingredientes de Primera" - Otro Cliente</p>
+    </div>
+
+    <h2 style="text-align: center; color: #b85c1a;" id="menu">🔥 Nuestras Pizzas</h2>
+    <div class="productos-grid" id="productos-container"></div>
+
+    <div class="horario">
+        <i class="fas fa-clock" style="color:#e67e22; font-size: 32px;"></i>
+        <p><strong>Horario:</strong> Martes a Domingo 6pm - 11pm | Lunes cerrado</p>
+        <p>📍 Zona de cobertura: Tu Ciudad y Alrededores</p>
+    </div>
+
+    <div id="ubicacion" class="mapa">
+        <iframe src="https://www.google.com/maps?q=Reforma+Chiapas+Mexico&output=embed" width="100%" height="300" style="border:0;" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <p style="text-align: center;"><i class="fas fa-map-marker-alt"></i> Tu ciudad, tu colonia. Llegamos a ti.</p>
+
+    <div id="contacto" class="contacto">
+        <h2>📞 ¿Quieres Ordenar?</h2>
+        <p>Pide por WhatsApp o llámanos. Respuesta rápida.</p>
+        <a href="#" class="btn" style="margin-top: 20px; display: inline-block;" onclick="alert('✅ Esta es una página de demostración. Cuando tengas tu página real, aquí irá tu número de WhatsApp. ¿Te animas a tener la tuya? Contáctame.')">
+            <i class="fab fa-whatsapp"></i> Ordenar por WhatsApp
+        </a>
+        <p style="margin-top: 15px;">📞 Aquí irá tu número</p>
+    </div>
+</div>
+
+<div class="footer">
+    <p>🍕 Tu Pizzería | Sabor y Tradición</p>
+    <p>📍 Tu Ciudad, tu Colonia | 💡✍️🎨 Diseño y Desarrollo por Alex VIDLA</p>
+</div>
+
+<script>
+    // Texto animado
+    const palabras = ["Estilo Italiana", "La Reseta Magica", "Sabor Único"];
+    let i = 0, j = 0, escribiendo = true;
+    const typedEl = document.getElementById('typed');
+    function animarTexto() {
+        if (escribiendo) {
+            if (j <= palabras[i].length) {
+                typedEl.textContent = palabras[i].substring(0, j);
+                j++;
+                setTimeout(animarTexto, 100);
+            } else {
+                escribiendo = false;
+                setTimeout(animarTexto, 2000);
+            }
+        } else {
+            if (j >= 0) {
+                typedEl.textContent = palabras[i].substring(0, j);
+                j--;
+                setTimeout(animarTexto, 50);
+            } else {
+                escribiendo = true;
+                i = (i + 1) % palabras.length;
+                j = 0;
+                setTimeout(animarTexto, 500);
+            }
+        }
+    }
+    animarTexto();
+
+    const productos = [
+        { nombre: "Pizza Margherita", precio: 179, img: "https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?w=400" },
+        { nombre: "Pizza Pepperoni", precio: 199, img: "https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?w=400" },
+        { nombre: "Pizza Hawaiana", precio: 189, img: "https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?w=400" },
+        { nombre: "Pizza 4 Quesos", precio: 209, img: "https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?w=400" },
+        { nombre: "Pizza BBQ", precio: 219, img: "https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?w=400" },
+        { nombre: "Pizza Veggie", precio: 199, img: "https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?w=400" },
+        { nombre: "Pizza Diabla", precio: 229, img: "https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?w=400" },
+        { nombre: "Pizza Blanca", precio: 209, img: "https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?w=400" }
+    ];
+
+    const container = document.getElementById('productos-container');
+    productos.forEach((p, index) => {
+        const card = document.createElement('div');
+        card.className = 'producto-card';
+        card.innerHTML = `
+            <img src="${p.img}" alt="${p.nombre}">
+            <h3>${p.nombre}</h3>
+            <div class="precio">$${p.precio} MXN</div>
+            <button class="btn-wsp" onclick="alert('✅ Esta es una página de demostración. Cuando tengas tu página real, aquí se abrirá WhatsApp para pedir directamente. ¿Te animas a tener la tuya? Contáctame.')">
+                <i class="fab fa-whatsapp"></i> Ordenar por WhatsApp
+            </button>
+        `;
+        container.appendChild(card);
+    });
+
+    const cards = document.querySelectorAll('.producto-card');
+    const observerCards = new IntersectionObserver((entradas) => {
+        entradas.forEach((entrada, idx) => {
+            if (entrada.isIntersecting) {
+                setTimeout(() => {
+                    entrada.target.classList.add('visible');
+                }, idx * 100);
+                observerCards.unobserve(entrada.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    cards.forEach(card => observerCards.observe(card));
+
+    const menuBtn = document.getElementById('menuHamburguesa');
+    const nav = document.getElementById('nav');
+    if (menuBtn && nav) {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nav.classList.toggle('activo');
+        });
+        const enlaces = nav.querySelectorAll('a');
+        enlaces.forEach(enlace => {
+            enlace.addEventListener('click', () => nav.classList.remove('activo'));
+        });
+    }
+</script>
+</body>
+</html>
