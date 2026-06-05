@@ -1463,7 +1463,7 @@ section[id], div[id] {
 }
 
 /* Móvil */
-@m/* === MÓVIL === */
+/* === MÓVIL === */
 @media (max-width: 768px) {
     .menu-hamburguesa {
         display: block;
