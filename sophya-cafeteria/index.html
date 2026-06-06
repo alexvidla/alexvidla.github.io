@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Sophya Cafetería | El Mejor Café de Reforma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="logosop.ico" />
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+</head>
+
+<body>
+    <!--<a href="index.html#portafolio" class="btn-volver-portafolio">← Volver al Portafolio</a>-->
+
+    <div class="header">
+        <div class="logo-container">
+            <img src="logosop.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+            <div class="logo">Sophya <span style="color:#fc6f03;">Cafetería</span></div>
+        </div>
+        <button class="menu-hamburguesa" id="menuHamburguesa">☰</button>
+        <div class="nav" id="nav">
+            <a href="#inicio">Inicio</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#menu">Menú</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </div>
+
+        <div class="hero" id="inicio">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="vidsop.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>El mejor Café <span>de Reforma</span></h1>
+            <div class="typed-wrapper">
+                <div class="typed-text" id="typed"></div>
+            </div>
+            <a href="#menu" class="btn">Ver Menú →</a>
+        </div>
+    </div>
+
+    <div class="contenedor">
+        <div id="nosotros" class="nosotros-grid">
+            <div class="nosotros-texto">
+                <h2>Sobre Nosotros</h2>
+                <p>Sophya Cafetería nació con una misión: servir la mejor taza de café en Reforma, con ingredientes de calidad y un trato cálido como en casa.</p>
+                <p>Hemos crecido gracias a nuestros clientes, que nos respaldan con 4.9 estrellas y más de 100 opiniones. Aquí cada bebida se prepara con pasión, y cada postre es hecho con amor.</p>
+                <p>Ven a disfrutar de un ambiente único, ideal para trabajar, conversar o simplemente desconectar.</p>
+            </div>
+            <div class="nosotros-img">
+                <img src="cafe-local.jpg" alt="Sophya Cafetería" onerror="this.src='https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?w=400'">
+            </div>
+        </div>
+
+       
+        <div id="equipo" class="equipo-section">
+            <h2 style="text-align: center; color: #5f351a; font-size: 38px;" class="subtitulo-equipo">👥 Detrás del Servicio</h2>
+        <div class="equipo-grid">
+            <div class="equipo-card">
+                <img src="e1.jpeg" alt="Equipo Sophya" onerror="this.src='https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?w=400'">
+            </div>
+            <div class="equipo-card">
+                <img src="e2.jpeg" alt="Equipo Sophya" onerror="this.src='https://images.pexels.com/photos/3184419/pexels-photo-3184419.jpeg?w=400'">
+            </div>
+            <div class="equipo-card">
+                <img src="e3.jpeg" alt="Equipo Sophya" onerror="this.src='https://images.pexels.com/photos/3184420/pexels-photo-3184420.jpeg?w=400'">
+            </div>
+        </div>
+        <div class="equipo-texto">
+            <p>Sophya está formado por un gran equipo de trabajo: jóvenes apasionados por crear experiencias y brindar un servicio de corazón.</p>
+            <p>Este es el equipo que, aunque a veces no lo veas, está detrás de cada detalle, creando sabores para que tú disfrutes un gran día… desde un café hasta una buena comida.</p>
+            <p>Gracias a todos por portar la camiseta, ser ejemplo y estar llenos de dedicación.</p>
+        </div>
+    </div>
+
+        <!--<h2 style="text-align: center; color: #5f351a; font-size: 32px;">👥 Detrás del servicio</h2>
+        <div class="equipo-grid">
+            <div class="equipo-card"><img src="https://randomuser.me/api/portraits/women/68.jpg"><h4>Laura Méndez</h4><p>Barista y fundadora</p></div>
+            <div class="equipo-card"><img src="https://randomuser.me/api/portraits/men/32.jpg"><h4>Carlos López</h4><p>Maestro tostador</p></div>
+            <div class="equipo-card"><img src="https://randomuser.me/api/portraits/women/45.jpg"><h4>Sofía Ramírez</h4><p>Atención al cliente</p></div>
+        </div>-->
+
+        <h2 style="text-align: center; color: #5f351a; font-size: 38px;" id="menu">☕ Nuestros Productos</h2>
+        <div class="productos-grid" id="productos-container"></div>
+
+        
+
+        <div id="ofertas" class="ofertas-dia" style="background: linear-gradient(135deg, #f7ede0, #f3e3d3); border-radius: 40px; padding: 50px 30px; margin: 60px 0; text-align: center; border: 2px solid #fc6f03;">
+            <h2 style="color: #5f351a;">🔥 Ofertas del día</h2>
+            <div class="ofertas-grid" id="ofertas-container"></div>
+        </div>
+
+
+        <div class="qr-section">
+            <i class="fas fa-qrcode" style="font-size: 48px; color: #fc6f03;"></i>
+            <h3>📱 Menú Digital + Código QR</h3>
+            <p>Escanea este código con tu celular y accede a nuestro menú al instante.<br>Pide directo por WhatsApp sin esperar.</p>
+            <div id="qr-code" class="qr-code"></div>
+            <p style="font-size: 14px;">📲 Disponible para consumo en el lugar y pedidos para llevar.</p>
+        </div>
+
+
+        <h2 style="text-align: center; color: #5f351a; font-size: 38px;">⭐ Lo que Dicen Nuestros Clientes</h2>
+        <div class="testimonios">
+            <div class="testimonio"><img src="https://randomuser.me/api/portraits/women/68.jpg"><h4>María G.</h4><p class="testimonio-texto">"El mejor café de Reforma, atención increíble"</p><div style="color:#f1c40f;">★★★★★</div></div>
+            <div class="testimonio"><img src="https://randomuser.me/api/portraits/men/32.jpg"><h4>Carlos R.</h4><p class="testimonio-texto">"Lugar acogedor, ideal para trabajar o relajarse"</p><div style="color:#f1c40f;">★★★★★</div></div>
+            <div class="testimonio"><img src="https://randomuser.me/api/portraits/women/45.jpg"><h4>Laura F.</h4><p class="testimonio-texto">"Los postres son deliciosos, volveré"</p><div style="color:#f1c40f;">★★★★★</div></div>
+        </div>
+
+        <div class="horario">
+            <i class="fas fa-clock" style="color:#fc6f03; font-size: 32px;"></i>
+            <p><strong>Horario:</strong> Abierto hoy · Cierra a las 10 p.m.</p>
+            <p>📍 Estación Juárez-Cunduacán, Reforma, Chis.</p>
+        </div>
+
+        <div id="contacto" class="contacto">
+            <h2>📞 ¿Quieres Probar Nuestro Café?</h2>
+            <p>Pide por WhatsApp o llámanos. Respuesta Rápida.</p>
+            <a href="https://wa.me/529171173193?text=Hola,%20vi%20su%20página%20y%20quiero%20hacer%20un%20pedido" class="btn" style="margin-top: 20px; display: inline-block; background: #25D366;" target="_blank">
+                <i class="fab fa-whatsapp"></i> Ordenar por WhatsApp
+            </a>
+            <p style="margin-top: 15px;">📞 Llamar: <strong>917 117 3193</strong></p>
+        </div>
+
+        <div class="mapa">
+            <iframe src="https://www.google.com/maps?q=Estación+Juárez-Cunduacán+Reforma+Chiapas&output=embed" width="100%" height="250" style="border:0;" allowfullscreen loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>☕ Sophya Cafetería | Sabor que Inspira</p>
+        <p>📍 Estación Juárez-Cunduacán, Reforma, Chiapas | 💡✍️🎨 Diseño y desarrollo por Alex VIDLA</p>
+    </div>
+
+    <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cartBadge" class="badge">0</span>
+    </div>
+
+    <div id="cartDrawer" class="cart-drawer">
+        <div class="cart-header">
+            <h3>🛒 Tu pedido</h3>
+            <button class="close-cart" id="closeCart">✕</button>
+        </div>
+        <div id="cartItems" class="cart-body">
+            <p style="text-align:center; color:#999;">El carrito está vacío</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total"><span>Total:</span><span id="cartTotal">$0.00</span></div>
+            <button id="checkoutBtn" class="checkout-btn">📩 Enviar pedido</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
