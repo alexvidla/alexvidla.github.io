@@ -185,7 +185,6 @@
                 if (!drawer.contains(e.target) && !icon.contains(e.target)) drawer.classList.remove("open");
             }
         });
-
         const menuBtn = document.getElementById("menuHamburguesa");
         const nav = document.getElementById("nav");
         if (menuBtn && nav) {
