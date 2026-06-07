@@ -21,7 +21,7 @@
         .logo { font-size: 24px; font-weight: 800; background: linear-gradient(135deg, #5f351a, #a85a2f); background-clip: text; color: transparent; }
         .menu-hamburguesa { display: none; background: none; border: none; color: #5f351a; font-size: 28px; cursor: pointer; }
         .nav { display: flex; gap: 25px; }
-        .nav a { color: #3e2a1f; text-decoration: none; font-weight: 500; transition: 0.3s; position: relative; }
+        .nav a { color: #25D366; text-decoration: none; font-weight: 500; transition: 0.3s; position: relative; }
         .nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #a85a2f; transition: width 0.3s; }
         .nav a:hover::after { width: 100%; }
         @media (max-width: 768px) {
@@ -55,12 +55,39 @@
         .nosotros-img img { width: 100%; max-width: 450px; border-radius: 30px; box-shadow: 0 20px 30px rgba(0,0,0,0.1); transition: 0.3s; }
         @media (max-width: 768px) { .nosotros-grid { flex-direction: column; text-align: center; } .nosotros-texto h2::after { left: 50%; transform: translateX(-50%); } }
 
-        .equipo-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin: 60px 0; }
-        .equipo-card { background: white; padding: 25px; border-radius: 25px; text-align: center; width: 220px; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .equipo-section { margin: 80px 0; text-align: center; }
+        .equipo-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin-bottom: 40px; }
+        /*.equipo-card { background: white; padding: 25px; border-radius: 25px; text-align: center; width: 220px; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }*/
         .equipo-card:hover { transform: translateY(-8px); box-shadow: 0 15px 25px rgba(0,0,0,0.1); }
-        .equipo-card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #fc6f03; margin-left: auto; margin-right: auto; display: block; }
-        .equipo-card h4 { color: #5f351a; margin-bottom: 5px; }
-        .equipo-card p { color: #666; font-size: 13px; }
+        /*.equipo-card img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #fc6f03; margin-left: auto; margin-right: auto; display: block; }*/
+        .equipo-texto { max-width: 800px; margin: 0 auto; background: #f7ede0; padding: 30px; border-radius: 30px; color: #4a3828; font-size: 15px; line-height: 1.6; border-left: 4px solid #fc6f03; text-align: justify; }
+        
+        .equipo-card {
+            background: white;
+            padding: 20px;
+            border-radius: 25px;
+            text-align: center;
+            width: 280px;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .equipo-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 0;
+            border: 3px solid #fc6f03;
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .equipo-card {
+                width: 240px;
+            }
+            .equipo-card img {
+                height: 180px;
+            }
+        }
 
         .productos-grid, .ofertas-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin: 50px 0; }
         .producto-card, .oferta-card {
@@ -94,6 +121,7 @@
         .contacto { text-align: center; margin: 40px 0; }
         .footer { background: #2c1a0c; color: #fef9ef; text-align: center; padding: 40px; margin-top: 40px; }
 
+        /* Carrito */
         .cart-icon { position: fixed; bottom: 20px; right: 20px; background: #fc6f03; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
         .cart-icon:hover { transform: scale(1.08); background: #d45a00; }
         .badge { position: absolute; top: -5px; right: -5px; background: #fc6f03; color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 11px; display: flex; align-items: center; justify-content: center; }
@@ -111,14 +139,16 @@
         .cart-footer { padding: 20px; border-top: 1px solid #eee; }
         .cart-total { display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; margin-bottom: 15px; }
         .checkout-btn { background: #25D366; color: white; border: none; width: 100%; padding: 12px; border-radius: 40px; cursor: pointer; font-weight: bold; }
-
+        /* Campos en carrito */
+        .cart-footer input, .cart-footer textarea { font-family: 'Poppins', sans-serif; font-size: 14px; }
         @media (max-width: 768px) {
             .hero h1 { font-size: 36px; }
             .cart-drawer { width: 100%; right: -100%; }
             .qr-code svg { width: 140px; height: 140px; }
+            .equipo-texto { padding: 20px; font-size: 14px; text-align: center; }
         }
 
-            .hero {
+                .hero {
             position: relative;
             height: 100vh;
             overflow: hidden;
@@ -181,87 +211,31 @@
                 display: block;
                 text-align: center;
             }
+            .hero {
+                background-attachment: scroll;
+            }
         }
 
-    .logo-img {
-    max-height: 70px;
-    width: auto;
-    display: block;
-    }
-    @media (max-width: 768px) {
-    .logo-img {
-        max-height: 40px;
-    }
-}
-        /* Sección equipo */
-                /* Sección equipo */
-        .equipo-section {
-            margin: 80px 0;
-            text-align: center;
-        }
-        .equipo-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
+        .subtitulo-equipo {
+            font-size: 32px;
+            color: #5f351a;
             margin-bottom: 40px;
-        }
-        .equipo-card {
-            flex: 1;
-            min-width: 250px;
-            max-width: 320px;
-            transition: all 0.4s ease;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            cursor: pointer;
-        }
-        .equipo-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
+            text-align: center;
+            position: relative;
             display: block;
-            transition: transform 0.5s ease, filter 0.3s ease;
-            filter: brightness(0.95);
+            width: 100%;
         }
-        .equipo-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 30px rgba(252,111,3,0.2);
-        }
-        .equipo-card:hover img {
-            transform: scale(1.05);
-            filter: brightness(1.02);
-        }
-        
-        .subtitulo-equipo h2 { font-size: 45px; color: #5f351a; margin-bottom: 20px; position: relative; display: inline-block; }
-
-
-
-        .equipo-texto {
-            max-width: 900px;
-            margin: 40px auto 0 auto;
-            background: #f7ede0;
-            padding: 35px;
-            border-radius: 30px;
-            color: #4a3828;
-            font-size: 16px;
-            line-height: 1.7;
-            border-left: 5px solid #fc6f03;
-            text-align: left;
-        }
-        .equipo-texto p {
-            margin-bottom: 15px;
+        .subtitulo-equipo::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #fc6f03;
+            border-radius: 3px;
         }
         @media (max-width: 768px) {
-            .equipo-card {
-                min-width: 180px;
-            }
-            .equipo-card img {
-                height: 180px;
-            }
-            .equipo-texto {
-                padding: 20px;
-                font-size: 14px;
-                text-align: center;
-            }
+            .subtitulo-equipo { font-size: 28px; }
         }
