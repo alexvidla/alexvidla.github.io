@@ -29,18 +29,22 @@
         animarTexto();
 
 
+// QR
         window.addEventListener("DOMContentLoaded", function() {
-            new QRCode(document.getElementById("qr-code"), {
-                text: window.location.href.split('#')[0] + "#menu",
-                width: 180, height: 180, colorDark: "#fc6f03", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H
-            });
+            if (document.getElementById("qr-code")) {
+                new QRCode(document.getElementById("qr-code"), {
+                    text: window.location.href.split('#')[0] + "#menu",
+                    width: 180, height: 180, colorDark: "#fc6f03", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H
+                });
+            }
         });
 
+        // Productos
         const productos = [
-            { nombre: "Café Americano", precio: 45 },
-            { nombre: "Capuchino", precio: 55 },
-            { nombre: "Latte", precio: 60 },
-            { nombre: "Frappé", precio: 70 }
+            { nombre: "Café Americano", precio: 45, img: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?w=400" },
+            { nombre: "Capuchino", precio: 55, img: "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?w=400" },
+            { nombre: "Latte", precio: 60, img: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?w=400" },
+            { nombre: "Frappé", precio: 70, img: "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?w=400" }
         ];
 
         const container = document.getElementById("productos-container");
@@ -49,6 +53,7 @@
             card.className = "producto-card";
             card.innerHTML = `
                 <i class="fas fa-mug-hot"></i>
+                <img src="${p.img}" style="width:100%; border-radius:20px; height:150px; object-fit:cover; margin-bottom:15px;">
                 <h3>${p.nombre}</h3>
                 <div class="precio">$${p.precio}</div>
                 <div class="selector-cantidad">
@@ -61,6 +66,7 @@
             container.appendChild(card);
         });
 
+        // Ofertas
         const ofertas = [
             { nombre: "Café + Pastel", precio: 85, img: "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?w=400" },
             { nombre: "2x1 Capuchino", precio: 55, img: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?w=400" }
@@ -97,6 +103,7 @@
         }, { threshold: 0.2 });
         cards.forEach(card => observer.observe(card));
 
+        // Carrito
         let carrito = [];
 
         function actualizarCarritoUI() {
@@ -106,7 +113,7 @@
             if (!cartItemsDiv) return;
 
             if (carrito.length === 0) {
-                cartItemsDiv.innerHTML = '<p style="text-align:center; color:#999;">El Carrito está Vacío</p>';
+                cartItemsDiv.innerHTML = '<p style="text-align:center; color:#999;">El Carrito Está Vacío</p>';
                 if (cartTotalSpan) cartTotalSpan.textContent = "$0.00";
                 if (badge) badge.textContent = "0";
                 return;
@@ -148,9 +155,7 @@
             else carrito.push({ nombre, precio, cantidad });
             actualizarCarritoUI();
             document.getElementById("cartDrawer").classList.add("open");
-            // Pequeño feedback visual
-            btn.style.transform = 'scale(0.95)';
-            setTimeout(() => { btn.style.transform = 'scale(1)'; }, 150);
+            if (inputQty) inputQty.value = 1;
         }
 
         function eliminarDelCarrito(idx) {
@@ -158,20 +163,76 @@
             actualizarCarritoUI();
         }
 
+        // Mostrar/ocultar campos según tipo de servicio
+        const radiosServicio = document.querySelectorAll('input[name="tipoServicio"]');
+        const camposLocal = document.getElementById('camposLocal');
+        const camposAuto = document.getElementById('camposAuto');
+        const camposDomicilio = document.getElementById('camposDomicilio');
+        
+        function toggleCampos() {
+            if (!camposLocal || !camposAuto || !camposDomicilio) return;
+            const tipo = document.querySelector('input[name="tipoServicio"]:checked').value;
+            camposLocal.style.display = 'none';
+            camposAuto.style.display = 'none';
+            camposDomicilio.style.display = 'none';
+            if (tipo === 'local') camposLocal.style.display = 'block';
+            else if (tipo === 'auto') camposAuto.style.display = 'block';
+            else if (tipo === 'domicilio') camposDomicilio.style.display = 'block';
+        }
+        
+        if (radiosServicio.length) {
+            radiosServicio.forEach(radio => radio.addEventListener('change', toggleCampos));
+            toggleCampos();
+        }
+
         function enviarPedido() {
             if (carrito.length === 0) return alert("Agrega Productos Primero");
-            let mensaje = "☕***Nuevo Pedido - SOPHYA CAFETERÍA***☕\n\n";
+            
+            const tipoServicio = document.querySelector('input[name="tipoServicio"]:checked').value;
+            let detallesServicio = "";
+            
+            if (tipoServicio === 'local') {
+                const mesa = document.getElementById("mesa")?.value.trim();
+                const comensales = document.getElementById("comensales")?.value.trim();
+                if (!mesa) return alert("Escribe el Número de Mesa");
+                if (!comensales) return alert("Escribe el Número de Comensales");
+                detallesServicio = `📍 Mesa #${mesa}, ${comensales} personas`;
+            } 
+            else if (tipoServicio === 'auto') {
+                const tipoAuto = document.getElementById("tipoAuto")?.value.trim();
+                if (!tipoAuto) return alert("Escribe el Tipo de Auto (ej: Sedán Azul)");
+                detallesServicio = `🚗 Automóvil: ${tipoAuto}`;
+            } 
+            else if (tipoServicio === 'domicilio') {
+                const domicilio = document.getElementById("domicilio")?.value.trim();
+                if (!domicilio) return alert("Escribe la Dirección de Envío");
+                detallesServicio = `📍 Dirección: ${domicilio}`;
+            }
+            
+            let mensaje = "☕ *NUEVO PEDIDO - SOPHYA CAFETERÍA* ☕\n\n";
+            mensaje += `📌 *Tipo de Servicio:* ${tipoServicio === 'local' ? 'En el Local' : tipoServicio === 'auto' ? 'En el Automóvil' : 'Entrega a Domicilio'}\n`;
+            mensaje += `${detallesServicio}\n`;
+            mensaje += `\n🛒 *Pedido:*\n`;
             let total = 0;
             carrito.forEach(item => {
                 mensaje += `• ${item.nombre}: ${item.cantidad} x $${item.precio} = $${item.precio * item.cantidad}\n`;
                 total += item.precio * item.cantidad;
             });
             mensaje += `\n💵 *TOTAL: $${total} MXN*`;
+            
             window.open(`https://wa.me/529171173193?text=${encodeURIComponent(mensaje)}`, "_blank");
             carrito = [];
             actualizarCarritoUI();
             document.getElementById("cartDrawer").classList.remove("open");
-            alert("✅ ¡Pedido enviado con éxito! En breve te contactaremos.");
+            alert("✅ ¡Pedido Eenviado Con éxito! En Breve Te Contactaremos...");
+            
+            // Limpiar campos
+            document.getElementById("mesa").value = "";
+            document.getElementById("comensales").value = "";
+            document.getElementById("tipoAuto").value = "";
+            document.getElementById("domicilio").value = "";
+            document.querySelector('input[value="local"]').checked = true;
+            toggleCampos();
         }
 
         document.getElementById("cartIcon").addEventListener("click", () => document.getElementById("cartDrawer").classList.add("open"));
@@ -185,6 +246,7 @@
                 if (!drawer.contains(e.target) && !icon.contains(e.target)) drawer.classList.remove("open");
             }
         });
+
         const menuBtn = document.getElementById("menuHamburguesa");
         const nav = document.getElementById("nav");
         if (menuBtn && nav) {
