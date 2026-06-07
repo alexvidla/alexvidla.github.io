@@ -6,14 +6,15 @@
     <title>Sophya Cafetería | El Mejor Café de Reforma</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <!--<link rel="icon" type="image/x-icon" href="logosop.ico"/>-->
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="logosop.ico"/>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-
+    <!--<style>
+        
+    </style>-->
 </head>
-
 <body>
+
     <!--<a href="index.html#portafolio" class="btn-volver-portafolio">← Volver al Portafolio</a>-->
 
     <div class="header">
@@ -30,13 +31,16 @@
         </div>
     </div>
 
+    
         <div class="hero" id="inicio">
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="vidsop.mp4" type="video/mp4">
+            <!-- Si tienes el video en línea, usa la URL directa. Ejemplo: -->
+            <!-- <source src="https://tu-sitio.com/video-cafeteria.mp4" type="video/mp4"> -->
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>El mejor Café <span>de Reforma</span></h1>
+            <h1>El Mejor Café <span>de Reforma</span></h1>
             <div class="typed-wrapper">
                 <div class="typed-text" id="typed"></div>
             </div>
@@ -56,44 +60,30 @@
                 <img src="cafe-local.jpg" alt="Sophya Cafetería" onerror="this.src='https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?w=400'">
             </div>
         </div>
-  
-        <div id="equipo" class="equipo-section">
-            <h2 style="text-align: center; color: #5f351a; font-size: 38px;" class="subtitulo-equipo">👥 Detrás del Servicio</h2>
-        <div class="equipo-grid">
-            <div class="equipo-card">
-                <img src="e1.jpeg" alt="Equipo Sophya" onerror="this.src='https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?w=400'">
-            </div>
-            <div class="equipo-card">
-                <img src="e2.jpeg" alt="Equipo Sophya" onerror="this.src='https://images.pexels.com/photos/3184419/pexels-photo-3184419.jpeg?w=400'">
-            </div>
-            <div class="equipo-card">
-                <img src="e3.jpeg" alt="Equipo Sophya" onerror="this.src='https://images.pexels.com/photos/3184420/pexels-photo-3184420.jpeg?w=400'">
-            </div>
-        </div>
-        <div class="equipo-texto">
-            <p>Sophya está formado por un gran equipo de trabajo: jóvenes apasionados por crear experiencias y brindar un servicio de corazón.</p>
-            <p>Este es el equipo que, aunque a veces no lo veas, está detrás de cada detalle, creando sabores para que tú disfrutes un gran día… desde un café hasta una buena comida.</p>
-            <p>Gracias a todos por portar la camiseta, ser ejemplo y estar llenos de dedicación.</p>
-        </div>
-    </div>
 
-        <!--<h2 style="text-align: center; color: #5f351a; font-size: 32px;">👥 Detrás del servicio</h2>
-        <div class="equipo-grid">
-            <div class="equipo-card"><img src="https://randomuser.me/api/portraits/women/68.jpg"><h4>Laura Méndez</h4><p>Barista y fundadora</p></div>
-            <div class="equipo-card"><img src="https://randomuser.me/api/portraits/men/32.jpg"><h4>Carlos López</h4><p>Maestro tostador</p></div>
-            <div class="equipo-card"><img src="https://randomuser.me/api/portraits/women/45.jpg"><h4>Sofía Ramírez</h4><p>Atención al cliente</p></div>
-        </div>-->
+        <div id="equipo" class="equipo-section">
+            <h2 class="subtitulo-equipo">👥 Detrás del Servicio</h2>
+            <div class="equipo-grid">
+                <div class="equipo-card"><img src="e1.jpeg" alt="Equipo"></div>
+                <div class="equipo-card"><img src="e2.jpeg" alt="Equipo"></div>
+                <div class="equipo-card"><img src="e3.jpeg" alt="Equipo"></div>
+            </div>
+            <div class="equipo-texto">
+                <p>Sophya está formado por un gran equipo de trabajo: jóvenes apasionados por crear experiencias y brindar un servicio de corazón.</p>
+                <br>
+                <p>Este es el equipo que, aunque a veces no lo veas, está detrás de cada detalle, creando sabores para que tú disfrutes un gran día… desde un café hasta una buena comida.</p>
+                <br>
+                <p>Gracias a todos por portar la camiseta, ser ejemplo y estar llenos de dedicación.</p>
+            </div>
+        </div>
 
         <h2 style="text-align: center; color: #5f351a; font-size: 38px;" id="menu">☕ Nuestros Productos</h2>
         <div class="productos-grid" id="productos-container"></div>
 
-        
-
         <div id="ofertas" class="ofertas-dia" style="background: linear-gradient(135deg, #f7ede0, #f3e3d3); border-radius: 40px; padding: 50px 30px; margin: 60px 0; text-align: center; border: 2px solid #fc6f03;">
-            <h2 style="color: #5f351a;">🔥 Ofertas del día</h2>
+            <h2 style="color: #5f351a;">🔥 Ofertas del Día</h2>
             <div class="ofertas-grid" id="ofertas-container"></div>
         </div>
-
 
         <div class="qr-section">
             <i class="fas fa-qrcode" style="font-size: 48px; color: #fc6f03;"></i>
@@ -102,7 +92,6 @@
             <div id="qr-code" class="qr-code"></div>
             <p style="font-size: 14px;">📲 Disponible para consumo en el lugar y pedidos para llevar.</p>
         </div>
-
 
         <h2 style="text-align: center; color: #5f351a; font-size: 38px;">⭐ Lo que Dicen Nuestros Clientes</h2>
         <div class="testimonios">
@@ -119,8 +108,8 @@
 
         <div id="contacto" class="contacto">
             <h2>📞 ¿Quieres Probar Nuestro Café?</h2>
-            <p>Pide por WhatsApp o llámanos. Respuesta Rápida.</p>
-            <a href="https://wa.me/529171173193?text=Hola,%20vi%20su%20página%20y%20quiero%20hacer%20un%20pedido" class="btn" style="margin-top: 20px; display: inline-block; background: #25D366;" target="_blank">
+            <p>Pide por WhatsApp o Llámanos. Respuesta Rápida.</p>
+            <a href="https://wa.me/529171173193?text=Hola,%20Vi%20Su%20Página%20y%20Quiero%20Hacer%20Un%20Pedido..." class="btn" style="margin-top: 20px; display: inline-block; background: #25D366;" target="_blank">
                 <i class="fab fa-whatsapp"></i> Ordenar por WhatsApp
             </a>
             <p style="margin-top: 15px;">📞 Llamar: <strong>917 117 3193</strong></p>
@@ -133,9 +122,10 @@
 
     <div class="footer">
         <p>☕ Sophya Cafetería | Sabor que Inspira</p>
-        <p>📍 Estación Juárez-Cunduacán, Reforma, Chiapas | 💡✍️🎨 Diseño y desarrollo por Alex VIDLA</p>
+        <p>📍 Estación Juárez-Cunduacán, Reforma, Chiapas | 💡✍️🎨 Diseño y Desarrollo por Alex VIDLA</p>
     </div>
 
+    <!-- Carrito -->
     <div class="cart-icon" id="cartIcon">
         <i class="fas fa-shopping-cart"></i>
         <span id="cartBadge" class="badge">0</span>
@@ -143,21 +133,51 @@
 
     <div id="cartDrawer" class="cart-drawer">
         <div class="cart-header">
-            <h3>🛒 Tu pedido</h3>
+            <h3>🛒 Tu Pedido</h3>
             <button class="close-cart" id="closeCart">✕</button>
         </div>
         <div id="cartItems" class="cart-body">
-            <p style="text-align:center; color:#999;">El carrito está vacío</p>
+            <p style="text-align:center; color:#999;">El Carrito Está Vacío</p>
         </div>
         <div class="cart-footer">
+            <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; display: block; margin-bottom: 8px;">📌 Tipo de Servicio:</label>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <label><input type="radio" name="tipoServicio" value="local" checked> 🍽️ En el Local</label>
+                    <label><input type="radio" name="tipoServicio" value="auto"> 🚗 En el Automóvil</label>
+                    <label><input type="radio" name="tipoServicio" value="domicilio"> 🏠 Entrega a Domicilio</label>
+                </div>
+            </div>
+            <div id="camposLocal" style="margin-bottom: 15px;">
+                <input type="number" id="mesa" placeholder="🍽️ Número de Mesa" style="width:100%; padding:8px; margin-bottom:8px; border-radius:10px; border:1px solid #fc6f03;">
+                <input type="number" id="comensales" placeholder="👥 Número de Comensales" style="width:100%; padding:8px; border-radius:10px; border:1px solid #fc6f03;">
+            </div>
+            <div id="camposAuto" style="margin-bottom: 15px; display: none;">
+                <input type="text" id="tipoAuto" placeholder="🚗 Tipo de Auto (ej: Sedán Azul, Pickup Roja)" style="width:100%; padding:8px; border-radius:10px; border:1px solid #fc6f03;">
+            </div>
+            <div id="camposDomicilio" style="margin-bottom: 15px; display: none;">
+                <textarea id="domicilio" rows="2" placeholder="📍 Dirección de Envío (Calle, Número, Colonia)" style="width:100%; padding:8px; border-radius:10px; border:1px solid #fc6f03;"></textarea>
+            </div>
             <div class="cart-total"><span>Total:</span><span id="cartTotal">$0.00</span></div>
-            <button id="checkoutBtn" class="checkout-btn">📩 Enviar pedido</button>
+            <button id="checkoutBtn" class="checkout-btn">📩 Enviar Pedido</button>
         </div>
     </div>
 
-    <script src="script.js"></script>
+   <script src="script.js"></script>
 
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+            (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/6a14db1701991d1c31188e43/1jpgnflga';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+            })();
+    </script>
+    <!--End of Tawk.to Script-->
 
 </body>
-
 </html>
