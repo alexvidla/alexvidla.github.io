@@ -474,6 +474,10 @@ textarea.campo {
     flex-wrap: wrap;
 }
 
+
+
+
+
 .menu:hover {
     border-bottom: 2px solid #fc6f03;
 }
@@ -2087,39 +2091,6 @@ button.blog-boton-nuevo:hover {
     .contador-label { font-size: 12px; }
 }
 
-/* Botón flotante volver arriba */
-.btn-flotante-arriba {
-    position: fixed;
-    bottom: 100px;
-    left: 20px;  
-    /*right: 20px;*/
-    background: #fc6f03;
-    color: white;
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    font-size: 28px;
-    cursor: pointer;
-    z-index: 9999;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    transition: all 0.3s;
-}
-
-.btn-flotante-arriba:hover {
-    background: #e05e00;
-    transform: scale(1.05);
-}
-
-@media (max-width: 768px) {
-    .btn-flotante-arriba {
-        bottom: 80px;
-        width: 45px;
-        height: 45px;
-        font-size: 24px;
-    }
-}
-
 /* Efecto de desenfoque lateral en imágenes */
 .imagen-con-efecto {
     mask-image: linear-gradient(90deg, 
@@ -2230,3 +2201,58 @@ button.blog-boton-nuevo:hover {
   transition: stroke-dashoffset 0.1s linear;
 }
 
+/* ===== BOTONES FLOTANTES ===== */
+.whatsapp-flotante {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 58px;
+  height: 58px;
+  background: #25d366;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 26px;
+  text-decoration: none;
+  z-index: 999;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 6px 25px rgba(37,211,102,0.45);
+  animation: latido 1.5s ease-in-out infinite,pulso-wa 2.5s ease-in-out infinite;
+  transition: all 0.3s ease, var(--transicion);
+
+}
+
+.whatsapp-flotante:hover {
+  transform: scale(1.1);
+  animation: none;
+}
+
+@keyframes pulso-wa {
+  0%, 100% { box-shadow: 0 6px 25px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0.4); }
+  50%       { box-shadow: 0 6px 25px rgba(37,211,102,0.45), 0 0 0 14px rgba(37,211,102,0); }
+}
+
+.wa-tooltip {
+  position: absolute;
+  right: calc(100% + 12px);
+  background: #fc6f03;
+  /*background: rgba(30,12,3,0.95);*/
+  color: var(--crema);
+  font-size: 13px;
+  font-style: italic;
+  padding: 7px 14px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  border: 1px solid rgba(200,134,10,0.3);
+}
+
+.whatsapp-flotante:hover .wa-tooltip {
+  opacity: 1;
+}
+        
