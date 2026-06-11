@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Alborada | Experiencia Premium</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!--<link rel="icon" href="../hoteles/hotel-alborada/logo-alborada.ico" type="image/x-icon"/>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-negro: #0a0806;
+            --oro-alborada: #c29b68;
+            --oro-brillante: #f3d4a2;
+            --cristal-oscuro: rgba(15, 12, 10, 0.98);
+            --borde-oro: rgba(194, 155, 104, 0.25);
+            --texto-luz: #fdfbfc;
+            --texto-gris: #a79a91;
+            --nav-alto: 80px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg-negro);
+            color: var(--texto-luz);
+            overflow-x: hidden;
+        }
+
+        /* --- EFECTOS REVELADO --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* NAVBAR PREMIUM */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: var(--nav-alto);
+            background: #0a0806;
+            border-bottom: 1px solid var(--borde-oro);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 2rem; z-index: 2000;
+        }
+
+        .logo-contenedor {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--texto-luz);
+        }
+
+        .logo-img { max-height: 40px; width: auto; object-fit: contain; }
+        .logo-txt { font-family: 'Georgia', serif; font-size: 1.25rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
+
+        .nav-links { display: flex; list-style: none; gap: 1.5rem; align-items: center; }
+        .nav-links a { color: var(--texto-luz); text-decoration: none; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--oro-alborada); }
+
+        .menu-hamburguesa {
+            display: none;
+            font-size: 1.6rem;
+            color: var(--oro-alborada);
+            cursor: pointer;
+            z-index: 2010;
+            padding: 5px;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            position: relative; width: 100%; min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden;
+            padding: 120px 2rem 60px 2rem;
+        }
+        
+        .hero-bg-container { 
+            position: absolute; 
+            top: 0; left: 0; width: 100%; height: 100%; 
+            z-index: -2; 
+            background: linear-gradient(to bottom, rgba(10, 8, 6, 0.85), rgba(10, 8, 6, 0.75)), 
+                        url('ha1.jpeg'); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        .particulas-oro { position: absolute; width: 100%; height: 100%; background-image: radial-gradient(rgba(194, 155, 104, 0.15) 1px, transparent 1px); background-size: 32px 32px; animation: moverParticulas 20s linear infinite; opacity: 0.5; z-index: -1; }
+        .franja-logo { text-align: center; z-index: 2; margin-bottom: 2.5rem; }
+        .franja-logo h1 { font-family: 'Georgia', serif; font-size: 3.5rem; letter-spacing: 6px; text-transform: uppercase; text-shadow: 0 0 30px rgba(0,0,0,0.8); }
+        .franja-logo p { color: var(--oro-brillante); letter-spacing: 8px; text-transform: uppercase; font-size: 0.95rem; margin-top: 10px; }
+
+        /* SECCIONES MAESTRAS */
+        .seccion-maestra {
+            padding: 60px 10%;
+            background: var(--bg-negro); 
+            border-bottom: 1px solid rgba(194, 155, 104, 0.1);
+            scroll-margin-top: var(--nav-alto);
+        }
+        .titulo-sec { font-family: 'Georgia', serif; font-size: 2.2rem; color: var(--oro-alborada); text-align: center; margin-bottom: 2.5rem; }
+        
+        /* HABITACIONES */
+        .grid-premium { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
+        .tarjeta-premium { background: rgba(15, 12, 10, 0.6); border: 1px solid var(--borde-oro); border-radius: 12px; overflow: hidden; }
+        .tarjeta-img { height: 220px; overflow: hidden; }
+        .tarjeta-img img { width: 100%; height: 100%; object-fit: cover; }
+        .tarjeta-info { padding: 1.5rem; }
+        .tarjeta-info h3 { margin-bottom: 0.6rem; font-family: 'Georgia', serif; color: var(--oro-brillante); }
+        .tarjeta-info p { color: var(--texto-gris); font-size: 0.88rem; line-height: 1.6; }
+
+        /* SERVICIOS */
+        .grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .card-servicio { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--borde-oro); padding: 2.5rem 1.5rem; border-radius: 12px; text-align: center; }
+        .card-servicio i { font-size: 2.5rem; color: var(--oro-alborada); margin-bottom: 1rem; }
+
+        /* HISTORIA */
+        .historia-container { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2.5rem; align-items: center; }
+        .historia-texto { line-height: 1.7; font-size: 1rem; color: var(--texto-gris); text-align: justify; }
+        .historia-visual { position: relative; display: flex; gap: 15px; height: 300px; }
+        .img-box { border-radius: 8px; overflow: hidden; border: 1px solid var(--borde-oro); }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .img-principal { width: 65%; height: 100%; }
+        .img-secundaria { width: 55%; height: 80%; position: absolute; right: 0; bottom: 0; z-index: -1; filter: brightness(0.6); }
+
+        /* RESEÑAS */
+        .grid-resenas { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .card-resena { background: rgba(15, 12, 10, 0.8); border: 1px solid var(--borde-oro); padding: 2rem 1.5rem; border-radius: 12px; }
+
+        /* MAPA LIMPIO Y ENFOCADO EXCLUSIVAMENTE EN TU UBICACIÓN */
+        .mapa-box { width: 100%; height: 450px; border-radius: 12px; overflow: hidden; border: 1px solid var(--borde-oro); background: #14110e; }
+        .mapa-box iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.2) invert(0.9) contrast(1.1); }
+
+        /* FORMULARIO DE RESERVA COMPATIBLE */
+        .reserva-bar-flotante { 
+            position: fixed; bottom: 0; left: 0; width: 100%; 
+            background: #0f0c0a; border-top: 1px solid var(--borde-oro); 
+            padding: 1.2rem 2rem; z-index: 1500; display: flex; justify-content: center;
+            transition: all 0.4s ease;
+        }
+        .reserva-bar-flotante.ocultar-reserva { transform: translateY(100%); opacity: 0; pointer-events: none; }
+        .form-row { display: flex; align-items: flex-end; gap: 1rem; width: 100%; max-width: 1200px; }
+        .inputs-colectores { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.7rem; flex-grow: 2; }
+        .input-group label, .form-row label { display: block; font-size: 0.75rem; color: var(--oro-alborada); margin-bottom: 4px; text-transform: uppercase; }
+        
+        /* SELECTORES CON LETRAS CLARAS Y VISIBLES */
+        .input-premium { 
+            background: #1a1512; 
+            border: 1px solid rgba(194, 155, 104, 0.5); 
+            color: #ffffff; 
+            padding: 10px; 
+            border-radius: 4px; 
+            width: 100%; 
+            font-size: 0.85rem;
+            outline: none;
+        }
+        
+        .input-premium option {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            font-size: 0.9rem;
+            padding: 5px;
+        }
+
+        .btn-reserva { 
+            background: linear-gradient(135deg, var(--oro-alborada), #8f6b40); 
+            color: black; border: none; font-weight: bold; padding: 11px 25px; 
+            cursor: pointer; border-radius: 4px; letter-spacing: 1px; transition: 0.2s; 
+        }
+        .btn-reserva:hover { background: var(--oro-brillante); }
+
+        /* FOOTER */
+        .footer-principal { padding: 3rem 2rem; text-align: center; border-top: 1px solid var(--borde-oro); background: #050403; position: relative; z-index: 1600; }
+
+        @keyframes moverParticulas { from { background-position: 0 0; } to { background-position: 0 1000px; } }
+        
+        /* RESPONSIVO MÓVIL TOTALMENTE CORREGIDO */
+        @media (max-width: 900px) {
+            body { padding-bottom: 0; }
+            .navbar { padding: 0 1.2rem; }
+            .logo-txt { font-size: 1.1rem; }
+            .menu-hamburguesa { display: block; }
+
+            /* CORRECCIÓN DE FLUJO: Desplegable controlado exclusivamente por JS sin romper la pantalla */
+            .nav-links {
+                position: absolute;
+                top: var(--nav-alto); left: 0;
+                width: 100%;
+                background: #0a0806; 
+                border-bottom: 1px solid var(--oro-alborada);
+                flex-direction: column;
+                gap: 0; padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+                z-index: 1999;
+            }
+
+            .nav-links.menu-activo { 
+                max-height: 400px; /* Abre con suavidad y límite controlado */
+            }
+            
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links a { font-size: 0.95rem; display: block; padding: 15px 0; border-bottom: 1px solid rgba(194, 155, 104, 0.05); }
+            .nav-links li:last-child a { border-bottom: none; }
+
+            .franja-logo h1 { font-size: 2.2rem; letter-spacing: 3px; }
+            .franja-logo p { font-size: 0.8rem; letter-spacing: 4px; }
+            .seccion-maestra { padding: 50px 6%; }
+            .historia-container { grid-template-columns: 1fr; gap: 2rem; }
+            .historia-visual { height: 240px; }
+
+            .reserva-bar-flotante {
+                position: relative; bottom: auto; left: auto; width: 100%; max-width: 450px;
+                border-radius: 12px; border: 1px solid var(--borde-oro);
+                background: rgba(15, 12, 10, 0.85); padding: 1.5rem;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+                transform: none !important; opacity: 1 !important; z-index: 10;
+            }
+            
+            .form-row { flex-direction: column; align-items: stretch; gap: 1rem; }
+            .inputs-colectores { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+            .inputs-colectores .input-group:nth-child(5) { grid-column: span 2; }
+            
+            .form-row > div[style*="text-align: right"] {
+                display: flex; justify-content: space-between; align-items: center;
+                background: rgba(255,255,255,0.02); padding: 8px; border-radius: 4px;
+            }
+            .btn-reserva { width: 100%; padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#inicio" class="logo-contenedor">
+            <img src="logo-alborada-.png" alt="Logo Alborada" class="logo-img">
+            <div class="logo-txt">Alborada</div>
+        </a>
+        
+        <div class="menu-hamburguesa" id="btn-hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <ul class="nav-links" id="menu-navegacion">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#habitaciones">Habitaciones</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#historia">Historia</a></li>
+            <li><a href="#resenas">Reseñas</a></li>
+            <li><a href="#ubicacion">Ubicación</a></li>
+        </ul>
+    </nav>
+
+    <section id="inicio" class="hero-section">
+        <div class="hero-bg-container"></div>
+        <div class="particulas-oro"></div>
+        <div class="franja-logo">
+            <h1>Hotel Alborada</h1>
+            <p>Tu hogar lejos de casa</p>
+        </div>
+
+        <form class="reserva-bar-flotante" id="form-alborada">
+            <div class="form-row">
+                <div class="inputs-colectores">
+                    <div class="input-group"><label>Check-In</label><input type="date" id="checkin" class="input-premium" required></div>
+                    <div class="input-group"><label>Check-Out</label><input type="date" id="checkout" class="input-premium" required></div>
+                    <div class="input-group">
+                        <label>Suite</label>
+                        <select id="tipo" class="input-premium">
+                            <option value="450">Sencilla - $450</option>
+                            <option value="700">Doble - $700</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Adultos</label>
+                        <select id="adultos" class="input-premium">
+                            <option value="1">1 Adulto</option>
+                            <option value="2">2 Adultos</option>
+                            <option value="3">3 Adultos</option>
+                            <option value="4">4 Adultos</option>
+                            <option value="5">5 Adultos</option>
+                            <option value="6">6 Adultos</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Niños</label>
+                        <select id="ninos" class="input-premium">
+                            <option value="0">0 Niños</option>
+                            <option value="1">1 Niño</option>
+                            <option value="2">2 Niños</option>
+                            <option value="3">3 Niños</option>
+                            <option value="4">4 Niños</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="flex-grow: 1;">
+                    <label>Nombre del Huésped</label>
+                    <input type="text" id="nombre" class="input-premium" placeholder="Introduce tu nombre" required>
+                </div>
+                <div style="text-align: right; min-width: 120px;">
+                    <span id="noches-lbl" style="font-size: 0.75rem;">Estadía: --</span>
+                    <b id="visual-total" style="color: var(--oro-brillante); font-size: 1.1rem;">$0 MXN</b>
+                </div>
+                <button type="submit" class="btn-reserva" id="btn-submit-reserva">RESERVAR</button>
+            </div>
+        </form>
+    </section>
+
+    <section id="habitaciones" class="seccion-maestra">
+        <h2 class="titulo-sec reveal">Habitaciones</h2>
+        <div class="grid-premium">
+            <div class="tarjeta-premium reveal">
+                <div class="tarjeta-img"><img src="ha2.jpeg" alt="Habitación Individual"></div>
+                <div class="tarjeta-info"><h3>Habitación Individual</h3><p>Cama matrimonial, climatización individual, TV por cable y Wi-Fi de alta gama. Confort absoluto.</p></div>
+            </div>
+            <div class="tarjeta-premium reveal">
+                <div class="tarjeta-img"><img src="ha3.jpeg" alt="Habitación Matrimonial"></div>
+                <div class="tarjeta-info"><h3>Habitación Matrimonial</h3><p>Espacio ampliado con dos camas matrimoniales. Diseñada para viajes familiares o grupales.</p></div>
+            </div>
+            <div class="tarjeta-premium reveal">
+                <div class="tarjeta-img"><img src="ha3.jpeg" alt="Habitación Doble"></div>
+                <div class="tarjeta-info"><h3>Habitación Doble</h3><p>Cama matrimonial, climatización individual, TV por cable y Wi-Fi de alta gama. Confort absoluto.</p></div>
+            </div>
+            <div class="tarjeta-premium reveal">
+                <div class="tarjeta-img"><img src="ha3.jpeg" alt="Habitación Triple"></div>
+                <div class="tarjeta-info"><h3>Habitación Triple</h3><p>Espacio ampliado con dos camas matrimoniales. Diseñada para viajes familiares o grupales.</p></div>
+            </div>
+            <div class="tarjeta-premium reveal">
+                <div class="tarjeta-img"><img src="ha2.jpeg" alt="Habitación Standar"></div>
+                <div class="tarjeta-info"><h3>Sencilla Estándar</h3><p>Cama matrimonial, climatización individual, TV por cable y Wi-Fi de alta gama. Confort absoluto.</p></div>
+            </div>
+            <div class="tarjeta-premium reveal">
+                <div class="tarjeta-img"><img src="ha3.jpeg" alt="Habitación Confort"></div>
+                <div class="tarjeta-info"><h3>Doble Confort</h3><p>Espacio ampliado con dos camas matrimoniales. Diseñada para viajes familiares o grupales.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="seccion-maestra">
+        <h2 class="titulo-sec reveal">Servicios</h2>
+        <div class="grid-servicios">
+            <div class="card-servicio reveal"><i class="fa-solid fa-wifi"></i><h3>Wi-Fi Fibra</h3><p>Conexión dedicada estable.</p></div>
+            <div class="card-servicio reveal"><i class="fa-solid fa-snowflake"></i><h3>Climatización</h3><p>Control de temperatura.</p></div>
+            <div class="card-servicio reveal"><i class="fa-solid fa-car"></i><h3>Parking 24/7</h3><p>Monitoreado y seguro.</p></div>
+        </div>
+    </section>
+
+    <section id="historia" class="seccion-maestra" style="background: rgba(194, 155, 104, 0.01);">
+        <h2 class="titulo-sec reveal">Nuestra Esencia</h2>
+        <div class="historia-container">
+            <div class="historia-texto reveal">
+                <p>Desde nuestra fundación en Reforma, Chiapas, el <strong>Hotel Alborada</strong> nació con una misión clara: redefinir la hospitalidad regional brindando un espacio de absoluto confort, modernidad y calidez familiar.</p>
+                <br>
+                <p>Aseguramos que cada huésped corporativo o vacacional encuentre un rincón de descanso único en la zona.</p>
+            </div>
+            <div class="historia-visual reveal">
+                <div class="img-box img-principal"><img src="ha5.jpeg" alt="Fachada Hotel"></div>
+                <div class="img-box img-secundaria"><img src="ha1.jpeg" alt="Interior"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resenas" class="seccion-maestra">
+        <h2 class="titulo-sec reveal">Opiniones Reales</h2>
+        <div class="grid-resenas">
+            <div class="card-resena reveal">
+                <div style="color: var(--oro-alborada); margin-bottom: 0.8rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"La mejor conexión a internet para trabajar sin interrupciones y el servicio en recepción es inmejorable."</p>
+                <h4 style="margin-top: 1rem; color: white; font-size: 0.9rem;">— Carlos Mendoza</h4>
+            </div>
+            <div class="card-resena reveal">
+                <div style="color: var(--oro-alborada); margin-bottom: 0.8rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"La habitación impecable y excelente aire acondicionado. Muy recomendable."</p>
+                <h4 style="margin-top: 1rem; color: white; font-size: 0.9rem;">— Sofía Rodríguez</h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="ubicacion" class="seccion-maestra">
+        <h2 class="titulo-sec reveal">Ubicación Estratégica</h2>
+        <div class="mapa-box">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3795.539828551121!2d-93.26426742578553!3d17.85923058936087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85eed935048cd4d5%3A0x6b86e737c353f86e!2sFrancisco%20I.%20Madero%2C%20Centro%2C%20Reforma%2C%20Chis.!5e0!3m2!1ses-419!2smx!4v1718012345678!5m2!1ses-419!2smx" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+    <footer class="footer-principal" id="footer-hotel">
+        <p style="color: var(--oro-alborada); letter-spacing: 2px;">HOTEL ALBORADA — REFORMA, CHIAPAS</p>
+        <p style="font-size: 0.75rem; color: #555; margin-top: 1rem;">© 2026 Alex VIDLA - Desarrollo Web a Medida</p>
+    </footer>
+
+    <script>
+        // CONFIGURACIÓN DEL NÚMERO DE TELÉFONO DEL HOTEL
+        const TELEFONO_HOTEL = "+529174025447"; 
+
+        // LÓGICA DE CONTROL DEL MENÚ HAMBURGUESA MEJORADA
+        const btnHamburger = document.getElementById('btn-hamburger');
+        const menuNavegacion = document.getElementById('menu-navegacion');
+
+        btnHamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuNavegacion.classList.toggle('menu-activo');
+            const icono = btnHamburger.querySelector('i');
+            if(menuNavegacion.classList.contains('menu-activo')) {
+                icono.classList.replace('fa-bars', 'fa-xmark');
+            } else {
+                icono.classList.replace('fa-xmark', 'fa-bars');
+            }
+        });
+
+        // Cierra el menú al hacer clic en cualquier sección
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuNavegacion.classList.remove('menu-activo');
+                btnHamburger.querySelector('i').classList.replace('fa-xmark', 'fa-bars');
+            });
+        });
+
+        // Cierra el menú si hacen clic en cualquier otra parte de la pantalla
+        document.addEventListener('click', (e) => {
+            if(!menuNavegacion.contains(e.target) && !btnHamburger.contains(e.target)) {
+                menuNavegacion.classList.remove('menu-activo');
+                btnHamburger.querySelector('i').classList.replace('fa-xmark', 'fa-bars');
+            }
+        });
+
+        // MOTOR DE REVELADO ANIMADO
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.05 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // CONTROLES DE LA RESERVA Y CÁLCULOS
+        const formulario = document.getElementById('form-alborada');
+        const fIn = document.getElementById('checkin');
+        const fOut = document.getElementById('checkout');
+        const sTipo = document.getElementById('tipo');
+        const sAdultos = document.getElementById('adultos');
+        const sNinos = document.getElementById('ninos');
+        const lblNoches = document.getElementById('noches-lbl');
+        const lblTotal = document.getElementById('visual-total');
+
+        function calcularMonto() {
+            if(fIn.value && fOut.value) {
+                let diff = new Date(fOut.value) - new Date(fIn.value);
+                let noches = Math.ceil(diff / (1000 * 60 * 60 * 24));
+                if(noches <= 0) noches = 1;
+                let total = noches * parseInt(sTipo.value);
+                lblNoches.innerText = `Estadía: ${noches} noches`;
+                lblTotal.innerText = `$${total} MXN`;
+                return { noches, total };
+            }
+            return null;
+        }
+
+        fIn.addEventListener('change', () => { fOut.min = fIn.value; calcularMonto(); });
+        fOut.addEventListener('change', calcularMonto);
+        sTipo.addEventListener('change', calcularMonto);
+
+        // ENVÍO DE RESERVAS A WHATSAPP
+        formulario.addEventListener('submit', (e) => {
+            e.preventDefault(); 
+            
+            const datosMonetarios = calcularMonto();
+            if(!datosMonetarios) {
+                alert("Por favor selecciona fechas válidas.");
+                return;
+            }
+
+            const nombreHuesped = document.getElementById('nombre').value;
+            const suiteTexto = sTipo.options[sTipo.selectedIndex].text;
+            const numAdultos = sAdultos.value;
+            const numNinos = sNinos.value;
+
+            const textoMensaje = `¡Hola! Me gustaría confirmar una reservación en *Hotel Alborada*:\n\n` +
+                                 `• *Huésped:* ${nombreHuesped}\n` +
+                                 `• *Habitación:* ${suiteTexto}\n` +
+                                 `• *Check-In:* ${fIn.value}\n` +
+                                 `• *Check-Out:* ${fOut.value}\n` +
+                                 `• *Estadía:* ${datosMonetarios.noches} noches\n` +
+                                 `• *Adultos:* ${numAdultos}\n` +
+                                 `• *Niños:* ${numNinos}\n\n` +
+                                 `*Total Estimado:* $${datosMonetarios.total} MXN\n\n` +
+                                 `Quedo atento a la confirmación. ¡Muchas gracias!`;
+
+            const mensajeUrl = encodeURIComponent(textoMensaje);
+            const enlaceWhatsApp = `https://api.whatsapp.com/send?phone=${TELEFONO_HOTEL}&text=${mensajeUrl}`;
+
+            window.open(enlaceWhatsApp, '_blank');
+
+            formulario.reset();
+            let hoy = new Date().toISOString().split('T')[0];
+            fIn.min = hoy; fOut.min = hoy;
+            lblNoches.innerHTML = "Estadía: --";
+            lblTotal.innerText = "$0 MXN";
+        });
+
+        let hoy = new Date().toISOString().split('T')[0];
+        fIn.min = hoy; fOut.min = hoy;
+    </script>
+</body>
+</html>
