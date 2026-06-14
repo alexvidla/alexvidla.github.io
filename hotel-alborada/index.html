@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Alborada | Experiencia Premium</title>
+    <link rel="icon" href="logo-alborada.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- ============ NAVBAR ============ -->
+    <nav class="navbar" id="navbar">
+        <a href="#inicio" class="logo-contenedor">
+            <img src="logo-alborada-.png" alt="Logo Alborada" class="logo-img">
+            <div class="logo-divider"></div>
+            <div class="logo-txt">Alborada</div>
+        </a>
+
+        <div class="menu-hamburguesa" id="btn-hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <ul class="nav-links" id="menu-nav">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#habitaciones">Habitaciones</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#historia">Historia</a></li>
+            <li><a href="#resenas">Reseñas</a></li>
+            <li><a href="#ubicacion">Ubicación</a></li>
+        </ul>
+    </nav>
+
+    <!-- ============ HERO ============ -->
+    <section id="inicio" class="hero-section">
+        <div class="hero-bg">
+            <img src="ha1.jpeg" alt="Hotel Alborada">
+        </div>
+        <div class="hero-gradient"></div>
+        <div class="particulas-oro"></div>
+        <div class="hero-linea-izq"></div>
+        <div class="hero-linea-der"></div>
+
+        <div class="hero-content">
+            <div class="hero-eyebrow">Reforma, Chiapas</div>
+            <h1 class="hero-titulo">Hotel<br><span>Alborada</span></h1>
+            <p class="hero-subtitulo">Tu hogar Lejos de Casa</p>
+            <a href="#habitaciones" class="hero-cta">
+                <span>Explorar Suites</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+        <!-- Reserva flotante (se ubica aquí para móvil) -->
+        <form class="reserva-flotante" id="form-reserva">
+            <div class="reserva-inner">
+                <div class="reserva-campos">
+                    <div>
+                        <label class="campo-lbl" for="checkin">Check-In</label>
+                        <input type="date" id="checkin" class="campo-input" required>
+                    </div>
+                    <div>
+                        <label class="campo-lbl" for="checkout">Check-Out</label>
+                        <input type="date" id="checkout" class="campo-input" required>
+                    </div>
+                    <div>
+                        <label class="campo-lbl" for="tipo">Suite</label>
+                        <select id="tipo" class="campo-input">
+                            <option value="400">Individual — $400</option>
+                            <option value="550">Matrimonial — $550</option>
+                            <option value="600">Doble — $600</option>
+                            <option value="900">Triple — $900</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="campo-lbl" for="adultos">Adultos</label>
+                        <select id="adultos" class="campo-input">
+                            <option>1 Adulto</option><option>2 Adultos</option>
+                            <option>3 Adultos</option><option>4 Adultos</option>
+                            <option>5 Adultos</option><option>6 Adultos</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="campo-lbl" for="ninos">Niños</label>
+                        <select id="ninos" class="campo-input">
+                            <option value="0">0 Niños</option><option value="1">1 Niño</option>
+                            <option value="2">2 Niños</option><option value="3">3 Niños</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="reserva-nombre">
+                    <label class="campo-lbl" for="nombre">Huésped</label>
+                    <input type="text" id="nombre" class="campo-input" placeholder="Nombre completo" required>
+                </div>
+                <div class="reserva-resumen">
+                    <span class="reserva-noches" id="lbl-noches">Estadía: —</span>
+                    <div class="reserva-total" id="lbl-total">$0 MXN</div>
+                </div>
+                <button type="submit" class="btn-reserva"><span>Reservar</span></button>
+            </div>
+        </form>
+    </section>
+
+    <!-- ============ HABITACIONES ============ -->
+    <section id="habitaciones" class="seccion">
+        <h2 class="titulo-sec reveal">Habitaciones</h2>
+        <p class="subtitulo-sec reveal delay-1">Espacios Diseñados para el Descanso</p>
+
+        <div class="grid-rooms">
+            <div class="tarjeta reveal delay-1">
+                <div class="tarjeta-img">
+                    <img src="ha2.jpeg" alt="Habitación Individual">
+                    <span class="tarjeta-badge">Individual</span>
+                </div>
+                <div class="tarjeta-info">
+                    <h3>Habitación Individual</h3>
+                    <p>Cama matrimonial, climatización individual, TV por cable y Wi-Fi de alta velocidad. Confort absoluto para el viajero ejecutivo.</p>
+                    <div class="tarjeta-footer">
+                        <div class="tarjeta-precio">Desde <b>$400</b> MXN / noche</div>
+                        <a href="#inicio" class="tarjeta-btn">Reservar <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tarjeta reveal delay-2">
+                <div class="tarjeta-img">
+                    <img src="ha3.jpeg" alt="Habitación Matrimonial">
+                    <span class="tarjeta-badge">Matrimonial</span>
+                </div>
+                <div class="tarjeta-info">
+                    <h3>Habitación Matrimonial</h3>
+                    <p>Diseñada para la pareja moderna, con ambiente íntimo, iluminación cálida y todos los servicios premium del hotel.</p>
+                    <div class="tarjeta-footer">
+                        <div class="tarjeta-precio">Desde <b>$550</b> MXN / noche</div>
+                        <a href="#inicio" class="tarjeta-btn">Reservar <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tarjeta reveal delay-3">
+                <div class="tarjeta-img">
+                    <img src="ha3.jpeg" alt="Habitación Doble">
+                    <span class="tarjeta-badge">Doble</span>
+                </div>
+                <div class="tarjeta-info">
+                    <h3>Habitación Doble</h3>
+                    <p>Espacio ampliado con camas independientes. Ideal para compañeros de viaje o familia que buscan comodidad compartida.</p>
+                    <div class="tarjeta-footer">
+                        <div class="tarjeta-precio">Desde <b>$600</b> MXN / noche</div>
+                        <a href="#inicio" class="tarjeta-btn">Reservar <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tarjeta reveal delay-1">
+                <div class="tarjeta-img">
+                    <img src="ha3.jpeg" alt="Habitación Triple">
+                    <span class="tarjeta-badge">Triple</span>
+                </div>
+                <div class="tarjeta-info">
+                    <h3>Habitación Triple</h3>
+                    <p>Tres camas cómodas con espacio para toda la familia. Clima independiente, TV y Wi-Fi de fibra óptica.</p>
+                    <div class="tarjeta-footer">
+                        <div class="tarjeta-precio">Desde <b>$900</b> MXN / noche</div>
+                        <a href="#inicio" class="tarjeta-btn">Reservar <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tarjeta reveal delay-2">
+                <div class="tarjeta-img">
+                    <img src="ha2.jpeg" alt="Sencilla Estándar">
+                    <span class="tarjeta-badge">Estándar</span>
+                </div>
+                <div class="tarjeta-info">
+                    <h3>Sencilla Estándar</h3>
+                    <p>La opción inteligente para estadías cortas. Todo lo esencial con el sello de calidad Alborada en cada detalle.</p>
+                    <div class="tarjeta-footer">
+                        <div class="tarjeta-precio">Desde <b>$400</b> MXN / noche</div>
+                        <a href="#inicio" class="tarjeta-btn">Reservar <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tarjeta reveal delay-3">
+                <div class="tarjeta-img">
+                    <img src="ha3.jpeg" alt="Doble Confort">
+                    <span class="tarjeta-badge">Confort</span>
+                </div>
+                <div class="tarjeta-info">
+                    <h3>Doble Confort</h3>
+                    <p>Dos camas matrimoniales en un ambiente renovado. Perfecta para familias o grupos que no quieren sacrificar confort.</p>
+                    <div class="tarjeta-footer">
+                        <div class="tarjeta-precio">Desde <b>$600</b> MXN / noche</div>
+                        <a href="#inicio" class="tarjeta-btn">Reservar <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SERVICIOS ============ -->
+    <section id="servicios" class="seccion seccion-servicios">
+        <h2 class="titulo-sec reveal">Servicios</h2>
+        <p class="subtitulo-sec reveal delay-1">Todo lo que Necesitas, Sin Pedir Más</p>
+        <div class="grid-servicios">
+            <div class="card-serv reveal delay-1">
+                <div class="serv-icono"><i class="fa-solid fa-wifi"></i></div>
+                <h3>Wi-Fi Fibra</h3>
+                <p>Conexión dedicada de alta velocidad para trabajo o entretenimiento sin interrupciones.</p>
+            </div>
+            <div class="card-serv reveal delay-2">
+                <div class="serv-icono"><i class="fa-solid fa-snowflake"></i></div>
+                <h3>Climatización</h3>
+                <p>Control de temperatura individual en cada habitación para tu comodidad en todo momento.</p>
+            </div>
+            <div class="card-serv reveal delay-3">
+                <div class="serv-icono"><i class="fa-solid fa-car"></i></div>
+                <h3>Estacionamiento</h3>
+                <p>Área monitoreada y segura disponible las 24 horas para huéspedes del hotel.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ HISTORIA ============ -->
+    <section id="historia" class="seccion seccion-historia">
+        <div class="historia-grid">
+            <div class="reveal-left">
+                <div class="historia-label">Nuestra Historia</div>
+                <h2 class="historia-titulo">Una Esencia<br>Construida con <em>Calidez</em></h2>
+                <div class="historia-txt">
+                    <p>Desde nuestra fundación en Reforma, Chiapas, el <strong style="color: var(--texto);">Hotel Alborada</strong> nació con una misión clara: redefinir la hospitalidad regional brindando un espacio de absoluto confort, modernidad y calidez familiar.</p>
+                    <p>Cada rincón fue pensado para que el viajero corporativo o vacacional encuentre ese descanso único que solo un hotel con alma puede ofrecer.</p>
+                </div>
+                <div class="historia-stat">
+                    <div class="stat-item">
+                        <div class="stat-num">100%</div>
+                        <div class="stat-lbl">Satisfacción</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">6</div>
+                        <div class="stat-lbl">Tipos de Suite</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">24h</div>
+                        <div class="stat-lbl">Atención</div>
+                    </div>
+                </div>
+            </div>
+            <div class="historia-imgs reveal-right">
+                <div class="img-stack-a">
+                    <img src="ha5.jpeg" alt="Fachada Hotel Alborada">
+                </div>
+                <div class="img-stack-b">
+                    <img src="ha1.jpeg" alt="Interior Hotel Alborada">
+                </div>
+                <div class="img-stack-linea"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ RESEÑAS ============ -->
+    <section id="resenas" class="seccion">
+        <h2 class="titulo-sec reveal">Opiniones Reales</h2>
+        <p class="subtitulo-sec reveal delay-1">Lo que Dicen Nuestros Huéspedes</p>
+        <div class="grid-resenas">
+            <div class="card-resena reveal delay-1">
+                <div class="estrellas">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <p class="resena-txt">La mejor conexión a internet para trabajar sin interrupciones y el servicio en recepción es inmejorable. Volveré sin dudarlo.</p>
+                <div class="resena-autor">
+                    <div class="autor-avatar"><i class="fa-solid fa-user"></i></div>
+                    <div>
+                        <div class="autor-nombre">Carlos Mendoza</div>
+                        <div class="autor-fecha">Huésped Verificado</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-resena reveal delay-2">
+                <div class="estrellas">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <p class="resena-txt">La habitación impecable y con excelente aire acondicionado. Muy recomendable para quien viaje a Chiapas por trabajo o placer.</p>
+                <div class="resena-autor">
+                    <div class="autor-avatar"><i class="fa-solid fa-user"></i></div>
+                    <div>
+                        <div class="autor-nombre">Sofía Rodríguez</div>
+                        <div class="autor-fecha">Huéspeda Verificada</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ UBICACIÓN ============ -->
+    <section id="ubicacion" class="seccion">
+        <h2 class="titulo-sec reveal">Ubicación</h2>
+        <p class="subtitulo-sec reveal delay-1">Reforma, Chiapas — México</p>
+        <div class="mapa-wrapper reveal delay-2">
+            <iframe
+                src="https://www.google.com/maps?q=Reforma+Chiapas+Mexico&output=embed"
+                allowfullscreen="" loading="lazy">
+            </iframe>
+            <div class="mapa-tag">
+                <i class="fa-solid fa-location-dot"></i>
+                <div class="mapa-tag-txt">
+                    Hotel Alborada
+                    <span>Reforma, Chiapas, México</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer" id="footer-hotel">
+        <div class="footer-logo">Alborada</div>
+        <div class="footer-lugar">Reforma, Chiapas &nbsp;·&nbsp; México</div>
+        <div class="footer-sep"></div>
+        <div class="footer-cr">© 2026 | 💡✍️🎨 Diseño y Desarrollo por Alex VIDLA.Alex VIDLA | Desarrollo Web a Medida</div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
