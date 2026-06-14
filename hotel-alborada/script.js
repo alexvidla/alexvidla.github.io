@@ -1,3 +1,38 @@
+const frases = [
+  "Tu Hogar Lejos de Casa...",
+  ];
+
+let i = 0;
+let j = 0;
+let texto = "";
+let escribiendo = true;
+
+function escribir() {
+  if (escribiendo) {
+    if (j < frases[i].length) {
+      texto += frases[i][j];
+      j++;
+    } else {
+      escribiendo = false;
+      setTimeout(escribir, 1500);
+      return;
+    }
+  } else {
+    if (j > 0) {
+      texto = frases[i].substring(0, j - 1);
+      j--;
+    } else {
+      escribiendo = true;
+      i = (i + 1) % frases.length;
+    }
+  }
+  const el = document.querySelector(".texto-animado");
+  if(el) el.textContent = texto;
+  setTimeout(escribir, 80);
+}
+
+window.onload = function() { escribir(); };
+
 const TELEFONO = "529174025447";
 
         /* ---- NAVBAR scroll ---- */
