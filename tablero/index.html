@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex VIDLA | Dashboard de Rendimiento Comercial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Estándar de Estilo Alex VIDLA - Vanguardia y Fluidez */
+        :root {
+            --bg-principal: #0f172a;
+            --cristal-bg: rgba(30, 41, 59, 0.7);
+            --cristal-borde: rgba(255, 255, 255, 0.1);
+            --texto-brillante: #f8fafc;
+            --verde-exito: #10b981;
+            --azul-tecnologico: #3b82f6;
+            --naranja-acento: #f97316;
+            --nav-height: 70px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top right, #1e1b4b, var(--bg-principal));
+            color: var(--texto-brillante);
+            min-height: 100vh;
+            padding-top: var(--nav-height);
+            overflow-x: hidden;
+        }
+
+        /* Menú de Navegación Premium */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: var(--cristal-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--cristal-borde);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            z-index: 1000;
+        }
+
+        .logo-dashboard {
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, #ffffff, var(--azul-tecnologico));
+            /*-webkit-background-clip: text;*/
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Selector Multicliente Inteligente */
+        .selector-cliente-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 6px 14px;
+            border-radius: 30px;
+            border: 1px solid var(--cristal-borde);
+        }
+
+        .selector-cliente-box label {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .selector-cliente {
+            background: transparent;
+            color: var(--texto-brillante);
+            border: none;
+            font-size: 0.95rem;
+            font-weight: bold;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .selector-cliente option {
+            background: #0f172a;
+            color: var(--texto-brillante);
+        }
+
+        /* Contenedor Principal */
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .seccion-dashboard {
+            margin-bottom: 3rem;
+        }
+
+        .encabezado-dinamico {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        h2.titulo-seccion {
+            font-size: 1.8rem;
+            border-left: 4px solid var(--azul-tecnologico);
+            padding-left: 10px;
+        }
+
+        /* Cuadrícula de Métricas */
+        .metricas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tarjeta-metrica {
+            background: var(--cristal-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--cristal-borde);
+            border-radius: 16px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+        }
+
+        .tarjeta-metrica:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .tarjeta-metrica::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--azul-tecnologico), var(--verde-exito));
+        }
+
+        .tarjeta-metrica h3 {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .tarjeta-metrica .valor {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--texto-brillante);
+            margin: 5px 0;
+        }
+
+        .tarjeta-metrica .detalle {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* Caja de Gráfica */
+        .grafica-box {
+            background: var(--cristal-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--cristal-borde);
+            border-radius: 16px;
+            padding: 1.8rem;
+            min-height: 380px;
+            position: relative;
+        }
+
+        /* Animación de Carga */
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            color: #94a3b8;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo-dashboard"><i class="fa-solid fa-chart-line" style="color: var(--azul-tecnologico);"></i> ALEX VIDLA // METRICS</div>
+        
+        <div class="selector-cliente-box">
+            <label><i class="fa-solid fa-briefcase"></i> Proyecto:</label>
+            <select id="selector-proyecto" class="selector-cliente">
+                <option value="hotel_anunnaki">Hotel Anunnaki</option>
+                <option value="hotel_alborada">Hotel Alborada</option>
+                </select>
+        </div>
+    </nav>
+
+    <main class="dashboard-container">
+        <section class="seccion-dashboard">
+            <div class="encabezado-dinamico">
+                <h2 class="titulo-seccion" id="nombre-proyecto-titulo">Cargando Proyecto...</h2>
+            </div>
+            
+            <div class="metricas-grid">
+                <div class="tarjeta-metrica">
+                    <h3>Reservas Culminadas</h3>
+                    <div class="valor" id="reserva-conteo">0</div>
+                    <div class="detalle"><i class="fa-solid fa-arrow-up-long" style="color: var(--verde-exito);"></i> Conversiones vía WhatsApp</div>
+                </div>
+                <div class="tarjeta-metrica">
+                    <h3>Impacto Económico</h3>
+                    <div class="valor" id="monto-acumulado">$0.00</div>
+                    <div class="detalle" id="detalle-moneda">Valor total de transacciones</div>
+                </div>
+                <div class="tarjeta-metrica">
+                    <h3>Efectividad Comercial</h3>
+                    <div class="valor" id="efectividad-porcentaje">100%</div>
+                    <div class="detalle"><i class="fa-solid fa-bolt" style="color: var(--naranja-acento);"></i> Retorno de inversión digital</div>
+                </div>
+            </div>
+
+            <div class="grafica-box">
+                <div class="loader" id="grafica-loader">
+                    <i class="fa-solid fa-spinner fa-spin"></i> Sincronizando con Google Sheets...
+                </div>
+                <canvas id="graficaRendimiento"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // ========================================================
+        // CONFIGURACIÓN DE PROYECTOS MULTICLIENTE (TU MATRIZ DE ENLACES)
+        // ========================================================
+        const CONFIG_PROYECTOS = {
+            hotel_anunnaki: {
+                nombre: "Hotel Anunnaki",
+                etiqueta: "Hotel Anunnaki",
+                // URL de la pestaña Auditoria_Alex (compartida, se filtra por etiqueta)
+                csvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbfdC9xUTpLehrma-jTWb8nriUgN_2P-u9KCtaCR8HiOYyK7pzxBLti-c9cIFVc28eGaIdCL3uDPMk/pub?gid=756469853&single=true&output=csv"
+            }
+            , hotel_alborada: {
+                nombre: "Hotel Alborada",
+                etiqueta: "Hotel Alborada",
+                // Misma pestaña Auditoria_Alex, se filtra por etiqueta
+                csvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbfdC9xUTpLehrma-jTWb8nriUgN_2P-u9KCtaCR8HiOYyK7pzxBLti-c9cIFVc28eGaIdCL3uDPMk/pub?gid=756469853&single=true&output=csv"
+            }
+            /* Cuando cierres otro cliente:
+            , restaurante_gourmet: {
+                nombre: "Restaurante Gourmet",
+                etiqueta: "Restaurante Gourmet",
+                csvUrl: "URL_DE_LA_PESTAÑA_AUDITORIA_CSV"
+            } */
+        };
+
+        let miGrafica = null;
+
+        // Carga inicial al cargar el DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            const selector = document.getElementById('selector-proyecto');
+            
+            // Escuchar cambios de cliente
+            selector.addEventListener('change', (e) => {
+                cargarMétricasProyecto(e.target.value);
+            });
+
+            // Cargar por defecto el primer proyecto
+            cargarMétricasProyecto(selector.value);
+        });
+
+        // ========================================================
+        // MOTOR LECTOR Y PROCESADOR DE GOOGLE SHEETS (FORMATO CSV)
+        // ========================================================
+        async function cargarMétricasProyecto(idProyecto) {
+            const loader = document.getElementById('grafica-loader');
+            const titulo = document.getElementById('nombre-proyecto-titulo');
+            
+            loader.style.display = 'flex';
+            const proyecto = CONFIG_PROYECTOS[idProyecto];
+            titulo.textContent = `Métricas de Rendimiento: ${proyecto.nombre}`;
+
+            try {
+                // Petición en tiempo real a Google sin intermediarios
+                const respuesta = await fetch(proyecto.csvUrl);
+                const textoCsv = await respuesta.text();
+                
+                // Procesar las filas del CSV
+                const filas = textoCsv.split('\n').map(fila => fila.split(','));
+                
+                // Quitar encabezados y filtrar SOLO los registros de este negocio por etiqueta
+                const todosRegistros = filas.slice(1).filter(f => f.length >= 4 && f[0].trim() !== "");
+                const etiquetaFiltro = proyecto.etiqueta;
+                const registros = todosRegistros.filter(f => {
+                    const etiquetaFila = f[2] ? f[2].trim().replace(/^"|"$/g, '') : "";
+                    return etiquetaFila === etiquetaFiltro;
+                });
+
+                let conteoReservas = registros.length;
+                let sumaTotal = 0;
+
+                // Estructuras para agrupar datos por fecha para la gráfica
+                const datosPorFecha = {};
+
+                registros.forEach(reg => {
+                    const fecha = reg[0].trim();
+                    // Limpieza del string de dinero (quita $, espacios, comillas o letras si tiene)
+                    let montoMero = reg[4] ? reg[4].replace(/[^0-9.]/g, '') : "0";
+                    let valorNumerico = parseFloat(montoMero) || 0;
+
+                    sumaTotal += valorNumerico;
+
+                    // Agrupamos para los puntos de la gráfica
+                    datosPorFecha[fecha] = (datosPorFecha[fecha] || 0) + valorNumerico;
+                });
+
+                // Actualizar tarjetas de métricas en la interfaz
+                document.getElementById('reserva-conteo').textContent = conteoReservas;
+                document.getElementById('monto-acumulado').textContent = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(sumaTotal);
+                
+                // Renderizar la gráfica de neón
+                renderizarGrafica(Object.keys(datosPorFecha), Object.values(datosPorFecha));
+
+            } catch (error) {
+                console.error("Error cargando la nube:", error);
+                alert("No se pudo sincronizar con Google Sheets. Asegúrate de haber publicado la pestaña como CSV y que el enlace sea correcto.");
+            } finally {
+                loader.style.display = 'none';
+            }
+        }
+
+        // ========================================================
+        // RENDERIZADO DE GRÁFICA CON CHART.JS (ESTILO CRISTAL NEÓN)
+        // ========================================================
+        function renderizarGrafica(etiquetas, valores) {
+            const ctx = document.getElementById('graficaRendimiento').getContext('2d');
+
+            // Destruir gráfica anterior si existe para evitar duplicación visual al cambiar cliente
+            if (miGrafica) miGrafica.destroy();
+
+            // Configuración de gradiente líquido neón bajo la línea
+            const gradienteGlow = ctx.createLinearGradient(0, 0, 0, 300);
+            gradienteGlow.addColorStop(0, 'rgba(59, 130, 246, 0.4)');
+            gradienteGlow.addColorStop(1, 'rgba(59, 130, 246, 0.0)');
+
+            miGrafica = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: etiquetas,
+                    datasets: [{
+                        label: 'Ingresos Captados (Moneda Local)',
+                        data: valores,
+                        borderColor: '#3b82f6',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#10b981',
+                        pointBorderColor: '#fff',
+                        pointHoverRadius: 7,
+                        backgroundColor: gradienteGlow,
+                        fill: true,
+                        tension: 0.35
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false } // Menos contaminación visual
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#94a3b8' }
+                        },
+                        y: {
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#94a3b8' }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
